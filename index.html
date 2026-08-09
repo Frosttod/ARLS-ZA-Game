@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARLS-ZA — Almost Real Life Survival: Zombie Apocalypse</title>
+<meta name="description" content="Hyper-realistic GPS survival for Android. Your body is the controller: blood volume, calorie burn, heart rate and weapon dispersion computed from real movement.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="ARLS-ZA — Almost Real Life Survival">
+<meta property="og:description" content="A GPS survival game that replaces resource bars with physiology. Every system, explained.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="./">
+<link rel="alternate" hreflang="pl" href="./pl/">
+<link rel="alternate" hreflang="x-default" href="./">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E4E5DF'/%3E%3Ccircle cx='16' cy='16' r='4' fill='none' stroke='%23A82D17' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23A82D17' stroke-width='1.2' opacity='.6'/%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%23A82D17' stroke-width='1' opacity='.35'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="hero">
+  <svg class="hero__contour" viewBox="0 0 900 500" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <g id="c"><path d="M120 250c40-95 175-160 300-150 130 10 235 78 268 165 30 80-25 160-140 186-140 32-300 10-378-62-52-48-72-99-50-139z"/></g>
+      <use href="#c" transform="translate(450 250) scale(.86) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.72) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.58) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.44) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.30) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.17) translate(-450 -250)"/>
+    </g>
+  </svg>
+
+  <div class="hero__inner">
+    <div class="hero__meta eyebrow">
+      <span>Android · Flutter</span>
+      <span>GPS survival</span>
+      <span>Offline-first</span>
+      <nav class="langs" aria-label="Language">
+        <a href="./" aria-current="true" data-lang-link hreflang="en">EN</a>
+        <a href="pl/" data-lang-link hreflang="pl">PL</a>
+      </nav>
+    </div>
+
+    <h1>
+      <span class="hero__title">ARLS&#8209;ZA</span>
+      <span class="hero__sub">Almost Real Life Survival · Zombie Apocalypse</span>
+    </h1>
+
+    <p class="thesis">
+      <strong>Your body is the controller.</strong> Everything that is a resource bar in other games
+      is a physiological consequence of real effort here — computed from GPS, in millilitres of blood,
+      kilocalories and minutes of angle.
+    </p>
+
+    <div class="card">
+      <div class="card__hd"><span>Character sheet</span><span>M · 30 y · 180 cm · 80 kg</span></div>
+      <div class="card__row"><span class="card__k">Blood volume — Nadler</span><span class="card__v">5,290 ml</span></div>
+      <div class="card__row"><span class="card__k">Daily requirement</span><span class="card__v">2,450 kcal · 2,800 ml</span></div>
+      <div class="card__row"><span class="card__k">Carry comfort / limit</span><span class="card__v">24 kg · 36 kg</span></div>
+      <div class="card__row"><span class="card__k">Max heart rate — Tanaka</span><span class="card__v">187 bpm</span></div>
+      <div class="card__ft">Derived from the numbers you enter at character creation. This data never leaves the phone.</div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="layout">
+
+    <nav class="rail" aria-label="Game systems">
+      <p class="rail__t">Game systems</p>
+      <ol id="rail-list">
+        <li><a href="#pillar"><span>00</span><span>Design pillar</span></a></li>
+        <li><a href="#character"><span>01</span><span>Character</span></a></li>
+        <li><a href="#physiology"><span>02</span><span>Physiology</span></a></li>
+        <li><a href="#map"><span>03</span><span>Map and GPS</span></a></li>
+        <li><a href="#safety"><span>04</span><span>Player safety</span></a></li>
+        <li><a href="#items"><span>05</span><span>Items</span></a></li>
+        <li><a href="#combat"><span>06</span><span>Combat</span></a></li>
+        <li><a href="#noise"><span>07</span><span>Noise</span></a></li>
+        <li><a href="#enemies"><span>08</span><span>Enemies</span></a></li>
+        <li><a href="#hotspots"><span>09</span><span>Hotspots</span></a></li>
+        <li><a href="#loot"><span>10</span><span>Loot and economy</span></a></li>
+        <li><a href="#skills"><span>11</span><span>Skills</span></a></li>
+        <li><a href="#shelter"><span>12</span><span>Shelter and camp</span></a></li>
+        <li><a href="#crafting"><span>13</span><span>Crafting</span></a></li>
+        <li><a href="#death"><span>14</span><span>Death</span></a></li>
+        <li><a href="#seasons"><span>15</span><span>Seasons</span></a></li>
+        <li><a href="#audio"><span>16</span><span>Audio and haptics</span></a></li>
+        <li><a href="#story"><span>17</span><span>Story layer</span></a></li>
+        <li><a href="#onboarding"><span>18</span><span>Onboarding</span></a></li>
+        <li><a href="#tech"><span>19</span><span>Technology</span></a></li>
+        <li><a href="#status"><span>20</span><span>Status and roadmap</span></a></li>
+      </ol>
+    </nav>
+
+    <main id="content">
+
+      <div class="jump">
+        <label class="eyebrow" for="jump-sel">Jump to system</label>
+        <select id="jump-sel" aria-label="Jump to system">
+          <option value="#pillar">00 — Design pillar</option>
+          <option value="#character">01 — Character</option>
+          <option value="#physiology">02 — Physiology</option>
+          <option value="#map">03 — Map and GPS</option>
+          <option value="#safety">04 — Player safety</option>
+          <option value="#items">05 — Items</option>
+          <option value="#combat">06 — Combat</option>
+          <option value="#noise">07 — Noise</option>
+          <option value="#enemies">08 — Enemies</option>
+          <option value="#hotspots">09 — Hotspots</option>
+          <option value="#loot">10 — Loot and economy</option>
+          <option value="#skills">11 — Skills</option>
+          <option value="#shelter">12 — Shelter and camp</option>
+          <option value="#crafting">13 — Crafting</option>
+          <option value="#death">14 — Death</option>
+          <option value="#seasons">15 — Seasons</option>
+          <option value="#audio">16 — Audio and haptics</option>
+          <option value="#story">17 — Story layer</option>
+          <option value="#onboarding">18 — Onboarding</option>
+          <option value="#tech">19 — Technology</option>
+          <option value="#status">20 — Status and roadmap</option>
+        </select>
+      </div>
+
+      <section class="sec" id="pillar">
+        <div class="sec__hd">
+          <span class="sec__no">00 · Pillar</span>
+          <h2>The rule every decision answers to</h2>
+          <p class="sec__lede">One constraint shapes the whole balance: since the game cannot modify the player's speed, no penalty and no bonus may act on speed.</p>
+        </div>
+        <div class="prose">
+          <p>Every modifier has to be expressed in a different currency — metabolic cost, heart rate, accuracy, injury risk or the time an action takes. The constraint is hard, there is no way around it, and every system on this page is derived from it.</p>
+          <h3>What we deliberately do not model</h3>
+          <p>Fractures, infections, illness, body temperature as a separate parameter, food poisoning and mental health. The scope is limited on purpose — the model is meant to be computable, not complete.</p>
+          <div class="stats">
+            <div class="stat"><b>1:1</b><span>time scale — the day is never sped up</span></div>
+            <div class="stat"><b>0</b><span>game servers — the whole simulation runs locally</span></div>
+            <div class="stat"><b>0</b><span>in-app purchases</span></div>
+            <div class="stat"><b>0</b><span>health data collected</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="character">
+        <div class="sec__hd">
+          <span class="sec__no">01 · Character</span>
+          <h2>A creator that actually computes</h2>
+          <p class="sec__lede">You enter sex, age, height and weight. The game turns them into physiological parameters using clinical formulas rather than a table of character classes.</p>
+        </div>
+        <div class="prose">
+          <h3>Formulas</h3>
+          <div class="f">Blood volume — Nadler
+<b>M</b>  V = 0.3669 × h³ + 0.03219 × w + 0.6041
+<b>F</b>  V = 0.3561 × h³ + 0.03308 × w + 0.1833
+
+Basal metabolic rate — Mifflin–St Jeor
+<b>M</b>  BMR = 10w + 6.25h − 5a + 5
+<b>F</b>  BMR = 10w + 6.25h − 5a − 161
+
+Water      = 35 ml × body mass + sweat losses
+Max HR     = 208 − 0.7 × age            (Tanaka)
+Carry load = 0.30 × mass (comfort) · 0.45 × mass (hard limit)</div>
+
+          <h3>Validation</h3>
+          <ul>
+            <li>Age 16–80, height 120–220 cm, weight 35–200 kg</li>
+            <li>Cross-validation rejects combinations below BMI 12 or above 60 — without it a player enters 200 cm / 35 kg and every formula falls apart</li>
+            <li>Name of 4–16 alphanumeric characters with spaces, no leading or doubled spaces</li>
+          </ul>
+
+          <div class="warn">
+            <span class="warn__t">Privacy</span>
+            <p>Height, weight, age and sex are health-related data. They stay on the device and never leave the phone. The game does not integrate with Health Connect or any sensor — the simplest way to keep that promise is to not collect the data at all.</p>
+          </div>
+
+          <p>Exceeding the comfortable carry load does <em>not</em> block movement — we cannot slow a real person down. It scales the metabolic cost instead.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="physiology">
+        <div class="sec__hd">
+          <span class="sec__no">02 · Physiology</span>
+          <h2>The body engine</h2>
+          <p class="sec__lede">A 1 Hz tick computes energy expenditure from GPS speed, water loss from effort and temperature, heart rate from intensity, and blood loss from hits. One model for all of it.</p>
+        </div>
+        <div class="prose">
+          <h3>Energy expenditure</h3>
+          <div class="f">kcal/min = MET × 3.5 × body mass [kg] / 200
+MET_effective = MET × (1 + 0.8 × (load / body mass))</div>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>MET derived from GPS speed</caption>
+              <thead><tr><th scope="col">Speed</th><th scope="col">Activity</th><th scope="col" class="n">MET</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">0 km/h</th><td>standing</td><td class="n">1.0</td></tr>
+                <tr><th scope="row">0–3.2</th><td>slow walk</td><td class="n">2.0</td></tr>
+                <tr><th scope="row">3.2–4.8</th><td>walk</td><td class="n">3.5</td></tr>
+                <tr><th scope="row">4.8–6.4</th><td>brisk walk</td><td class="n">5.0</td></tr>
+                <tr><th scope="row">6.4–8.0</th><td>jog</td><td class="n">8.3</td></tr>
+                <tr><th scope="row">8.0–9.7</th><td>run</td><td class="n">9.8</td></tr>
+                <tr><th scope="row">9.7–11.3</th><td>fast run</td><td class="n">11.0</td></tr>
+                <tr><th scope="row">&gt; 11.3</th><td>sprint</td><td class="n">14.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Metabolic zones</h3>
+          <p>Metabolic rate depends on where the character is, not on whether the app process is running. Resting under a roof genuinely lowers consumption, so no fiction is needed.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Consumption relative to full simulation in the open</caption>
+              <thead><tr><th scope="col">Zone</th><th scope="col" class="n">Calories</th><th scope="col" class="n">Water</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Open ground</th><td class="n">100%</td><td class="n">100%</td></tr>
+                <tr><th scope="row">Camp — 20 m</th><td class="n">50%</td><td class="n">55%</td></tr>
+                <tr><th scope="row">Main shelter — 50 m</th><td class="n">35%</td><td class="n">40%</td></tr>
+                <tr><th scope="row">Sleeping in shelter</th><td class="n">20%</td><td class="n">30%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A simple rule follows, and it never has to be spelled out: <em>end your session under a roof</em>. Quitting the app in the open costs three times as much as quitting in the shelter.</p>
+
+          <div class="warn">
+            <span class="warn__t">Safety valve</span>
+            <p>Offline consumption never drops any resource below 10% and never causes death. Coming back from a two-week holiday should hurt, not delete your character. Rolling the system clock back yields a zero-length tick, never a negative one.</p>
+          </div>
+
+          <h3>Heart rate as hidden stamina</h3>
+          <p>There is no stamina bar, but heart rate fills that role functionally — and it drives accuracy.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Heart rate as % of max</th><th scope="col">Effect</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">&lt; 60%</th><td>no penalty</td></tr>
+                <tr><th scope="row" class="n">60–75%</th><td>+0.5 MOA dispersion</td></tr>
+                <tr><th scope="row" class="n">75–85%</th><td>+1.5 MOA, +15% reload time</td></tr>
+                <tr><th scope="row" class="n">85–95%</th><td>+3.0 MOA, +30% reload time, no precise aiming</td></tr>
+                <tr><th scope="row" class="n">&gt; 95%</th><td>+5.0 MOA, risk of collapse at low blood volume</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Recovery to resting rate is exponential with a time constant of roughly 90 seconds. That number is why you cannot “wait for your heart to slow down” once something is already running at you.</p>
+
+          <h3>Sleep is the default state, not an action</h3>
+          <p>The character sleeps when three conditions hold at once: inside the shelter or camp zone, night has fallen (derived from sunrise and sunset computed offline), and no other occupation is running. The player taps nothing.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Poznań — night length sets the time budget</caption>
+              <thead><tr><th scope="col">Date</th><th scope="col" class="n">Night</th><th scope="col">8 h of sleep</th><th scope="col" class="n">Left for reading and building</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">21 June</th><td class="n">7.4 h</td><td>incomplete, debt accrues</td><td class="n">~0 h</td></tr>
+                <tr><th scope="row">21 March</th><td class="n">12.0 h</td><td>full</td><td class="n">~4 h</td></tr>
+                <tr><th scope="row">21 December</th><td class="n">16.6 h</td><td>full</td><td class="n">~8.6 h</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In summer you must choose between sleep and progress. Sleep debt raises dispersion and lengthens every action, so “I'll read instead of sleeping” carries a price paid the next day.</p>
+
+          <h3>One occupation at a time</h3>
+          <p>The character cannot sleep, read and build simultaneously. This is the main mechanism of the game's time economy — without it every shelter system would run in parallel and none would have a cost.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Category</th><th scope="col">Examples</th><th scope="col">Rule</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Occupation</th><td>sleep, reading, construction, crafting, recycling</td><td>starting a new one cancels the previous; progress is saved</td></tr>
+                <tr><th scope="row">Action</th><td>eating, drinking, dressing wounds, searching, shooting</td><td>suspends the occupation, which resumes afterwards</td></tr>
+                <tr><th scope="row">Background process</th><td>metabolism, bleeding, hotspot growth</td><td>always ticking, independent of everything</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Damage and bleeding</h3>
+          <p>Haemorrhagic shock thresholds follow the ATLS classes rather than abstract hit points.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col" class="n">Blood loss</th><th scope="col">Class</th><th scope="col">Player state</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">&lt; 15%</th><td>I</td><td>no symptoms</td></tr>
+                <tr><th scope="row" class="n">15–30%</th><td>II</td><td>tachycardia, +2 MOA, −10% carry load</td></tr>
+                <tr><th scope="row" class="n">30–40%</th><td>III</td><td>+5 MOA, darkened screen, no running without dizziness</td></tr>
+                <tr><th scope="row" class="n">&gt; 40%</th><td>IV</td><td>loss of consciousness, death in 2–5 min without help</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="f">effective_loss = base_loss × (HR_current / HR_resting)</div>
+          <p>Running with an open wound accelerates bleeding — at a heart rate of 160 against a resting 70, exactly 2.3 times. Bleeding tiers: superficial 3 ml/min, moderate 25, severe 90, arterial 350 ml/min and a tourniquet is the only answer.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="map">
+        <div class="sec__hd">
+          <span class="sec__no">03 · Map and GPS</span>
+          <h2>Your city is the board</h2>
+          <p class="sec__lede">The map is real and downloaded once as an offline package. The game has no servers, so the tiles have to be self-sufficient and the GPS stream filtered before anything is computed from it.</p>
+        </div>
+        <div class="prose">
+          <div class="stats">
+            <div class="stat"><b>PMTiles</b><span>one file per region, Protomaps + MapLibre GL Native</span></div>
+            <div class="stat"><b>50–200 MB</b><span>tile package per province</span></div>
+            <div class="stat"><b>25 m</b><span>accuracy threshold for discarding a fix</span></div>
+            <div class="stat"><b>8 m / 10 s</b><span>dead zone — below this there is no movement</span></div>
+          </div>
+
+          <h3>Signal quality</h3>
+          <p>Urban GPS accuracy is 5–15 m and indoors there is no signal at all. Position drift on a stationary player would generate phantom movement and burn calories for someone sitting on a sofa.</p>
+          <ul>
+            <li>Kalman filter on the position stream</li>
+            <li>Fixes with accuracy worse than 25 m are discarded</li>
+            <li>Displacement under 8 m in 10 s counts as no movement</li>
+            <li>Signal loss beyond 60 s pauses movement simulation and tells the player</li>
+          </ul>
+
+          <h3>Battery</h3>
+          <p>Continuous GPS costs 15–25% of battery per hour — a real threat to multi-hour play. The answer is adaptive sampling: 1 Hz in combat, 0.2 Hz while walking, 0.05 Hz at rest, plus a foreground service with a persistent notification and a power-saving mode with a reduced map.</p>
+
+          <h3>Position anti-cheat</h3>
+          <p>Without a server, full anti-cheat is impossible and we accept that — the game is single-player, so a cheater only harms themselves. The minimum is mock location detection and a speed check: above 40 km/h for more than 30 s the session is suspended, not punished.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="safety">
+        <div class="sec__hd">
+          <span class="sec__no">04 · Safety</span>
+          <h2>The game sends people onto the street after dark</h2>
+          <p class="sec__lede">This is not an optional section. The lessons from location-based games apply directly here, and skipping them would be a legal and reputational risk.</p>
+        </div>
+        <div class="prose">
+          <h3>Spawn exclusion zones</h3>
+          <p>Filtered by OpenStreetMap tags before any enemy or loot point appears.</p>
+          <ul>
+            <li>Carriageways and roadsides of major roads — 15 m buffer</li>
+            <li>Railway tracks — 30 m buffer</li>
+            <li>Water bodies and watercourses</li>
+            <li>Private land and residential buildings tagged <code>access=private</code></li>
+            <li>Hospitals, schools, kindergartens, cemeteries, places of worship, police stations, military sites</li>
+          </ul>
+
+          <h3>Protective mechanics</h3>
+          <ul>
+            <li>Combat is blocked above 15 km/h with the message “Do not play while driving”</li>
+            <li>A one-time screen requiring active acceptance of the safety rules before the first session</li>
+            <li>After local sunset, a reminder about visibility and situational awareness</li>
+            <li>The game never requires headphones; every critical signal has a haptic and visual duplicate</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="items">
+        <div class="sec__hd">
+          <span class="sec__no">05 · Items</span>
+          <h2>Two limits: mass and volume</h2>
+          <p class="sec__lede">Weight alone is not enough — without volume a player fits thirty kilograms of down jackets in a pocket. No per-item count caps; the constraint comes purely from physics.</p>
+        </div>
+        <div class="prose">
+          <div class="f">{
+  "id": "weapon_ak74",
+  "type": "firearm",
+  "name_key": "item.weapon_ak74.name",
+  "weight_kg": 3.3,
+  "volume_l": 4.2,
+  "condition": 100,
+  "condition_decay_per_use": 0.05,
+  "rarity": "uncommon",
+  "loot_tags": ["military", "police"],
+  "props": { }
+}</div>
+          <p>Names are always localisation keys, never literal text in the definition files — otherwise adding a language means rewriting the entire item database. Definitions live in <code>assets/data/</code> and are schema-validated at build time.</p>
+
+          <h3>Backpacks</h3>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Backpack</th><th scope="col" class="n">Carry load</th><th scope="col" class="n">Capacity</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">None — pockets</th><td class="n">+0 kg</td><td class="n">12 l</td></tr>
+                <tr><th scope="row">Bag</th><td class="n">+4 kg</td><td class="n">30 l</td></tr>
+                <tr><th scope="row">Daypack</th><td class="n">+8 kg</td><td class="n">45 l</td></tr>
+                <tr><th scope="row">Trekking pack</th><td class="n">+12 kg</td><td class="n">65 l</td></tr>
+                <tr><th scope="row">Military pack</th><td class="n">+16 kg</td><td class="n">90 l</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Raw materials differ in character: metal is a mass problem, plastic and fabric fill volume, and wood pinches on both axes at once.</p>
+
+          <h3>Clothing and armour</h3>
+          <p>Two independent axes: thermal (<code>insulation_clo</code>, feeding the sweat formula) and ballistic (<code>protection_level</code> plus <code>coverage_pct</code>, reducing damage only for the location that was hit). A helmet covers 12%, a vest 55% — a limb hit ignores both.</p>
+
+          <h3>Literature</h3>
+          <p>Every copy has a randomised page count, from which mass, volume, reading time and experience are derived. Two copies of the same manual may run 180 and 340 pages.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Type</th><th scope="col" class="n">Pages</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Time</th><th scope="col" class="n">XP/page</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Story note</th><td class="n">1–3</td><td class="n">1–3 g</td><td class="n">5–20 s</td><td class="n">0</td></tr>
+                <tr><th scope="row">Leaflet</th><td class="n">1–4</td><td class="n">1–4 g</td><td class="n">1–4 min</td><td class="n">80</td></tr>
+                <tr><th scope="row">Magazine</th><td class="n">20–60</td><td class="n">70–170 g</td><td class="n">25–76 min</td><td class="n">30</td></tr>
+                <tr><th scope="row">Guidebook</th><td class="n">80–200</td><td class="n">134–290 g</td><td class="n">2.4–6.1 h</td><td class="n">32</td></tr>
+                <tr><th scope="row">Technical manual</th><td class="n">150–400</td><td class="n">305–680 g</td><td class="n">7.1–18.9 h</td><td class="n">33</td></tr>
+                <tr><th scope="row">Encyclopaedia</th><td class="n">400–900</td><td class="n">1.12–2.02 kg</td><td class="n">21–48 h</td><td class="n">31</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>An encyclopaedia can weigh two kilograms — 8% of the comfortable carry load. “Take this book or leave it” becomes a real decision, and experience accrues per page read, so you can stop at any point and keep what you earned. A second copy of the same title is worth 25%, the third and beyond nothing.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="combat">
+        <div class="sec__hd">
+          <span class="sec__no">06 · Combat</span>
+          <h2>You are not fighting a random number generator</h2>
+          <p class="sec__lede">MOA describes angular dispersion, not probability. Hit chance follows from target geometry and a sum of errors dominated by the shooter's bodily state — not by character level.</p>
+        </div>
+        <div class="prose">
+          <div class="f">D_dispersion [m] = MOA_total × distance × 2.9089e-4    <b>// diameter</b>
+σ = D_dispersion / 4                                  <b>// extreme spread ≈ 4σ</b>
+P(hit) = [2Φ(W/2σ) − 1] × [2Φ(H/2σ) − 1]
+
+MOA_total = √(MOA_weapon² + MOA_skill² + MOA_heartrate²
+            + MOA_player_motion² + MOA_target_motion² + MOA_condition²)</div>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Error contributors</caption>
+              <thead><tr><th scope="col">Source</th><th scope="col">MOA value</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Weapon, mechanical</th><td class="n">1–8</td></tr>
+                <tr><th scope="row">Skill 0% → 100%</th><td class="n">25 → 4</td></tr>
+                <tr><th scope="row">Heart rate</th><td><code>60 × ((HR − HR_rest) / (HR_max − HR_rest))²</code> — quadratic</td></tr>
+                <tr><th scope="row">Player motion</th><td><code>8 × v^1.2</code> — walking 5 km/h is 55 MOA, running 12 km/h is 165 MOA</td></tr>
+                <tr><th scope="row">Target motion</th><td><code>2 × v × 0.3</code> — the enemy runs straight at you</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="scroller">
+            <table class="tbl heat">
+              <caption>Hit chance on the torso — 3 MOA weapon</caption>
+              <thead><tr><th scope="col">Situation</th><th scope="col" class="n">MOA</th><th scope="col" class="n">30 m</th><th scope="col" class="n">80 m</th><th scope="col" class="n">150 m</th><th scope="col" class="n">250 m</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Novice, standing, calm</th><td class="n">25</td><td class="h h5">100%</td><td class="h h5">89%</td><td class="h h4">49%</td><td class="h h3">22%</td></tr>
+                <tr><th scope="row">Novice, standing, HR 160</th><td class="n">45</td><td class="h h5">99%</td><td class="h h4">53%</td><td class="h h3">20%</td><td class="h h2">8%</td></tr>
+                <tr><th scope="row">Novice, walking 5 km/h</th><td class="n">71</td><td class="h h5">86%</td><td class="h h3">26%</td><td class="h h2">8%</td><td class="h h1">3%</td></tr>
+                <tr><th scope="row">Novice, running 12 km/h</th><td class="n">167</td><td class="h h3">32%</td><td class="h h1">5%</td><td class="h h1">2%</td><td class="h h1">1%</td></tr>
+                <tr><th scope="row">Trained, standing, HR 100</th><td class="n">12</td><td class="h h5">100%</td><td class="h h5">100%</td><td class="h h5">94%</td><td class="h h4">68%</td></tr>
+                <tr><th scope="row">Trained, running 12 km/h</th><td class="n">165</td><td class="h h3">32%</td><td class="h h1">5%</td><td class="h h1">2%</td><td class="h h1">1%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>The conclusion reshapes the design: a calm, stationary shooter hits reliably — which is exactly how it works in reality. Difficulty does not come from the ballistic model but from the fact that the game almost never grants the conditions of calm and stillness. A trained shooter on the run is as helpless as a novice.</p>
+
+          <div class="warn">
+            <span class="warn__t">Interface requirement</span>
+            <p>Above the fire button the game shows the numeric hit chance and the largest current error contributor: “MOTION”, “HEART RATE”, “DISTANCE”. The model may be as merciless as it is transparent — without that number, a player who misses five times concludes the game is broken.</p>
+          </div>
+
+          <h3>Damage</h3>
+          <div class="f">loss [ml] = 5.1 × energy[J]^0.6 × wound_factor × location_multiplier × (1 − protection)</div>
+          <p>The relationship is a power law below one, because wound severity does not scale linearly with energy. <code>wound_factor</code> captures the character of the wound channel: rifle rounds fragment and cavitate, buckshot creates multiple channels, pistol rounds pass straight through.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Torso hits needed for a kill</caption>
+              <thead><tr><th scope="col">Weapon</th><th scope="col" class="n">Leaper</th><th scope="col" class="n">Shambler</th><th scope="col" class="n">Brute</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Air rifle .22 LR</th><td class="n">14.4</td><td class="n">20.4</td><td class="n">46.7</td></tr>
+                <tr><th scope="row">Pistol 9 mm</th><td class="n">5.1</td><td class="n">7.2</td><td class="n">16.5</td></tr>
+                <tr><th scope="row">Carbine 5.45×39</th><td class="n">2.2</td><td class="n">3.2</td><td class="n">7.3</td></tr>
+                <tr><th scope="row">Carbine 7.62×39</th><td class="n">1.8</td><td class="n">2.6</td><td class="n">6.0</td></tr>
+                <tr><th scope="row">Shotgun, buckshot</th><td class="n">1.6</td><td class="n">2.2</td><td class="n">5.1</td></tr>
+                <tr><th scope="row">Rifle .308</th><td class="n">1.2</td><td class="n">1.7</td><td class="n">3.8</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Fighting a group</h3>
+          <p>Shamblers move in groups of 2–4, so fighting several at once is the default state. A firearm has one active target; switching costs 1.2 s during which the dispersion circle is at its widest. There is no automatic switch after a target dies — automation would remove all the tension and turn combat into tapping.</p>
+          <p>Time, not ammunition, is the main resource here. The group detects you, all of them sprint, and every second spent aiming is metres covered by the rest. When their sprint budgets run out, a window opens for reloading, withdrawing or finishing off the exhausted.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="noise">
+        <div class="sec__hd">
+          <span class="sec__no">07 · Noise</span>
+          <h2>A shot is a signal, not just an expense</h2>
+          <p class="sec__lede">This system closes the combat economy and creates the game's one genuine tactical choice: firearm or blade.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Audible radius</caption>
+              <thead><tr><th scope="col">Action</th><th scope="col" class="n">Radius</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Walking</th><td class="n">15 m</td></tr>
+                <tr><th scope="row">Melee combat</th><td class="n">25 m</td></tr>
+                <tr><th scope="row">Running</th><td class="n">40 m</td></tr>
+                <tr><th scope="row">Suppressed pistol</th><td class="n">120 m</td></tr>
+                <tr><th scope="row">Breaking glass, forcing a door</th><td class="n">150 m</td></tr>
+                <tr><th scope="row">Suppressed rifle</th><td class="n">200 m</td></tr>
+                <tr><th scope="row">Pistol</th><td class="n">450 m</td></tr>
+                <tr><th scope="row">Rifle</th><td class="n">700 m</td></tr>
+                <tr><th scope="row">Shotgun</th><td class="n">900 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="f">effective_radius = base_radius × time_of_day_mod × built_up_mod
+
+night ×1.3   ·   dense urban daytime ×0.7
+open ground ×1.2   ·   rain or strong wind ×0.75</div>
+
+          <p>Enemies walk <em>to the place where the sound was made</em> — not to the player. That leaves room for tactics: shoot, reposition, observe. At most six respond to a single event, chosen nearest first.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Choice</th><th scope="col">Gain</th><th scope="col">Cost</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Firearm</th><td>kills at range, high hit chance when calm</td><td>pulls in everything within 700 m, burns scarce ammunition</td></tr>
+                <tr><th scope="row">Blade</th><td>silence at 25 m, no ammunition cost</td><td>requires closing in, which means flanking and bleeding risk</td></tr>
+                <tr><th scope="row">Avoidance</th><td>zero cost</td><td>the hotspot keeps growing</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A shot also ducks the mix for 2–3 seconds — a simulation of temporary hearing dullness. During that window you cannot hear approaching enemies. It is a realistic and painful penalty for shooting without ear protection.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="enemies">
+        <div class="sec__hd">
+          <span class="sec__no">08 · Enemies</span>
+          <h2>Three stages of one disease</h2>
+          <p class="sec__lede">The player's speed cannot be modified, so a fast enemy would be a death sentence. The answer is a sprint budget — the dread stays, escape remains possible.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Type</th><th scope="col" class="n">Walk</th><th scope="col" class="n">Run</th><th scope="col" class="n">Sprint budget</th><th scope="col" class="n">Blood</th><th scope="col" class="n">Detection</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Leaper</th><td class="n">5–7 km/h</td><td class="n">27–32 km/h</td><td class="n">25 s</td><td class="n">2,400–2,800 ml</td><td class="n">120 m</td></tr>
+                <tr><th scope="row">Shambler</th><td class="n">3–4 km/h</td><td class="n">15–18 km/h</td><td class="n">90 s</td><td class="n">3,200–3,600 ml</td><td class="n">80 m</td></tr>
+                <tr><th scope="row">Brute</th><td class="n">2–4 km/h</td><td class="n">12–17 km/h</td><td class="n">45 s</td><td class="n">6,000–8,000 ml</td><td class="n">60 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Sprinters do not hold top speed longer than 20–30 seconds — that is physiology, not a concession. The player survives the sprint and exploits the human endurance advantage. There is no outrunning a Leaper and that is its design role; Shamblers and Brutes can be escaped.</p>
+
+          <h3>State machine</h3>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">State</th><th scope="col">Entry condition</th><th scope="col">Behaviour</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Idle</th><td>default</td><td>random movement within the hotspot</td></tr>
+                <tr><th scope="row">Alert</th><td>player within detection range</td><td>walks towards the player, no sprint budget spent</td></tr>
+                <tr><th scope="row">Chase</th><td>close contact or a shot fired</td><td>sprints, spending budget</td></tr>
+                <tr><th scope="row">Exhausted</th><td>sprint budget at zero</td><td>40% of run speed, still closing on the player</td></tr>
+                <tr><th scope="row">Return</th><td>contact lost or 400 m leash exceeded</td><td>walks back to the hotspot centre, full recovery</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>In Chase and Exhausted the enemy never stops. Combat is never static — shooting one means losing distance to all the others. The 400 m leash and the 45-second contact-loss rule stop you from dragging a train of enemies across half the city.</p>
+
+          <p>The three types are three stages of the same disease, which explains their parameters without changing a single number: the Leaper was infected earliest and is metabolically wasted, Shamblers came with the second wave and move in groups because they were infected together, and the Brute is the latest stage — oedema and fluid retention.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="hotspots">
+        <div class="sec__hd">
+          <span class="sec__no">09 · Hotspots</span>
+          <h2>The clock that measures out difficulty</h2>
+          <p class="sec__lede">A contamination hotspot is a permanent point on the map that spawns enemies. It grows over time — including while you are not playing. This is the direct expression of the goal “survive as long as possible”: the longer the streak, the greater the pressure.</p>
+        </div>
+
+        <div class="clock" id="clock">
+          <div class="clock__hd"><span>Hotspot growth · radius by level</span><span>20 m → 200 m</span></div>
+          <div class="clock__body">
+            <svg viewBox="0 0 520 430" role="img" aria-label="Hotspot growth diagram: ten concentric circles to scale, from 20 metres radius at level one to 200 metres at level ten.">
+              <g id="rings" data-unit="m"></g>
+              <circle cx="260" cy="210" r="3" fill="#A82D17"/>
+              <text x="260" y="230" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#4A524F">fixed centre</text>
+            </svg>
+          </div>
+          <div class="clock__legend">
+            <div><b>3</b><span>max. hotspots at once</span></div>
+            <div><b>500 m</b><span>min. distance from the shelter</span></div>
+            <div><b>450 m</b><span>min. spacing between centres</span></div>
+            <div><b>12</b><span>enemies at once at level 10</span></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <div class="f">promotion_interval = max(2h, 8h − 0.25h × survival_day) × random(0.6, 1.4)
+
+Day 1   → promotion roughly every 8 h
+Day 12  → every ~5 h
+Day 24+ → every 2 h (floor)</div>
+          <p>Time counts at 100% while the game is active and at 25% while it is not. The world decays even when you are not playing — but more slowly, so a week away does not automatically mean finding three level-10 hotspots on your return.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Hotspot levels</caption>
+              <thead><tr><th scope="col" class="n">Level</th><th scope="col" class="n">Radius</th><th scope="col" class="n">Enemies</th><th scope="col" class="n">Respawn</th><th scope="col">Composition</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">1</th><td class="n">20 m</td><td class="n">1</td><td class="n">15 min</td><td>Shambler</td></tr>
+                <tr><th scope="row" class="n">4</th><td class="n">80 m</td><td class="n">4</td><td class="n">10 min</td><td>Shambler, Leaper 20%</td></tr>
+                <tr><th scope="row" class="n">7</th><td class="n">140 m</td><td class="n">8</td><td class="n">6 min</td><td>+ Brute 10%</td></tr>
+                <tr><th scope="row" class="n">10</th><td class="n">200 m</td><td class="n">12</td><td class="n">3 min</td><td>full roster + hordes</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Neutralisation</h3>
+          <div class="f">Integrity_max(level) = 60 + 20 × level     // 80 pts at level 1, 260 at level 10
+
+Shambler 10 pts  ·  Leaper 15 pts  ·  Brute 35 pts
+Kills outside the hotspot radius: 50% value</div>
+          <p>Once integrity hits zero the hotspot loses a level and enters a ten-minute <em>agitation</em>: triple respawn rate, a 50% higher enemy cap, composition shifted one rung up and detection range half again as large. Taking a level-10 hotspot down to zero means passing through ten consecutive agitations — a multi-hour operation requiring ammunition and medical backing.</p>
+          <p>After elimination a one-off cache appears at the centre, roughly three times better than an ordinary loot box, and the slot stays empty for 24–48 hours of real time. The reward is breathing room.</p>
+
+          <div class="warn">
+            <span class="warn__t">Horde — level 10</span>
+            <p>Every 6–12 hours the hotspot sends 6–10 enemies towards the shelter. They will not enter the safe zone but they will encircle it and stay 30–60 minutes. You are cut off. The warning arrives ten minutes ahead: “You can hear them to the east.”</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="loot">
+        <div class="sec__hd">
+          <span class="sec__no">10 · Loot</span>
+          <h2>You learn the map of your own city</h2>
+          <p class="sec__lede">Loot tables are bound to OpenStreetMap POI tags. You know where the nearest pharmacy is because that is where you found the dressings.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Place</th><th scope="col">Dominant loot</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Pharmacy</th><td>medication, medical literature</td></tr>
+                <tr><th scope="row">Hardware store</th><td>tools, crafting materials</td></tr>
+                <tr><th scope="row">Grocery store</th><td>food, water</td></tr>
+                <tr><th scope="row">Sports and outdoor shop</th><td>backpacks, clothing, knives, binoculars</td></tr>
+                <tr><th scope="row">Police station, gun shop</th><td>firearms, ammunition, vests</td></tr>
+                <tr><th scope="row">Library, bookshop</th><td>literature of every kind</td></tr>
+                <tr><th scope="row">Industrial site</th><td>metal, tools, fuel, components</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Fallback layer for smaller towns</h3>
+          <p>In a town under fifteen thousand people these places barely exist. Below a density of eight POI within 2 km, a procedural layer kicks in, built on objects present everywhere: abandoned cars, barns, garages, waste containers, shelters, hunting stands, water points. Substitute points yield about 55% of the value of proper POI, but respawn shortens to 3–5 hours and the search radius grows to 3 km.</p>
+
+          <h3>Searching — reconnaissance and scavenging</h3>
+          <p>Standing still for 45 seconds reveals the surroundings: POI status, procedural points and — most valuable of all — enemies within the radius. The cost is time and stillness, not a countdown timer. Pharmacies are visible from the street because they are buildings; we only hide what genuinely cannot be seen from a distance.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Configuration</th><th scope="col" class="n">Daytime radius</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Recon 0%, no binoculars</th><td class="n">100 m</td></tr>
+                <tr><th scope="row">Recon 0%, binoculars</th><td class="n">150 m</td></tr>
+                <tr><th scope="row">Recon 100%, no binoculars</th><td class="n">200 m</td></tr>
+                <tr><th scope="row">Recon 100%, binoculars</th><td class="n">300 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Searching a building is itself a timed action: 30 seconds cursory, 90 thorough, 180 exhaustive with double the chance of a rare item. It generates noise and can be interrupted. You decide whether to grab and run or gamble for better loot.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="skills">
+        <div class="sec__hd">
+          <span class="sec__no">11 · Skills</span>
+          <h2>The level cap is meant to be a myth</h2>
+          <p class="sec__lede">Four skills, range 0–100%, maximum effect +30%. The main route is reading, not killing.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Skill</th><th scope="col">Effect at 100%</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Recon</th><td>−30% chance of being detected, +30% loot quality, +100% search radius</td></tr>
+                <tr><th scope="row">Weapon handling</th><td>−30% reload and stabilisation time, skill MOA 25 → 4</td></tr>
+                <tr><th scope="row">Medicine</th><td>−30% time to use medication, +30% dressing effectiveness</td></tr>
+                <tr><th scope="row">Engineering</th><td>−30% construction and crafting time</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="f">XP_to_level(p) = 70 × p           // p = 1..100
+Total XP to 100% = 353,500        // ≈ 509 hours of reading</div>
+          <p>That is about 59 winter nights devoted purely to reading, building nothing at all. Maxing all four is effectively unreachable, so choosing which to develop becomes a genuine strategic decision. Practice — shots, kills, dressings — supplements and rewards a play style but never replaces literature: at 15 XP per kill, a full skill would be 23,500 enemies.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="shelter">
+        <div class="sec__hd">
+          <span class="sec__no">12 · Shelter and camp</span>
+          <h2>The walk home from work is the gameplay</h2>
+          <p class="sec__lede">The main shelter stands where you live. The camp goes where you spend your day. Between them lies the ground the hotspots occupy.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Property</th><th scope="col">Camp</th><th scope="col">Main shelter</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Safe zone</th><td class="n">20 m</td><td class="n">50 m</td></tr>
+                <tr><th scope="row">Metabolism</th><td class="n">50% / 55%</td><td class="n">35% / 40%</td></tr>
+                <tr><th scope="row">Storage</th><td>crate, +30 kg</td><td>25 kg base, module to 150 kg</td></tr>
+                <tr><th scope="row">Modules</th><td>none</td><td>4 modules × 3 levels</td></tr>
+                <tr><th scope="row">Sleep</th><td>70% quality</td><td class="n">100%</td></tr>
+                <tr><th scope="row">Build time</th><td class="n">~40 min</td><td class="n">~3 h</td></tr>
+                <tr><th scope="row">Count</th><td class="n">2</td><td class="n">1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The safe zone and the player's attack lockout share the same radius. With different values a ring would appear where the enemy can attack and the player cannot defend — punishing you for being near your own shelter.</p>
+
+          <h3>Modules</h3>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Module</th><th scope="col">Effect when fully built</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Storage</th><td>+150 kg capacity, 3 litres per kilogram</td></tr>
+                <tr><th scope="row">Workshop</th><td>repair to 100%, complex recipes, −30% crafting time</td></tr>
+                <tr><th scope="row">Living room</th><td>+45% sleep recovery rate, meaning more hours free for reading</td></tr>
+                <tr><th scope="row">Laboratory</th><td>+9% effectiveness of food and drink</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Building all four modules to level three takes <span class="num">731 kg</span> of material — roughly thirty trips with a full backpack. This is meant to be a goal for weeks, not a weekend.</p>
+          <p>A camp left unvisited for 14 days starts to fall apart and disappears with its crate after 21. That prevents the map filling with abandoned outposts and forces a deliberate choice of two locations.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="crafting">
+        <div class="sec__hd">
+          <span class="sec__no">13 · Crafting</span>
+          <h2>Five materials and one recipe that closes the economy</h2>
+          <p class="sec__lede">Wood, metal, plastic and fabric are everywhere. The technical component is rare, and it is what regulates the pace of expansion.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Material</th><th scope="col" class="n">Mass/unit</th><th scope="col" class="n">Volume</th><th scope="col">Sources</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Wood</th><td class="n">2.0 kg</td><td class="n">4.0 l</td><td>buildings, barns, shelters, construction sites, forests</td></tr>
+                <tr><th scope="row">Metal</th><td class="n">1.5 kg</td><td class="n">0.6 l</td><td>garages, workshops, industrial land, wrecks</td></tr>
+                <tr><th scope="row">Plastic</th><td class="n">0.4 kg</td><td class="n">2.0 l</td><td>waste containers, supermarkets, everywhere</td></tr>
+                <tr><th scope="row">Fabric</th><td class="n">0.3 kg</td><td class="n">1.0 l</td><td>houses, clothing shops, car upholstery</td></tr>
+                <tr><th scope="row">Technical component</th><td class="n">0.8 kg</td><td class="n">0.4 l</td><td>rare — hardware stores, repair shops, industry</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Handloading ammunition</h3>
+          <p>The most important recipe in the game, because it closes the noise loop. Every shot leaves a casing where it was fired, visible on the map for 48 hours.</p>
+          <div class="f">Workshop level 2
+10 casings + 3 metal + 1 component + 1 powder flask → 10 rounds
+Time 25 min  ·  Quality: <b>+2 MOA</b> against factory ammunition</div>
+          <p>You shoot, you leave casings, you come back for them, you recover part of the outlay. The site of a firefight becomes a place you have to return to — which means walking back into ground where something heard you. The +2 MOA penalty is deliberate: handloaded ammunition is a lifeline, not a substitute.</p>
+
+          <h3>Recycling</h3>
+          <p>Breaking an item down returns 40% of its material value, up to 55% with full Engineering and another 10 points on top from a level-two workshop. The return is deliberately unprofitable as a source of material — it pays only as a way of shedding dead weight without a total loss.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="death">
+        <div class="sec__hd">
+          <span class="sec__no">14 · Death</span>
+          <h2>Two modes, one score</h2>
+          <p class="sec__lede">The mode is chosen once at character creation and cannot be changed. Being able to switch would invalidate every Hardcore record.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col"></th><th scope="col">Hardcore</th><th scope="col">Softcore</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Death</th><td>the character ends</td><td>loss of consciousness, play continues</td></tr>
+                <tr><th scope="row">Skills</th><td>lost</td><td>fully retained</td></tr>
+                <tr><th scope="row">Shelter</th><td>lost</td><td>retained</td></tr>
+                <tr><th scope="row">Shelter storage</th><td>lost</td><td>untouched</td></tr>
+                <tr><th scope="row">Hotspots</th><td>reset to level 1</td><td>keep growing</td></tr>
+                <tr><th scope="row">Survival streak</th><td>final, goes to the Chronicle</td><td>reset to zero</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="warn">
+            <span class="warn__t">Overriding principle</span>
+            <p>A technical failure must never kill a character. Death cannot occur while the app is dormant or while the GPS signal is missing, and state rolls back to the last committed point. Permadeath caused by a crash is a guaranteed one-star review.</p>
+          </div>
+
+          <p>In Softcore the character wakes exactly where the player physically is — never by teleporting to the shelter, because in a GPS game teleportation is conceptually broken. The fiction is delirium at 25% blood volume: medically sound and narratively free. The stashes of gear stay at the point of collapse, so the penalty scales with distance without any artificial rule.</p>
+          <p>For the first ten minutes after waking, enemies ignore the player — the grace window only activates if someone is actually within 300 m. There is no point protecting a player who came round on a bus.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="seasons">
+        <div class="sec__hd">
+          <span class="sec__no">15 · Seasons</span>
+          <h2>The game has no concept of a season</h2>
+          <p class="sec__lede">It knows two measured quantities — day length and temperature — and derives everything from them. Seasonality emerges on its own, correctly at any latitude.</p>
+        </div>
+        <div class="prose">
+          <div class="f">δ = 23.45° × sin(360/365 × (284 + N))    // N = day of year
+cos(ω) = −tan(φ) × tan(δ)                // φ = player latitude
+daylight_hours = 2ω / 15
+
+C = clamp((10 − T_avg7) / 25, 0, 1)      // cold index
+D = clamp((12 − daylight_hours) / 6, 0, 1)   // darkness index</div>
+          <p>The formula needs no API and no network. In Cape Town “winter” falls in July and in Nairobi it never falls at all — without a single line of region-specific code.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">System</th><th scope="col">Modifier</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Hotspot growth</th><td><code>interval × (1 + 1.2 × C)</code> — in hard frost hotspots grow more than twice as slowly</td></tr>
+                <tr><th scope="row">Enemy speed</th><td><code>× (1 − 0.30 × C)</code></td></tr>
+                <tr><th scope="row">Sprint budget</th><td><code>× (1 − 0.25 × C)</code></td></tr>
+                <tr><th scope="row">Calorie requirement</th><td><code>× (1 + 0.15 × C)</code> — raised thermogenesis</td></tr>
+                <tr><th scope="row">Player detection range</th><td><code>× (1 + 0.20 × D)</code> after dark</td></tr>
+                <tr><th scope="row">Loot respawn</th><td><code>× (1 − 0.25 × D)</code> — compensation for the shorter day</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>This turns the problem into a mechanic: winter is not a break from the game but a different way of playing it. You catch up on reading, crafting and shelter expansion while the world outside slows down. Short-term weather from Open-Meteo adds rain, wind and fog — always cached and degrading gracefully, because the game must never require a connection.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="audio">
+        <div class="sec__hd">
+          <span class="sec__no">16 · Audio</span>
+          <h2>The phone is in your pocket</h2>
+          <p class="sec__lede">Most of the time the player is walking down a street and not looking at the screen. Sound and vibration are not a layer added at the end — they are the primary interface.</p>
+        </div>
+        <div class="prose">
+          <p>Enemy positions come from GPS, so it is enough to convert the coordinate difference into a vector in the audio engine's space. Listener orientation comes from the compass, not the direction of travel — otherwise a standing player loses all directional sense.</p>
+          <div class="f">x = (lon_enemy − lon_player) × 111,320 × cos(lat_player)
+z = (lat_enemy − lat_player) × 110,540
+y = 0</div>
+          <p>You stand on a street, you look at the map, and you <em>hear something approaching from the left</em> — before you see the marker. No ordinary mobile game does this, because none of them knows the player's real orientation in the world.</p>
+
+          <h3>The heartbeat as the lead instrument</h3>
+          <p>Heart rate is computed every tick, so playing a heartbeat at the current BPM gives an uninterrupted sense of bodily state with no interface element at all. It is simultaneously a fatigue gauge, an aiming stability cue and a source of tension at low blood volume. Inaudible below 60% of max heart rate, dominant above 90%.</p>
+
+          <div class="warn">
+            <span class="warn__t">No combat music</span>
+            <p>The game takes place in a real city — an orchestral score would destroy the realism instantly. Tension is built from breathing, heartbeat and enemy vocalisations. It also saves an entire asset category.</p>
+          </div>
+
+          <p>Haptics must be distinguishable through a trouser pocket, so the patterns differ in rhythmic structure rather than strength: two short pulses means you have been detected, three quick ones means bleeding has started, one long soft pulse means an occupation has finished.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="story">
+        <div class="sec__hd">
+          <span class="sec__no">17 · Story</span>
+          <h2>A mosaic, not a sequence</h2>
+          <p class="sec__lede">You find fragments in whatever order the POI in your city dictate. Each has to stand on its own, and you assemble the chronology from the dates.</p>
+        </div>
+        <div class="prose">
+          <p>The story explains the past and never speaks about the future. It answers “what happened”, never “what now” — because what now is survival, without end. A story with a resolution would promise rescue, and there is no rescue.</p>
+
+          <h3>Traces of people</h3>
+          <p>Notes are attached to real places in the player's own city, and street names are substituted from OpenStreetMap. The bus stop you pass on your way to work every day becomes the place where someone left a message. It is the one advantage no game set on an invented map can have.</p>
+          <ul>
+            <li>A farewell letter left in a flat</li>
+            <li>A diary from the first days of the epidemic</li>
+            <li>The last transmission from a police station</li>
+            <li>A note on a door: “do not open, we are inside”</li>
+            <li>A pharmacy stock record listing what ran out</li>
+          </ul>
+          <p>Zero experience, zero mechanics, a mass of 1–3 grams. A note is not a reward — it is a reason to remember that place. The editorial rules are firm: three to eight sentences, concrete detail instead of pathos, no explanation of the epidemic, nothing graphic, no names of countries or institutions. The collapse is logistical, not political.</p>
+          <p>The story proper unfolds across four phases plus the player's own thread, and everything you find goes to the Archive, where it sorts itself by date. What you have not found shows as gaps with the phase marked.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="onboarding">
+        <div class="sec__hd">
+          <span class="sec__no">18 · Onboarding</span>
+          <h2>Three things to convey in five minutes</h2>
+          <p class="sec__lede">The game breaks three habits of the mobile player, and each break, unexplained, looks like an application bug.</p>
+        </div>
+        <div class="prose">
+          <ol>
+            <li><strong>You cannot hit anything while running.</strong> A shot in motion is effectively a miss — the player will conclude the weapon is broken.</li>
+            <li><strong>You cannot outrun a Leaper.</strong> Twenty-five seconds of sprint at 30 km/h always covers the detection distance — the player will conclude the game is cheating.</li>
+            <li><strong>Your body is the controller.</strong> The game counts real calories from real movement — a player on a sofa will not understand why nothing is happening.</li>
+          </ol>
+          <p>Everything else can wait and arrives as a contextual hint at the moment of first contact. The first fight is the only scripted scenario in the whole game: a single Shambler 120 m away, in a safe direction, with reduced damage and no ability to kill the player.</p>
+          <p>The last two hints of that sequence matter most, because they set the game's economy in the player's head from the first minute:</p>
+          <div class="warn">
+            <p>“See that circle? The shot carries 700 metres. Something may have heard you.”</p>
+            <p>“You spent 7 rounds on one. Ammunition is scarce and every shot gives you away. Sometimes it is better not to fight.”</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="tech">
+        <div class="sec__hd">
+          <span class="sec__no">19 · Technology</span>
+          <h2>Offline-first, with no servers of our own</h2>
+          <p class="sec__lede">The entire simulation runs locally. The only external API is the free Open-Meteo — cached and degrading gracefully, because the game must never require a connection.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Layer</th><th scope="col">Solution</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Framework</th><td>Flutter, Dart 3</td></tr>
+                <tr><th scope="row">Map</th><td>MapLibre GL Native + PMTiles (Protomaps)</td></tr>
+                <tr><th scope="row">Local database</th><td>Drift / SQLite in WAL mode</td></tr>
+                <tr><th scope="row">Item definitions</th><td>JSON in assets, schema-validated at build time</td></tr>
+                <tr><th scope="row">Text localisation</th><td><code>flutter_localizations</code> + ARB</td></tr>
+                <tr><th scope="row">GPS</th><td><code>geolocator</code> + foreground service</td></tr>
+                <tr><th scope="row">Audio</th><td><code>flutter_soloud</code> with 3D positional sound</td></tr>
+                <tr><th scope="row">Simulation</th><td>1 Hz tick engine in an isolate, catch-up on resume</td></tr>
+                <tr><th scope="row">RNG</th><td>deterministic, seed stored in the profile</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Save durability</h3>
+          <p>In Hardcore a save failure erases dozens of hours, so the solution rests on three independent layers: transactionality, rotating snapshots and strictly additive migrations.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">State layer</th><th scope="col">Contents</th><th scope="col">Written</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Hot</th><td>position, blood, water, calories, heart rate</td><td>every 60 s and on backgrounding</td></tr>
+                <tr><th scope="row">Warm</th><td>inventory, skills, shelter, hotspots</td><td>on every change, transactionally</td></tr>
+                <tr><th scope="row">Cold</th><td>Chronicle, records, settings</td><td>on event</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Maximum loss on failure is 60 seconds of the hot layer — the player rewinds a minute of physiology, not hours of progression. Three rotating snapshots with checksums allow a damaged database to be restored, and every tick is idempotent, so replaying it after recovery yields the same result.</p>
+
+          <div class="warn">
+            <span class="warn__t">Migrations</span>
+            <p>Strictly additive: we add columns and tables, never remove or rename. An item id never changes meaning; a removed item stays in the dictionary as <code>deprecated</code> so old inventories still load. A migration test is as mandatory as a logic test.</p>
+          </div>
+
+          <h3>Developer mode</h3>
+          <p>You cannot iterate on a GPS game by walking several kilometres for every build. The mode ships only in debug builds and is stripped from release by a compile flag.</p>
+          <ul>
+            <li>GPS simulator: GPX playback, arrow-key control, jump to coordinates</li>
+            <li>Time acceleration ×1 / ×60 / ×3600 — a game day passes in 24 seconds</li>
+            <li>Physiology and world panels: force heart rate, spawn enemies, set hotspot level, trigger a horde</li>
+            <li>Diagnostic overlay with the MOA breakdown, hit chance and noise radius</li>
+            <li>Deterministic replays: seed plus event stream</li>
+          </ul>
+          <p>The simulator injects data through the same layer as real GPS, including simulated position error and signal loss. Testing on perfect data would mask everything that happens in the field.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="status">
+        <div class="sec__hd">
+          <span class="sec__no">20 · Status</span>
+          <h2>Where the project stands</h2>
+          <p class="sec__lede">The design document is complete. The code is at the starting line: a Flutter skeleton with an intro screen. The order of work is below.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Implementation stages</caption>
+              <thead><tr><th scope="col" class="n">Stage</th><th scope="col">Scope</th><th scope="col">Exit criterion</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">0</th><td>Foundation: Drift database with migrations, tick in an isolate, signed release</td><td>survives a process kill and returns with catch-up</td></tr>
+                <tr><th scope="row" class="n">1</th><td>Developer mode and GPS simulator</td><td>a game day in 24 seconds, zero debug code in release</td></tr>
+                <tr><th scope="row" class="n">2</th><td>Character and physiology</td><td>numbers match the model tables</td></tr>
+                <tr><th scope="row" class="n">3</th><td>Map, GPS, player safety</td><td>an hour's walk with no phantom movement at rest</td></tr>
+                <tr><th scope="row" class="n">4</th><td>Items, loot, searching</td><td>playable point density even without POI</td></tr>
+                <tr><th scope="row" class="n">5</th><td>Combat, enemies, noise</td><td>the accuracy calibration table reproduced</td></tr>
+                <tr><th scope="row" class="n">6</th><td>Hotspot with the full cycle</td><td>path 1 → 10 → knockdown → elimination with no state drift</td></tr>
+                <tr><th scope="row" class="n">7</th><td>Positional audio and haptics</td><td>direction recognisable with the phone in a pocket</td></tr>
+                <tr><th scope="row" class="n">8</th><td>Shelter, camp, daily loop</td><td>a full day with no loss of state</td></tr>
+                <tr><th scope="row" class="n">9</th><td>Onboarding, accessibility, compliance</td><td>the game works after background location is refused</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The first playable version covers one enemy type, three weapons, about twenty items in rotation, one hotspot with the full growth and neutralisation mechanic, a shelter without modules, and two languages. Acceptance test: a thirty-day survival streak played in the field by someone outside the team, with no save loss and no situation where the game pushes a player somewhere dangerous.</p>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <div class="foot__grid">
+          <div>
+            <h4>Project</h4>
+            <dl>
+              <dt>Package</dt><dd>com.raidodevelopment.arlsza</dd>
+              <dt>Store name</dt><dd>ARLS-ZA Game</dd>
+              <dt>Platform</dt><dd>Android · Flutter</dd>
+              <dt>Publisher</dt><dd>Raido Development</dd>
+            </dl>
+          </div>
+          <div>
+            <h4>Repository</h4>
+            <dl>
+              <dt>Source and documentation</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA">Frosttod/ARLS-ZA</a></dd>
+              <dt>Design document</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ARLS-ZA_design_doc_v2.md">ARLS-ZA_design_doc_v2.md</a></dd>
+              <dt>Implementation plan</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ROADMAP.md">ROADMAP.md</a></dd>
+              <dt>This page</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA-Game">Frosttod/ARLS-ZA-Game</a></dd>
+            </dl>
+          </div>
+          <div>
+            <h4>Settled, not reopened</h4>
+            <dl>
+              <dt>In-app purchases</dt><dd>none</dd>
+              <dt>Health data</dt><dd>not collected</dd>
+              <dt>Game servers</dt><dd>none</dd>
+              <dt>Combat music</dt><dd>none</dd>
+            </dl>
+          </div>
+        </div>
+        <nav class="foot__langs" aria-label="Language">
+          <a href="./" aria-current="true" data-lang-link hreflang="en">English</a>
+          <a href="pl/" data-lang-link hreflang="pl">Polski</a>
+        </nav>
+        <p class="foot__note">
+          The full formulas, balance tables and register of open decisions live in the
+          <a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ARLS-ZA_design_doc_v2.md">design document</a>.
+          This page is its summary — every figure here is taken from it directly. The design document itself is written in Polish.
+        </p>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARLS-ZA — Almost Real Life Survival: Zombie Apocalypse</title>
+<meta name="description" content="Hiper-realistyczny survival GPS na Androida. Ciało gracza jest kontrolerem: objętość krwi, wydatek kaloryczny, tętno i rozrzut broni liczone z realnego ruchu.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="ARLS-ZA — Almost Real Life Survival">
+<meta property="og:description" content="Survival GPS, w którym pasek zasobu zastąpiono fizjologią. Opis wszystkich systemów gry.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="../">
+<link rel="alternate" hreflang="pl" href="./">
+<link rel="alternate" hreflang="x-default" href="../">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E4E5DF'/%3E%3Ccircle cx='16' cy='16' r='4' fill='none' stroke='%23A82D17' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23A82D17' stroke-width='1.2' opacity='.6'/%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%23A82D17' stroke-width='1' opacity='.35'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Przejdź do treści</a>
+
+<header class="hero">
+  <svg class="hero__contour" viewBox="0 0 900 500" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <g id="c"><path d="M120 250c40-95 175-160 300-150 130 10 235 78 268 165 30 80-25 160-140 186-140 32-300 10-378-62-52-48-72-99-50-139z"/></g>
+      <use href="#c" transform="translate(450 250) scale(.86) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.72) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.58) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.44) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.30) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.17) translate(-450 -250)"/>
+    </g>
+  </svg>
+
+  <div class="hero__inner">
+    <div class="hero__meta eyebrow">
+      <span>Android · Flutter</span>
+      <span>Survival GPS</span>
+      <span>Offline-first</span>
+      <nav class="langs" aria-label="Język">
+        <a href="../" data-lang-link hreflang="en">EN</a>
+        <a href="./" aria-current="true" data-lang-link hreflang="pl">PL</a>
+      </nav>
+    </div>
+
+    <h1>
+      <span class="hero__title">ARLS&#8209;ZA</span>
+      <span class="hero__sub">Almost Real Life Survival · Zombie Apocalypse</span>
+    </h1>
+
+    <p class="thesis">
+      <strong>Ciało gracza jest kontrolerem.</strong> Wszystko, co w innych grach jest paskiem
+      zasobu, tutaj jest konsekwencją fizjologiczną realnego wysiłku — liczoną z GPS,
+      w mililitrach krwi, kilokaloriach i minutach kątowych rozrzutu.
+    </p>
+
+    <div class="card">
+      <div class="card__hd"><span>Karta postaci</span><span>M · 30 l · 180 cm · 80 kg</span></div>
+      <div class="card__row"><span class="card__k">Objętość krwi — Nadler</span><span class="card__v">5 290 ml</span></div>
+      <div class="card__row"><span class="card__k">Zapotrzebowanie dobowe</span><span class="card__v">2 450 kcal · 2 800 ml</span></div>
+      <div class="card__row"><span class="card__k">Udźwig komfort / limit</span><span class="card__v">24 kg · 36 kg</span></div>
+      <div class="card__row"><span class="card__k">Tętno maks. — Tanaka</span><span class="card__v">187 bpm</span></div>
+      <div class="card__ft">Wyliczone z parametrów wpisanych w kreatorze. Dane nie opuszczają telefonu.</div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="layout">
+
+    <nav class="rail" aria-label="Spis systemów">
+      <p class="rail__t">Systemy gry</p>
+      <ol id="rail-list">
+        <li><a href="#pillar"><span>00</span><span>Filar projektowy</span></a></li>
+        <li><a href="#character"><span>01</span><span>Postać</span></a></li>
+        <li><a href="#physiology"><span>02</span><span>Fizjologia</span></a></li>
+        <li><a href="#map"><span>03</span><span>Mapa i GPS</span></a></li>
+        <li><a href="#safety"><span>04</span><span>Bezpieczeństwo gracza</span></a></li>
+        <li><a href="#items"><span>05</span><span>Przedmioty</span></a></li>
+        <li><a href="#combat"><span>06</span><span>Walka</span></a></li>
+        <li><a href="#noise"><span>07</span><span>Hałas</span></a></li>
+        <li><a href="#enemies"><span>08</span><span>Przeciwnicy</span></a></li>
+        <li><a href="#hotspots"><span>09</span><span>Ogniska</span></a></li>
+        <li><a href="#loot"><span>10</span><span>Loot i ekonomia</span></a></li>
+        <li><a href="#skills"><span>11</span><span>Umiejętności</span></a></li>
+        <li><a href="#shelter"><span>12</span><span>Schron i obóz</span></a></li>
+        <li><a href="#crafting"><span>13</span><span>Wytwarzanie</span></a></li>
+        <li><a href="#death"><span>14</span><span>Śmierć</span></a></li>
+        <li><a href="#seasons"><span>15</span><span>Sezonowość</span></a></li>
+        <li><a href="#audio"><span>16</span><span>Dźwięk i haptyka</span></a></li>
+        <li><a href="#story"><span>17</span><span>Fabuła</span></a></li>
+        <li><a href="#onboarding"><span>18</span><span>Onboarding</span></a></li>
+        <li><a href="#tech"><span>19</span><span>Technologia</span></a></li>
+        <li><a href="#status"><span>20</span><span>Status i roadmap</span></a></li>
+      </ol>
+    </nav>
+
+    <main id="content">
+
+      <div class="jump">
+        <label class="eyebrow" for="jump-sel">Skocz do systemu</label>
+        <select id="jump-sel" aria-label="Skocz do systemu">
+          <option value="#pillar">00 — Filar projektowy</option>
+          <option value="#character">01 — Postać</option>
+          <option value="#physiology">02 — Fizjologia</option>
+          <option value="#map">03 — Mapa i GPS</option>
+          <option value="#safety">04 — Bezpieczeństwo gracza</option>
+          <option value="#items">05 — Przedmioty</option>
+          <option value="#combat">06 — Walka</option>
+          <option value="#noise">07 — Hałas</option>
+          <option value="#enemies">08 — Przeciwnicy</option>
+          <option value="#hotspots">09 — Ogniska</option>
+          <option value="#loot">10 — Loot i ekonomia</option>
+          <option value="#skills">11 — Umiejętności</option>
+          <option value="#shelter">12 — Schron i obóz</option>
+          <option value="#crafting">13 — Wytwarzanie</option>
+          <option value="#death">14 — Śmierć</option>
+          <option value="#seasons">15 — Sezonowość</option>
+          <option value="#audio">16 — Dźwięk i haptyka</option>
+          <option value="#story">17 — Fabuła</option>
+          <option value="#onboarding">18 — Onboarding</option>
+          <option value="#tech">19 — Technologia</option>
+          <option value="#status">20 — Status i roadmap</option>
+        </select>
+      </div>
+
+      <section class="sec" id="pillar">
+        <div class="sec__hd">
+          <span class="sec__no">00 · Filar</span>
+          <h2>Zasada, do której odnosi się każda decyzja</h2>
+          <p class="sec__lede">Jedno ograniczenie kształtuje cały balans: skoro prędkość gracza jest niemodyfikowalna przez grę, żadna kara ani premia nie może działać na prędkość.</p>
+        </div>
+        <div class="prose">
+          <p>Wszystkie modyfikatory muszą być wyrażone w innej walucie: koszcie metabolicznym, tętnie, celności, ryzyku urazu albo czasie wykonania czynności. To ograniczenie jest twarde — nie da się go obejść, a każdy system na tej stronie jest z niego wyprowadzony.</p>
+          <h3>Czego świadomie nie modelujemy</h3>
+          <p>Złamań, infekcji, chorób, temperatury ciała jako osobnego parametru, zatruć pokarmowych i zdrowia psychicznego. Zakres jest ograniczony celowo — model ma być policzalny, nie kompletny.</p>
+          <div class="stats">
+            <div class="stat"><b>1:1</b><span>skala czasu — brak przyspieszenia doby</span></div>
+            <div class="stat"><b>0</b><span>serwerów gry — cała symulacja lokalnie</span></div>
+            <div class="stat"><b>0</b><span>zakupów wewnętrznych</span></div>
+            <div class="stat"><b>0</b><span>zbieranych danych zdrowotnych</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="character">
+        <div class="sec__hd">
+          <span class="sec__no">01 · Postać</span>
+          <h2>Kreator, który liczy naprawdę</h2>
+          <p class="sec__lede">Gracz podaje płeć, wiek, wzrost i wagę. Gra zamienia je na parametry fizjologiczne przy użyciu wzorów klinicznych, a nie tabeli klas postaci.</p>
+        </div>
+        <div class="prose">
+          <h3>Wzory</h3>
+          <div class="f">Objętość krwi — Nadler
+<b>M</b>  V = 0,3669 × h³ + 0,03219 × w + 0,6041
+<b>K</b>  V = 0,3561 × h³ + 0,03308 × w + 0,1833
+
+Przemiana materii — Mifflin–St Jeor
+<b>M</b>  BMR = 10w + 6,25h − 5a + 5
+<b>K</b>  BMR = 10w + 6,25h − 5a − 161
+
+Woda      = 35 ml × masa ciała + straty z potem
+Tętno max = 208 − 0,7 × wiek          (Tanaka)
+Udźwig    = 0,30 × masa (komfort) · 0,45 × masa (limit)</div>
+
+          <h3>Walidacja</h3>
+          <ul>
+            <li>Wiek 16–80 lat, wzrost 120–220 cm, waga 35–200 kg</li>
+            <li>Walidacja krzyżowa: odrzucane kombinacje o BMI poniżej 12 lub powyżej 60 — bez niej gracz wpisze 200 cm / 35 kg i rozłoży wszystkie wzory</li>
+            <li>Nazwa 4–16 znaków alfanumerycznych ze spacjami, bez spacji wiodących i podwójnych</li>
+          </ul>
+
+          <div class="warn">
+            <span class="warn__t">Prywatność</span>
+            <p>Wzrost, waga, wiek i płeć to dane dotyczące zdrowia. Pozostają wyłącznie na urządzeniu i nigdy nie opuszczają telefonu. Gra nie integruje się z Health Connect ani żadnym czujnikiem — najprostszym sposobem dotrzymania tej obietnicy jest niezbieranie danych w ogóle.</p>
+          </div>
+
+          <p>Przekroczenie udźwigu komfortowego <em>nie blokuje</em> ruchu — nie możemy spowolnić realnego gracza. Zamiast tego skaluje się koszt metaboliczny.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="physiology">
+        <div class="sec__hd">
+          <span class="sec__no">02 · Fizjologia</span>
+          <h2>Silnik ciała</h2>
+          <p class="sec__lede">Tick 1 Hz przelicza wydatek energetyczny z prędkości GPS, straty wody z wysiłku i temperatury, tętno z intensywności, a ubytek krwi z trafień. Wszystko jednym modelem.</p>
+        </div>
+        <div class="prose">
+          <h3>Wydatek energetyczny</h3>
+          <div class="f">kcal/min = MET × 3,5 × masa ciała [kg] / 200
+MET_efektywne = MET × (1 + 0,8 × (obciążenie / masa ciała))</div>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>MET wyliczany z prędkości GPS</caption>
+              <thead><tr><th scope="col">Prędkość</th><th scope="col">Aktywność</th><th scope="col" class="n">MET</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">0 km/h</th><td>postój</td><td class="n">1,0</td></tr>
+                <tr><th scope="row">0–3,2</th><td>powolny marsz</td><td class="n">2,0</td></tr>
+                <tr><th scope="row">3,2–4,8</th><td>marsz</td><td class="n">3,5</td></tr>
+                <tr><th scope="row">4,8–6,4</th><td>szybki marsz</td><td class="n">5,0</td></tr>
+                <tr><th scope="row">6,4–8,0</th><td>trucht</td><td class="n">8,3</td></tr>
+                <tr><th scope="row">8,0–9,7</th><td>bieg</td><td class="n">9,8</td></tr>
+                <tr><th scope="row">9,7–11,3</th><td>bieg szybki</td><td class="n">11,0</td></tr>
+                <tr><th scope="row">&gt; 11,3</th><td>sprint</td><td class="n">14,0</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Strefy metaboliczne</h3>
+          <p>Tempo metabolizmu zależy od miejsca, w którym znajduje się postać — nie od tego, czy proces aplikacji działa. Dzięki temu odpoczynek pod dachem realnie obniża zużycie i nie potrzeba żadnej fikcji.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Zużycie względem pełnej symulacji w terenie</caption>
+              <thead><tr><th scope="col">Strefa</th><th scope="col" class="n">Kalorie</th><th scope="col" class="n">Woda</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Teren otwarty</th><td class="n">100%</td><td class="n">100%</td></tr>
+                <tr><th scope="row">Obóz — 20 m</th><td class="n">50%</td><td class="n">55%</td></tr>
+                <tr><th scope="row">Schron główny — 50 m</th><td class="n">35%</td><td class="n">40%</td></tr>
+                <tr><th scope="row">Sen w schronie</th><td class="n">20%</td><td class="n">30%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Wynika z tego prosta zasada, której nie trzeba tłumaczyć wprost: <em>kończ sesję pod dachem</em>. Wyjście z aplikacji w terenie kosztuje trzykrotnie więcej niż w schronie.</p>
+
+          <div class="warn">
+            <span class="warn__t">Zawór bezpieczeństwa</span>
+            <p>Zużycie w stanie offline nigdy nie sprowadza żadnego zasobu poniżej 10% i nigdy nie powoduje śmierci. Powrót po dwutygodniowym urlopie ma boleć, ale nie kasować postaci. Cofnięcie zegara systemowego daje tick zerowy, nigdy ujemny.</p>
+          </div>
+
+          <h3>Tętno jako ukryta stamina</h3>
+          <p>Gracz nie ma paska wytrzymałości, ale tętno pełni tę rolę funkcjonalnie — i steruje celnością.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Tętno jako % HR max</th><th scope="col">Efekt</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">&lt; 60%</th><td>brak kar</td></tr>
+                <tr><th scope="row" class="n">60–75%</th><td>+0,5 MOA do rozrzutu</td></tr>
+                <tr><th scope="row" class="n">75–85%</th><td>+1,5 MOA, +15% czasu przeładowania</td></tr>
+                <tr><th scope="row" class="n">85–95%</th><td>+3,0 MOA, +30% czasu przeładowania, brak precyzyjnego celowania</td></tr>
+                <tr><th scope="row" class="n">&gt; 95%</th><td>+5,0 MOA, ryzyko zasłabnięcia przy niskim poziomie krwi</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Powrót do spoczynku jest wykładniczy ze stałą czasową około 90 sekund. To ta liczba decyduje, że nie da się „poczekać, aż serce zwolni", gdy coś już biegnie w Twoją stronę.</p>
+
+          <h3>Sen — stan domyślny, nie akcja</h3>
+          <p>Postać śpi, gdy jednocześnie znajduje się w strefie schronu lub obozu, trwa noc (wyprowadzona ze wschodu i zachodu słońca, liczonych offline) i nie wykonuje innego zajęcia. Gracz nic nie klika.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Poznań — długość nocy wyznacza budżet czasu</caption>
+              <thead><tr><th scope="col">Data</th><th scope="col" class="n">Noc</th><th scope="col">Sen 8 h</th><th scope="col" class="n">Na lekturę i budowę</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">21 czerwca</th><td class="n">7,4 h</td><td>niepełny, dług narasta</td><td class="n">~0 h</td></tr>
+                <tr><th scope="row">21 marca</th><td class="n">12,0 h</td><td>pełny</td><td class="n">~4 h</td></tr>
+                <tr><th scope="row">21 grudnia</th><td class="n">16,6 h</td><td>pełny</td><td class="n">~8,6 h</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Latem gracz musi wybierać między snem a rozwojem. Dług senny podnosi rozrzut i wydłuża wszystkie czynności, więc „nie śpię, tylko czytam" ma cenę płaconą nazajutrz.</p>
+
+          <h3>Jedno zajęcie naraz</h3>
+          <p>Postać nie może jednocześnie spać, czytać i budować. To główny mechanizm ekonomii czasu — bez niego wszystkie systemy schronowe biegłyby równolegle i żaden nie miałby kosztu.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Kategoria</th><th scope="col">Przykłady</th><th scope="col">Zasada</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Zajęcie</th><td>sen, lektura, budowa, wytwarzanie, recykling</td><td>rozpoczęcie nowego anuluje poprzednie, postęp zapisany</td></tr>
+                <tr><th scope="row">Czynność</th><td>jedzenie, picie, opatrunek, przeszukanie, strzał</td><td>zawiesza zajęcie, po zakończeniu zajęcie wraca</td></tr>
+                <tr><th scope="row">Proces tłowy</th><td>metabolizm, krwawienie, wzrost ognisk</td><td>tyka zawsze, niezależnie od wszystkiego</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Obrażenia i krwawienie</h3>
+          <p>Progi wstrząsu krwotocznego odwzorowują klasy ATLS, a nie umowne punkty życia.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col" class="n">Utrata krwi</th><th scope="col">Klasa</th><th scope="col">Stan gracza</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">&lt; 15%</th><td>I</td><td>brak objawów</td></tr>
+                <tr><th scope="row" class="n">15–30%</th><td>II</td><td>tachykardia, +2 MOA, −10% udźwigu</td></tr>
+                <tr><th scope="row" class="n">30–40%</th><td>III</td><td>+5 MOA, przyciemniony ekran, brak biegu bez zawrotów głowy</td></tr>
+                <tr><th scope="row" class="n">&gt; 40%</th><td>IV</td><td>utrata przytomności, śmierć w 2–5 min bez pomocy</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="f">ubytek_efektywny = ubytek_bazowy × (HR_aktualne / HR_spoczynkowe)</div>
+          <p>Bieganie z otwartą raną przyspiesza krwawienie — przy tętnie 160 wobec spoczynkowego 70 dokładnie 2,3-krotnie. Tiery krwawienia: powierzchowne 3 ml/min, umiarkowane 25, silne 90, tętnicze 350 ml/min i wyłącznie staza.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="map">
+        <div class="sec__hd">
+          <span class="sec__no">03 · Mapa i GPS</span>
+          <h2>Twoje miasto jako plansza</h2>
+          <p class="sec__lede">Mapa jest prawdziwa, pobierana raz jako pakiet offline. Gra nie ma serwerów, więc kafelki muszą być samowystarczalne, a sygnał GPS — filtrowany, zanim cokolwiek policzy.</p>
+        </div>
+        <div class="prose">
+          <div class="stats">
+            <div class="stat"><b>PMTiles</b><span>jeden plik na region, Protomaps + MapLibre GL Native</span></div>
+            <div class="stat"><b>50–200 MB</b><span>pakiet kafelków na województwo</span></div>
+            <div class="stat"><b>25 m</b><span>próg odrzucania odczytu GPS</span></div>
+            <div class="stat"><b>8 m / 10 s</b><span>martwa strefa — poniżej to brak ruchu</span></div>
+          </div>
+
+          <h3>Jakość sygnału</h3>
+          <p>Dokładność GPS w mieście to 5–15 m, a wewnątrz budynków sygnału nie ma wcale. Dryf pozycji przy nieruchomym graczu generowałby fałszywy ruch i spalał kalorie osobie siedzącej na kanapie.</p>
+          <ul>
+            <li>Filtr Kalmana na strumieniu pozycji</li>
+            <li>Odrzucanie odczytów o dokładności gorszej niż 25 m</li>
+            <li>Przemieszczenie poniżej 8 m w 10 s traktowane jako brak ruchu</li>
+            <li>Utrata sygnału powyżej 60 s pauzuje symulację ruchu i informuje gracza</li>
+          </ul>
+
+          <h3>Bateria</h3>
+          <p>Ciągły GPS to 15–25% baterii na godzinę — realne zagrożenie dla rozgrywki wielogodzinnej. Odpowiedzią jest adaptacyjne próbkowanie: 1 Hz w walce, 0,2 Hz w marszu, 0,05 Hz przy postoju, plus foreground service z powiadomieniem trwałym i tryb oszczędny z ograniczoną mapą.</p>
+
+          <h3>Anti-cheat pozycji</h3>
+          <p>Bez serwera pełny anti-cheat jest niemożliwy i akceptujemy to — gra jest jednoosobowa, więc oszust szkodzi wyłącznie sobie. Minimum to wykrywanie mock location oraz kontrola prędkości: powyżej 40 km/h przez ponad 30 s rozgrywka zostaje zawieszona, a nie ukarana.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="safety">
+        <div class="sec__hd">
+          <span class="sec__no">04 · Bezpieczeństwo</span>
+          <h2>Gra wysyła ludzi na ulicę po zmroku</h2>
+          <p class="sec__lede">To nie jest sekcja opcjonalna. Lekcje z gier lokalizacyjnych są tu bezpośrednio stosowalne, a ich pominięcie byłoby ryzykiem prawnym i wizerunkowym.</p>
+        </div>
+        <div class="prose">
+          <h3>Strefy wykluczone ze spawnu</h3>
+          <p>Filtrowane po tagach OpenStreetMap, zanim jakikolwiek przeciwnik albo punkt lootu się pojawi.</p>
+          <ul>
+            <li>Jezdnie i pobocza dróg głównych — bufor 15 m</li>
+            <li>Tory kolejowe — bufor 30 m</li>
+            <li>Wody powierzchniowe i cieki</li>
+            <li>Tereny prywatne i zabudowa mieszkalna z oznaczeniem <code>access=private</code></li>
+            <li>Szpitale, szkoły, przedszkola, cmentarze, miejsca kultu, komisariaty, obiekty wojskowe</li>
+          </ul>
+
+          <h3>Mechaniki ochronne</h3>
+          <ul>
+            <li>Blokada walki przy prędkości powyżej 15 km/h z komunikatem „Nie graj podczas jazdy"</li>
+            <li>Jednorazowy ekran z aktywną akceptacją zasad przed pierwszą sesją</li>
+            <li>Po lokalnym zachodzie słońca — przypomnienie o widoczności i świadomości otoczenia</li>
+            <li>Gra nigdy nie wymaga słuchawek; każdy sygnał krytyczny ma duplikat haptyczny i wizualny</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="sec" id="items">
+        <div class="sec__hd">
+          <span class="sec__no">05 · Przedmioty</span>
+          <h2>Dwa limity: masa i objętość</h2>
+          <p class="sec__lede">Sam ciężar nie wystarczy — bez objętości gracz zmieści trzydzieści kilogramów puchowych kurtek w kieszeni. Żadnych limitów sztukowych; ograniczenie wynika wyłącznie z fizyki.</p>
+        </div>
+        <div class="prose">
+          <div class="f">{
+  "id": "weapon_ak74",
+  "type": "firearm",
+  "name_key": "item.weapon_ak74.name",
+  "weight_kg": 3.3,
+  "volume_l": 4.2,
+  "condition": 100,
+  "condition_decay_per_use": 0.05,
+  "rarity": "uncommon",
+  "loot_tags": ["military", "police"],
+  "props": { }
+}</div>
+          <p>Nazwy zawsze jako klucze lokalizacyjne, nigdy jako teksty w plikach definicji — inaczej dodanie języka oznacza przepisanie całej bazy przedmiotów. Definicje żyją w <code>assets/data/</code> i są walidowane schematem przy buildzie.</p>
+
+          <h3>Plecaki</h3>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Plecak</th><th scope="col" class="n">Udźwig</th><th scope="col" class="n">Pojemność</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Brak — kieszenie</th><td class="n">+0 kg</td><td class="n">12 l</td></tr>
+                <tr><th scope="row">Torba</th><td class="n">+4 kg</td><td class="n">30 l</td></tr>
+                <tr><th scope="row">Plecak turystyczny</th><td class="n">+8 kg</td><td class="n">45 l</td></tr>
+                <tr><th scope="row">Plecak trekkingowy</th><td class="n">+12 kg</td><td class="n">65 l</td></tr>
+                <tr><th scope="row">Plecak wojskowy</th><td class="n">+16 kg</td><td class="n">90 l</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Surowce różnią się charakterem: metal to problem masy, plastik i materiał zapychają objętość, a drewno uwiera na obu osiach naraz.</p>
+
+          <h3>Odzież i pancerz</h3>
+          <p>Dwie niezależne osie: termiczna (<code>insulation_clo</code>, wchodzi do wzoru na pot) i balistyczna (<code>protection_level</code> plus <code>coverage_pct</code>, redukcja tylko dla trafionej lokalizacji). Hełm ma pokrycie 12%, kamizelka 55% — trafienie w kończynę ignoruje oba.</p>
+
+          <h3>Literatura</h3>
+          <p>Każdy egzemplarz ma losowaną liczbę stron, z której wyprowadzone są masa, objętość, czas czytania i doświadczenie. Dwa podręczniki tego samego tytułu mogą mieć 180 i 340 stron.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Typ</th><th scope="col" class="n">Strony</th><th scope="col" class="n">Masa</th><th scope="col" class="n">Czas</th><th scope="col" class="n">XP/stronę</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Notatka fabularna</th><td class="n">1–3</td><td class="n">1–3 g</td><td class="n">5–20 s</td><td class="n">0</td></tr>
+                <tr><th scope="row">Ulotka</th><td class="n">1–4</td><td class="n">1–4 g</td><td class="n">1–4 min</td><td class="n">80</td></tr>
+                <tr><th scope="row">Czasopismo</th><td class="n">20–60</td><td class="n">70–170 g</td><td class="n">25–76 min</td><td class="n">30</td></tr>
+                <tr><th scope="row">Poradnik</th><td class="n">80–200</td><td class="n">134–290 g</td><td class="n">2,4–6,1 h</td><td class="n">32</td></tr>
+                <tr><th scope="row">Podręcznik</th><td class="n">150–400</td><td class="n">305–680 g</td><td class="n">7,1–18,9 h</td><td class="n">33</td></tr>
+                <tr><th scope="row">Encyklopedia</th><td class="n">400–900</td><td class="n">1,12–2,02 kg</td><td class="n">21–48 h</td><td class="n">31</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Encyklopedia potrafi ważyć dwa kilogramy, czyli 8% udźwigu komfortowego. Decyzja „biorę tę książkę czy zostawiam" jest realna, a doświadczenie nalicza się za każdą przeczytaną stronę — gracz może przerwać w dowolnym momencie i zachować zdobyty postęp. Drugi egzemplarz tego samego tytułu daje 25%, trzeci i kolejne zero.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="combat">
+        <div class="sec__hd">
+          <span class="sec__no">06 · Walka</span>
+          <h2>Nie walczysz z generatorem liczb losowych</h2>
+          <p class="sec__lede">MOA opisuje rozrzut kątowy, nie prawdopodobieństwo. Szansa trafienia wynika z geometrii celu i sumy błędów, w której dominuje stan ciała strzelca — nie poziom postaci.</p>
+        </div>
+        <div class="prose">
+          <div class="f">D_rozrzutu [m] = MOA_total × dystans × 2,9089e-4     <b>// średnica</b>
+σ = D_rozrzutu / 4                                  <b>// extreme spread ≈ 4σ</b>
+P(trafienie) = [2Φ(W/2σ) − 1] × [2Φ(H/2σ) − 1]
+
+MOA_total = √(MOA_broni² + MOA_umiejętności² + MOA_tętna²
+            + MOA_ruchu_gracza² + MOA_ruchu_celu² + MOA_stanu²)</div>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Składniki błędu</caption>
+              <thead><tr><th scope="col">Źródło</th><th scope="col">Wartość MOA</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Broń, mechanicznie</th><td class="n">1–8</td></tr>
+                <tr><th scope="row">Umiejętność 0% → 100%</th><td class="n">25 → 4</td></tr>
+                <tr><th scope="row">Tętno</th><td><code>60 × ((HR − HR_sp) / (HR_max − HR_sp))²</code> — kwadratowo</td></tr>
+                <tr><th scope="row">Ruch gracza</th><td><code>8 × v^1,2</code> — marsz 5 km/h to 55 MOA, bieg 12 km/h to 165 MOA</td></tr>
+                <tr><th scope="row">Ruch celu</th><td><code>2 × v × 0,3</code> — przeciwnik biegnie wprost na gracza</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="scroller">
+            <table class="tbl heat">
+              <caption>Szansa trafienia w tors — broń 3 MOA</caption>
+              <thead><tr><th scope="col">Sytuacja</th><th scope="col" class="n">MOA</th><th scope="col" class="n">30 m</th><th scope="col" class="n">80 m</th><th scope="col" class="n">150 m</th><th scope="col" class="n">250 m</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Nowicjusz, stoi, spokojny</th><td class="n">25</td><td class="h h5">100%</td><td class="h h5">89%</td><td class="h h4">49%</td><td class="h h3">22%</td></tr>
+                <tr><th scope="row">Nowicjusz, stoi, HR 160</th><td class="n">45</td><td class="h h5">99%</td><td class="h h4">53%</td><td class="h h3">20%</td><td class="h h2">8%</td></tr>
+                <tr><th scope="row">Nowicjusz, idzie 5 km/h</th><td class="n">71</td><td class="h h5">86%</td><td class="h h3">26%</td><td class="h h2">8%</td><td class="h h1">3%</td></tr>
+                <tr><th scope="row">Nowicjusz, biegnie 12 km/h</th><td class="n">167</td><td class="h h3">32%</td><td class="h h1">5%</td><td class="h h1">2%</td><td class="h h1">1%</td></tr>
+                <tr><th scope="row">Wprawny, stoi, HR 100</th><td class="n">12</td><td class="h h5">100%</td><td class="h h5">100%</td><td class="h h5">94%</td><td class="h h4">68%</td></tr>
+                <tr><th scope="row">Wprawny, biegnie 12 km/h</th><td class="n">165</td><td class="h h3">32%</td><td class="h h1">5%</td><td class="h h1">2%</td><td class="h h1">1%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Wniosek zmienia projekt: spokojny, nieruchomy strzelec trafia niezawodnie — i tak właśnie jest w rzeczywistości. Trudność nie bierze się z modelu balistycznego, tylko stąd, że gra prawie nigdy nie daje warunków spokoju i bezruchu. Wprawny strzelec w biegu jest tak samo bezradny jak nowicjusz.</p>
+
+          <div class="warn">
+            <span class="warn__t">Wymóg interfejsu</span>
+            <p>Nad przyciskiem ognia wyświetlana jest liczbowa szansa trafienia oraz największy aktualny składnik błędu: „RUCH", „TĘTNO", „DYSTANS". Model może być bezlitosny dokładnie w takim stopniu, w jakim jest przejrzysty — bez tej liczby gracz po pięciu pudłach uzna, że gra jest zepsuta.</p>
+          </div>
+
+          <h3>Obrażenia</h3>
+          <div class="f">ubytek [ml] = 5,1 × energia[J]^0,6 × wound_factor × mnożnik_lokalizacji × (1 − ochrona)</div>
+          <p>Zależność jest podpierwiastkowa, bo ciężkość rany nie rośnie proporcjonalnie do energii. <code>wound_factor</code> oddaje charakter kanału rany: pociski karabinowe fragmentują, śrut tworzy wiele kanałów, pistoletowe przebijają na wylot.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Trafienia w tors potrzebne do eliminacji</caption>
+              <thead><tr><th scope="col">Broń</th><th scope="col" class="n">Skakun</th><th scope="col" class="n">Szwędacz</th><th scope="col" class="n">Brutal</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Wiatrówka .22 LR</th><td class="n">14,4</td><td class="n">20,4</td><td class="n">46,7</td></tr>
+                <tr><th scope="row">Pistolet 9 mm</th><td class="n">5,1</td><td class="n">7,2</td><td class="n">16,5</td></tr>
+                <tr><th scope="row">Karabinek 5,45×39</th><td class="n">2,2</td><td class="n">3,2</td><td class="n">7,3</td></tr>
+                <tr><th scope="row">Karabinek 7,62×39</th><td class="n">1,8</td><td class="n">2,6</td><td class="n">6,0</td></tr>
+                <tr><th scope="row">Strzelba, śrut</th><td class="n">1,6</td><td class="n">2,2</td><td class="n">5,1</td></tr>
+                <tr><th scope="row">Karabin .308</th><td class="n">1,2</td><td class="n">1,7</td><td class="n">3,8</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Walka grupowa</h3>
+          <p>Szwędacze chodzą w grupach 2–4, więc walka z kilkoma naraz jest stanem domyślnym. Broń palna ma jeden aktywny cel; przełączenie kosztuje 1,2 s, w czasie których okrąg rozrzutu jest maksymalny. Nie ma automatycznego przełączenia po śmierci celu — automatyka zniosłaby całe napięcie i zamieniła walkę w klikanie.</p>
+          <p>Czas jest tu głównym zasobem, nie amunicja. Grupa wykrywa gracza, wszyscy sprintują, a każda sekunda celowania to metry pokonane przez pozostałych. Gdy budżety sprintu się wyczerpują, otwiera się okno na przeładowanie, wycofanie albo dobicie wyczerpanych.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="noise">
+        <div class="sec__hd">
+          <span class="sec__no">07 · Hałas</span>
+          <h2>Strzał jest sygnałem, nie tylko wydatkiem</h2>
+          <p class="sec__lede">Ten system domyka ekonomię walki i tworzy jedyny prawdziwy wybór taktyczny gry: broń palna czy biała.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Promień słyszalności</caption>
+              <thead><tr><th scope="col">Czynność</th><th scope="col" class="n">Promień</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Marsz</th><td class="n">15 m</td></tr>
+                <tr><th scope="row">Walka wręcz</th><td class="n">25 m</td></tr>
+                <tr><th scope="row">Bieg</th><td class="n">40 m</td></tr>
+                <tr><th scope="row">Pistolet z tłumikiem</th><td class="n">120 m</td></tr>
+                <tr><th scope="row">Rozbicie szyby, wyważenie drzwi</th><td class="n">150 m</td></tr>
+                <tr><th scope="row">Karabin z tłumikiem</th><td class="n">200 m</td></tr>
+                <tr><th scope="row">Pistolet</th><td class="n">450 m</td></tr>
+                <tr><th scope="row">Karabin</th><td class="n">700 m</td></tr>
+                <tr><th scope="row">Strzelba</th><td class="n">900 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="f">promień_efektywny = promień_bazowy × mod_pory_doby × mod_zabudowy
+
+noc ×1,3   ·   gęsta zabudowa w dzień ×0,7
+teren otwarty ×1,2   ·   deszcz lub silny wiatr ×0,75</div>
+
+          <p>Przeciwnicy idą <em>do miejsca, w którym powstał dźwięk</em> — nie do gracza. To pozostawia przestrzeń na taktykę: strzał, przemieszczenie, obserwacja. Na jedno zdarzenie reaguje maksymalnie sześciu, wybieranych od najbliższego.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Wybór</th><th scope="col">Zysk</th><th scope="col">Koszt</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Broń palna</th><td>eliminacja z dystansu, wysoka szansa trafienia na spokojnie</td><td>ściąga wszystko w promieniu 700 m, zużywa rzadką amunicję</td></tr>
+                <tr><th scope="row">Broń biała</th><td>cisza 25 m, zero kosztu amunicji</td><td>wymaga zwarcia, czyli oskrzydlenia i ryzyka krwawienia</td></tr>
+                <tr><th scope="row">Unikanie</th><td>zerowy koszt</td><td>ognisko rośnie dalej</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Strzał wywołuje też przytłumienie miksu na 2–3 sekundy — symulację czasowego przytępienia słuchu. W tym czasie gracz nie słyszy zbliżających się przeciwników. To realistyczna i dotkliwa kara za strzelanie bez ochronników.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="enemies">
+        <div class="sec__hd">
+          <span class="sec__no">08 · Przeciwnicy</span>
+          <h2>Trzy stadia jednej choroby</h2>
+          <p class="sec__lede">Prędkość gracza jest niemodyfikowalna, więc szybki przeciwnik byłby wyrokiem. Rozwiązaniem jest budżet sprintu — groza zostaje, ucieczka nadal istnieje.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Typ</th><th scope="col" class="n">Chód</th><th scope="col" class="n">Bieg</th><th scope="col" class="n">Budżet sprintu</th><th scope="col" class="n">Krew</th><th scope="col" class="n">Wykrycie</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Skakun</th><td class="n">5–7 km/h</td><td class="n">27–32 km/h</td><td class="n">25 s</td><td class="n">2 400–2 800 ml</td><td class="n">120 m</td></tr>
+                <tr><th scope="row">Szwędacz</th><td class="n">3–4 km/h</td><td class="n">15–18 km/h</td><td class="n">90 s</td><td class="n">3 200–3 600 ml</td><td class="n">80 m</td></tr>
+                <tr><th scope="row">Brutal</th><td class="n">2–4 km/h</td><td class="n">12–17 km/h</td><td class="n">45 s</td><td class="n">6 000–8 000 ml</td><td class="n">60 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Sprinterzy nie utrzymują prędkości maksymalnej dłużej niż 20–30 sekund — to fizjologia, nie ustępstwo. Gracz przetrwa sprint i wykorzysta przewagę wytrzymałościową człowieka. Przed Skakunem ucieczki nie ma i to jest jego rola projektowa; uciekać można przed Szwędaczami i Brutalem.</p>
+
+          <h3>Maszyna stanów</h3>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Stan</th><th scope="col">Warunek wejścia</th><th scope="col">Zachowanie</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Spoczynek</th><td>domyślny</td><td>ruch losowy w obrębie ogniska</td></tr>
+                <tr><th scope="row">Czujność</th><td>gracz w zasięgu wykrycia</td><td>marsz w stronę gracza, bez zużycia budżetu</td></tr>
+                <tr><th scope="row">Pościg</th><td>bliski kontakt lub oddany strzał</td><td>sprint, zużycie budżetu</td></tr>
+                <tr><th scope="row">Wyczerpanie</th><td>budżet sprintu = 0</td><td>40% prędkości biegu, dalej w stronę gracza</td></tr>
+                <tr><th scope="row">Powrót</th><td>utrata kontaktu lub smycz 400 m</td><td>marsz do centrum ogniska, pełna regeneracja</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>W pościgu i wyczerpaniu przeciwnik nigdy się nie zatrzymuje. Walka nie jest statyczna — strzelając do jednego, tracisz dystans do wszystkich pozostałych. Smycz 400 m i utrata kontaktu po 45 s bez zbliżenia zapobiegają ciągnięciu za sobą „pociągu" przez pół miasta.</p>
+
+          <p>Trzy typy to trzy stadia tej samej choroby, co wyjaśnia ich parametry bez zmiany choćby jednej liczby: Skakun zaraził się najwcześniej i jest wyniszczony metabolicznie, Szwędacze przyszli drugą falą i chodzą grupami, bo zarazili się razem, Brutal to stadium najpóźniejsze — obrzęk i zatrzymanie płynów.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="hotspots">
+        <div class="sec__hd">
+          <span class="sec__no">09 · Ogniska</span>
+          <h2>Zegar, który odmierza trudność</h2>
+          <p class="sec__lede">Ognisko skażenia to trwały punkt na mapie generujący przeciwników. Rośnie w czasie — także wtedy, gdy nie grasz. To bezpośrednia realizacja celu „przetrwać jak najdłużej": im dłużej trwa passa, tym większa presja.</p>
+        </div>
+
+        <div class="clock" id="clock">
+          <div class="clock__hd"><span>Wzrost ogniska · promień wg poziomu</span><span>20 m → 200 m</span></div>
+          <div class="clock__body">
+            <svg viewBox="0 0 520 430" role="img" aria-label="Diagram wzrostu ogniska: dziesięć koncentrycznych okręgów w skali, od 20 metrów promienia na poziomie pierwszym do 200 metrów na dziesiątym.">
+              <g id="rings" data-unit="m"></g>
+              <circle cx="260" cy="210" r="3" fill="#A82D17"/>
+              <text x="260" y="230" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#4A524F">centrum stałe</text>
+            </svg>
+          </div>
+          <div class="clock__legend">
+            <div><b>3</b><span>maks. ognisk jednocześnie</span></div>
+            <div><b>500 m</b><span>min. dystans od schronu</span></div>
+            <div><b>450 m</b><span>min. odstęp między centrami</span></div>
+            <div><b>12</b><span>wrogów naraz na poziomie 10</span></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <div class="f">interwał_awansu = max(2h, 8h − 0,25h × dzień_przetrwania) × random(0,6; 1,4)
+
+Dzień 1   → awans średnio co ~8 h
+Dzień 12  → co ~5 h
+Dzień 24+ → co 2 h (podłoga)</div>
+          <p>Czas nalicza się w 100% gdy gra jest aktywna i w 25% gdy nie jest. Świat psuje się także wtedy, gdy nie grasz — ale wolniej, więc tygodniowa przerwa nie oznacza automatycznie zastania trzech ognisk poziomu 10.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Poziomy ogniska</caption>
+              <thead><tr><th scope="col" class="n">Poziom</th><th scope="col" class="n">Promień</th><th scope="col" class="n">Wrogów</th><th scope="col" class="n">Respawn</th><th scope="col">Skład</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">1</th><td class="n">20 m</td><td class="n">1</td><td class="n">15 min</td><td>Szwędacz</td></tr>
+                <tr><th scope="row" class="n">4</th><td class="n">80 m</td><td class="n">4</td><td class="n">10 min</td><td>Szwędacz, Skakun 20%</td></tr>
+                <tr><th scope="row" class="n">7</th><td class="n">140 m</td><td class="n">8</td><td class="n">6 min</td><td>+ Brutal 10%</td></tr>
+                <tr><th scope="row" class="n">10</th><td class="n">200 m</td><td class="n">12</td><td class="n">3 min</td><td>pełny skład + hordy</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Neutralizacja</h3>
+          <div class="f">Integralność_max(poziom) = 60 + 20 × poziom     // 80 pkt na poziomie 1, 260 na 10
+
+Szwędacz 10 pkt  ·  Skakun 15 pkt  ·  Brutal 35 pkt
+Eliminacja poza promieniem ogniska: 50% wartości</div>
+          <p>Po zbiciu integralności do zera ognisko traci poziom i wchodzi w dziesięciominutowe <em>wzburzenie</em>: potrójne tempo respawnu, o połowę wyższy limit wrogów, skład przesunięty o szczebel w górę i o połowę większy zasięg wykrycia. Zbicie ogniska z poziomu 10 do zera wymaga przejścia przez dziesięć kolejnych wzburzeń — to operacja na kilka godzin, z zapleczem amunicyjnym i medycznym.</p>
+          <p>Po likwidacji w centrum pojawia się jednorazowy skład o jakości około trzykrotnie lepszej niż zwykły lootbox, a slot zostaje pusty przez 24–48 godzin realnego czasu. Nagrodą jest oddech.</p>
+
+          <div class="warn">
+            <span class="warn__t">Horda — poziom 10</span>
+            <p>Co 6–12 godzin ognisko wysyła 6–10 przeciwników w stronę schronu. Nie wejdą w strefę bezpieczną, ale okrążą ją i zostaną 30–60 minut. Gracz jest wtedy odcięty. Ostrzeżenie przychodzi dziesięć minut wcześniej: „Słyszysz je od strony wschodniej".</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="loot">
+        <div class="sec__hd">
+          <span class="sec__no">10 · Loot</span>
+          <h2>Uczysz się mapy własnego miasta</h2>
+          <p class="sec__lede">Tabele lootu są powiązane z tagami POI z OpenStreetMap. Wiesz, gdzie jest najbliższa apteka, bo tam znalazłeś opatrunki.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Miejsce</th><th scope="col">Dominujący loot</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Apteka</th><td>medykamenty, literatura medyczna</td></tr>
+                <tr><th scope="row">Market budowlany</th><td>narzędzia, materiały craftingowe</td></tr>
+                <tr><th scope="row">Sklep spożywczy</th><td>jedzenie, woda</td></tr>
+                <tr><th scope="row">Sklep sportowy i outdoor</th><td>plecaki, odzież, noże, lornetki</td></tr>
+                <tr><th scope="row">Komisariat, sklep z bronią</th><td>broń palna, amunicja, kamizelki</td></tr>
+                <tr><th scope="row">Biblioteka, księgarnia</th><td>literatura wszelkiego typu</td></tr>
+                <tr><th scope="row">Zakład przemysłowy</th><td>metal, narzędzia, paliwo, komponenty</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Warstwa zapasowa dla mniejszych miejscowości</h3>
+          <p>W miejscowości poniżej piętnastu tysięcy mieszkańców tych obiektów praktycznie nie ma. Przy gęstości poniżej ośmiu POI w promieniu 2 km uruchamia się warstwa proceduralna oparta o obiekty obecne wszędzie: porzucone samochody, stodoły, garaże, śmietniki, wiaty, ambony myśliwskie, ujęcia wody. Punkty zastępcze dają około 55% wartości POI właściwych, ale respawn skraca się do 3–5 godzin, a promień poszukiwań rośnie do 3 km.</p>
+
+          <h3>Przeszukanie — rozpoznanie i zbieractwo</h3>
+          <p>Zatrzymanie na 45 sekund odsłania okolicę: stan POI, punkty proceduralne i — co najcenniejsze — przeciwników w promieniu. Kosztem jest czas i bezruch, nie zegar odliczający. Apteki widać z ulicy, bo są budynkiem; ukrywamy tylko to, czego naprawdę nie widać z dystansu.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Konfiguracja</th><th scope="col" class="n">Promień w dzień</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Zwiad 0%, bez lornetki</th><td class="n">100 m</td></tr>
+                <tr><th scope="row">Zwiad 0%, lornetka</th><td class="n">150 m</td></tr>
+                <tr><th scope="row">Zwiad 100%, bez lornetki</th><td class="n">200 m</td></tr>
+                <tr><th scope="row">Zwiad 100%, lornetka</th><td class="n">300 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Samo przeszukanie obiektu jest czynnością czasową: 30 sekund pobieżnie, 90 dokładnie, 180 gruntownie z podwojoną szansą na przedmiot rzadki. Generuje hałas i można je przerwać. Gracz decyduje, czy brać szybko i uciekać, czy ryzykować dla lepszego lootu.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="skills">
+        <div class="sec__hd">
+          <span class="sec__no">11 · Umiejętności</span>
+          <h2>Maksymalny poziom ma być mitem</h2>
+          <p class="sec__lede">Cztery umiejętności, zakres 0–100%, maksymalny efekt +30%. Główną ścieżką jest czytanie, a nie zabijanie.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Umiejętność</th><th scope="col">Efekt przy 100%</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Zwiad</th><td>−30% szansy na wykrycie, +30% jakości lootu, +100% promienia przeszukania</td></tr>
+                <tr><th scope="row">Obsługa broni</th><td>−30% czasu przeładowania i stabilizacji, MOA umiejętności 25 → 4</td></tr>
+                <tr><th scope="row">Medycyna</th><td>−30% czasu użycia medykamentów, +30% skuteczności opatrunków</td></tr>
+                <tr><th scope="row">Inżynieria</th><td>−30% czasu budowy i craftingu</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="f">XP_do_poziomu(p) = 70 × p          // p = 1..100
+XP_łączne do 100% = 353 500        // ≈ 509 godzin czytania</div>
+          <p>To około 59 zimowych nocy poświęconych wyłącznie lekturze, bez budowania czegokolwiek. Wymaksowanie wszystkich czterech jest praktycznie nieosiągalne, więc wybór, którą rozwijać, staje się prawdziwą decyzją strategiczną. Praktyka — strzały, eliminacje, opatrunki — uzupełnia i nagradza styl gry, ale nie zastępuje literatury: przy 15 XP za eliminację pełny poziom to 23 500 zabitych przeciwników.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="shelter">
+        <div class="sec__hd">
+          <span class="sec__no">12 · Schron i obóz</span>
+          <h2>Droga z pracy do domu jest rozgrywką</h2>
+          <p class="sec__lede">Schron główny stoi tam, gdzie mieszkasz. Obóz stawiasz tam, gdzie spędzasz dzień. Między nimi rozciąga się teren, na którym stoją ogniska.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Cecha</th><th scope="col">Obóz</th><th scope="col">Schron główny</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Strefa bezpieczna</th><td class="n">20 m</td><td class="n">50 m</td></tr>
+                <tr><th scope="row">Metabolizm</th><td class="n">50% / 55%</td><td class="n">35% / 40%</td></tr>
+                <tr><th scope="row">Magazyn</th><td>skrzynia +30 kg</td><td>25 kg bazowo, moduł do 150 kg</td></tr>
+                <tr><th scope="row">Moduły</th><td>brak</td><td>4 moduły × 3 poziomy</td></tr>
+                <tr><th scope="row">Sen</th><td>jakość 70%</td><td class="n">100%</td></tr>
+                <tr><th scope="row">Czas budowy</th><td class="n">~40 min</td><td class="n">~3 h</td></tr>
+                <tr><th scope="row">Liczba</th><td class="n">2</td><td class="n">1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Strefa bezpieczna i blokada ataku gracza mają ten sam promień. Przy różnych wartościach powstałby pierścień, w którym przeciwnik może atakować, a gracz nie może się bronić — co wprost karałoby przebywanie pod schronem.</p>
+
+          <h3>Moduły</h3>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Moduł</th><th scope="col">Efekt przy pełnej rozbudowie</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Magazyn</th><td>+150 kg pojemności, 3 l na każdy kilogram</td></tr>
+                <tr><th scope="row">Warsztat</th><td>naprawa do 100%, receptury złożone, −30% czasu craftingu</td></tr>
+                <tr><th scope="row">Salon</th><td>+45% tempa regeneracji ze snu, czyli więcej godzin na lekturę</td></tr>
+                <tr><th scope="row">Laboratorium</th><td>+9% skuteczności posiłków i napojów</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Pełna rozbudowa wszystkich czterech modułów do trzeciego poziomu to <span class="num">731 kg</span> materiału, czyli około trzydziestu kursów z pełnym plecakiem. To ma być cel na tygodnie, nie na weekend.</p>
+          <p>Obóz nieodwiedzony przez 14 dni zaczyna się rozpadać, a po 21 znika wraz z zawartością skrzyni. Zapobiega to zaśmiecaniu mapy porzuconymi placówkami i wymusza świadomy wybór dwóch lokalizacji.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="crafting">
+        <div class="sec__hd">
+          <span class="sec__no">13 · Wytwarzanie</span>
+          <h2>Pięć surowców i jedna receptura, która domyka ekonomię</h2>
+          <p class="sec__lede">Drewno, metal, plastik i materiał są wszędzie. Komponent techniczny jest rzadki i to on reguluje tempo rozbudowy.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Surowiec</th><th scope="col" class="n">Masa/szt.</th><th scope="col" class="n">Objętość</th><th scope="col">Źródła</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Drewno</th><td class="n">2,0 kg</td><td class="n">4,0 l</td><td>budynki, stodoły, wiaty, place budowy, lasy</td></tr>
+                <tr><th scope="row">Metal</th><td class="n">1,5 kg</td><td class="n">0,6 l</td><td>garaże, warsztaty, tereny przemysłowe, wraki</td></tr>
+                <tr><th scope="row">Plastik</th><td class="n">0,4 kg</td><td class="n">2,0 l</td><td>śmietniki, markety, wszędzie</td></tr>
+                <tr><th scope="row">Materiał</th><td class="n">0,3 kg</td><td class="n">1,0 l</td><td>domy, sklepy odzieżowe, tapicerka</td></tr>
+                <tr><th scope="row">Komponent techniczny</th><td class="n">0,8 kg</td><td class="n">0,4 l</td><td>rzadki — markety budowlane, warsztaty, przemysł</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Elaboracja amunicji</h3>
+          <p>Najważniejsza receptura w grze, bo zamyka pętlę hałasu. Każdy oddany strzał zostawia łuskę w miejscu strzału, widoczną na mapie przez 48 godzin.</p>
+          <div class="f">Warsztat poziom 2
+10 łusek + 3 metal + 1 komponent + 1 prochownica → 10 naboi
+Czas 25 min  ·  Jakość: <b>+2 MOA</b> wobec amunicji fabrycznej</div>
+          <p>Strzelasz, zostawiasz łuski, wracasz po nie, odzyskujesz część nakładu. Miejsce strzelaniny staje się miejscem, do którego trzeba wrócić — a więc znowu wejść w teren, w którym coś Cię usłyszało. Kara +2 MOA jest celowa: amunicja własna ma być ratunkiem, nie zamiennikiem.</p>
+
+          <h3>Recykling</h3>
+          <p>Rozbiórka daje 40% wartości materiałowej, do 55% przy pełnej Inżynierii i o kolejne 10 punktów więcej z warsztatu drugiego poziomu. Zwrot jest celowo nieopłacalny jako źródło surowca — opłaca się wyłącznie jako sposób na pozbycie się balastu bez całkowitej straty.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="death">
+        <div class="sec__hd">
+          <span class="sec__no">14 · Śmierć</span>
+          <h2>Dwa tryby, jeden wynik</h2>
+          <p class="sec__lede">Tryb wybierany jednorazowo przy tworzeniu postaci, nieodwracalnie. Możliwość przełączenia unieważniłaby rekordy w Hardcore.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col"></th><th scope="col">Hardcore</th><th scope="col">Softcore</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Śmierć</th><td>koniec postaci</td><td>utrata przytomności, gra trwa</td></tr>
+                <tr><th scope="row">Umiejętności</th><td>przepadają</td><td>zachowane w całości</td></tr>
+                <tr><th scope="row">Schron</th><td>przepada</td><td>zachowany</td></tr>
+                <tr><th scope="row">Magazyn schronu</th><td>przepada</td><td>nietknięty</td></tr>
+                <tr><th scope="row">Ogniska</th><td>reset do poziomu 1</td><td>rosną dalej</td></tr>
+                <tr><th scope="row">Passa przetrwania</th><td>ostateczna, trafia do Kroniki</td><td>zerowana</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="warn">
+            <span class="warn__t">Zasada nadrzędna</span>
+            <p>Awaria techniczna nigdy nie może zabić postaci. Śmierć nie następuje w stanie uśpionym ani przy braku sygnału GPS, a stan wraca do ostatniego zatwierdzonego punktu. Permadeath z powodu crasha to gwarantowana jedna gwiazdka w sklepie.</p>
+          </div>
+
+          <p>W Softcore postać budzi się dokładnie tam, gdzie fizycznie znajduje się gracz — nigdy przez teleportację do schronu, bo w grze GPS-owej teleportacja jest pojęciowo zepsuta. Fikcją jest majaczenie przy 25% objętości krwi, medycznie poprawne i darmowe fabularnie. Skrytki z ekwipunkiem zostają w miejscu upadku, więc kara rośnie wraz z dystansem bez żadnych sztucznych reguł.</p>
+          <p>Przez pierwsze dziesięć minut po przebudzeniu przeciwnicy ignorują gracza — okno łaski aktywuje się tylko wtedy, gdy w promieniu 300 m faktycznie ktoś jest. Nie ma sensu chronić gracza, który ocknął się w autobusie.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="seasons">
+        <div class="sec__hd">
+          <span class="sec__no">15 · Sezonowość</span>
+          <h2>Gra nie zna pojęcia pory roku</h2>
+          <p class="sec__lede">Zna dwie mierzone wielkości — długość dnia i temperaturę — i z nich wyprowadza wszystko. Sezonowość powstaje sama, poprawnie na każdej szerokości geograficznej.</p>
+        </div>
+        <div class="prose">
+          <div class="f">δ = 23,45° × sin(360/365 × (284 + N))    // N = dzień roku
+cos(ω) = −tan(φ) × tan(δ)                // φ = szerokość gracza
+godziny_światła = 2ω / 15
+
+C = clamp((10 − T_śr7) / 25, 0, 1)       // wskaźnik chłodu
+D = clamp((12 − godziny_światła) / 6, 0, 1)   // wskaźnik ciemności</div>
+          <p>Formuła działa bez API i bez sieci. W Kapsztadzie „zima" wypada w lipcu, a w Nairobi nie wypada nigdy — bez jednej linii kodu specyficznej dla regionu.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">System</th><th scope="col">Modyfikator</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Wzrost ognisk</th><td><code>interwał × (1 + 1,2 × C)</code> — przy mrozie ogniska rosną ponad dwukrotnie wolniej</td></tr>
+                <tr><th scope="row">Prędkość przeciwników</th><td><code>× (1 − 0,30 × C)</code></td></tr>
+                <tr><th scope="row">Budżet sprintu</th><td><code>× (1 − 0,25 × C)</code></td></tr>
+                <tr><th scope="row">Zapotrzebowanie kaloryczne</th><td><code>× (1 + 0,15 × C)</code> — podwyższona termogeneza</td></tr>
+                <tr><th scope="row">Zasięg wykrycia gracza</th><td><code>× (1 + 0,20 × D)</code> po zmroku</td></tr>
+                <tr><th scope="row">Respawn lootu</th><td><code>× (1 − 0,25 × D)</code> — rekompensata za krótszy dzień</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>To odwraca problem w mechanikę: zima nie jest przerwą w grze, tylko innym trybem grania. Gracz nadrabia zaległości w lekturze, craftingu i rozbudowie schronu, podczas gdy świat na zewnątrz zwalnia. Krótkoterminowa pogoda z Open-Meteo dokłada deszcz, wiatr i mgłę — zawsze z cache i łagodną degradacją, bo gra nigdy nie może wymagać połączenia.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="audio">
+        <div class="sec__hd">
+          <span class="sec__no">16 · Dźwięk</span>
+          <h2>Telefon jest w kieszeni</h2>
+          <p class="sec__lede">Przez większość czasu gracz idzie ulicą i nie patrzy na ekran. Dźwięk i wibracja nie są warstwą dodaną na końcu — są podstawowym interfejsem.</p>
+        </div>
+        <div class="prose">
+          <p>Pozycja przeciwnika jest znana z GPS, więc wystarczy przeliczyć różnicę współrzędnych na wektor w przestrzeni silnika audio. Orientacja słuchacza pochodzi z kompasu, nie z kierunku ruchu — inaczej stojący gracz traci orientację kierunkową.</p>
+          <div class="f">x = (lon_wroga − lon_gracza) × 111 320 × cos(lat_gracza)
+z = (lat_wroga − lat_gracza) × 110 540
+y = 0</div>
+          <p>Stoisz na ulicy, patrzysz na mapę i <em>słyszysz z lewej strony</em>, że coś się zbliża — zanim zobaczysz znacznik. Żadna zwykła gra mobilna tego nie robi, bo nie zna realnej orientacji gracza w świecie.</p>
+
+          <h3>Bicie serca jako główny instrument</h3>
+          <p>Tętno jest wyliczane co tick, więc odtwarzanie bicia w tempie równym aktualnemu HR daje nieprzerwane odczucie stanu ciała bez żadnego elementu interfejsu. To jednocześnie wskaźnik zmęczenia, wskaźnik stabilizacji przy celowaniu i narzędzie napięcia przy niskim poziomie krwi. Niesłyszalne poniżej 60% tętna maksymalnego, dominujące powyżej 90%.</p>
+
+          <div class="warn">
+            <span class="warn__t">Brak muzyki bojowej</span>
+            <p>Gra dzieje się w prawdziwym mieście — podkład orkiestrowy natychmiast burzy realizm. Napięcie budujemy oddechem, tętnem i dźwiękami przeciwników. To także oszczędza całą kategorię assetów.</p>
+          </div>
+
+          <p>Haptyka musi być rozróżnialna przez kieszeń spodni, więc wzorce różnią się strukturą rytmiczną, a nie siłą: dwa krótkie impulsy to wykrycie przez wroga, trzy szybkie to rozpoczęte krwawienie, jeden długi i łagodny to ukończona czynność.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="story">
+        <div class="sec__hd">
+          <span class="sec__no">17 · Fabuła</span>
+          <h2>Mozaika, nie sekwencja</h2>
+          <p class="sec__lede">Fragmenty znajdujesz w kolejności narzuconej przez rozmieszczenie POI w Twoim mieście. Każdy musi bronić się sam, a chronologię składasz po datach.</p>
+        </div>
+        <div class="prose">
+          <p>Fabuła wyjaśnia przeszłość i nigdy nie mówi o przyszłości. Odpowiada na pytanie „co się stało", nigdy „co teraz" — bo co teraz, to przetrwanie, bez końca. Historia z rozwiązaniem obiecywałaby ratunek, a ratunku nie ma.</p>
+
+          <h3>Ślady po ludziach</h3>
+          <p>Notatki są przypisane do realnych miejsc w mieście gracza, a nazwy ulic podstawiane są z OpenStreetMap. Przystanek, obok którego przechodzisz codziennie do pracy, staje się miejscem, gdzie ktoś zostawił wiadomość. To jedyny atut, którego nie ma żadna gra na wymyślonej mapie.</p>
+          <ul>
+            <li>List pożegnalny zostawiony w mieszkaniu</li>
+            <li>Dziennik z pierwszych dni epidemii</li>
+            <li>Ostatnia transmisja z komisariatu</li>
+            <li>Kartka na drzwiach: „nie otwierać, jesteśmy w środku"</li>
+            <li>Protokół z apteki o brakach leków</li>
+          </ul>
+          <p>Zero doświadczenia, zero mechaniki, masa 1–3 gramy. Notatka nie jest nagrodą — jest powodem, żeby to miejsce zapamiętać. Zasady redakcyjne są twarde: trzy do ośmiu zdań, konkret zamiast patosu, żadnego wyjaśniania epidemii, żadnych treści drastycznych, żadnych nazw państw ani instytucji. Upadek jest logistyczny, nie polityczny.</p>
+          <p>Fragmenty właściwej fabuły układają się w cztery fazy plus wątek własny gracza, a znalezione trafiają do Archiwum, gdzie automatycznie porządkują się po dacie. Nieodkryte widać jako luki z zaznaczoną fazą.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="onboarding">
+        <div class="sec__hd">
+          <span class="sec__no">18 · Onboarding</span>
+          <h2>Trzy rzeczy do przekazania w pięć minut</h2>
+          <p class="sec__lede">Gra łamie trzy nawyki gracza mobilnego i każde z tych złamań bez wyjaśnienia wygląda jak błąd aplikacji.</p>
+        </div>
+        <div class="prose">
+          <ol>
+            <li><strong>Nie trafisz w biegu.</strong> Strzał w ruchu jest praktycznie chybiony — gracz uzna, że broń jest zepsuta.</li>
+            <li><strong>Przed Skakunem nie uciekniesz.</strong> 25 sekund sprintu przy 30 km/h zawsze wystarcza na pokonanie dystansu detekcji — gracz uzna, że gra oszukuje.</li>
+            <li><strong>Twoje ciało jest kontrolerem.</strong> Gra liczy realne kalorie z realnego ruchu — gracz siedzący na kanapie nie zrozumie, dlaczego nic się nie dzieje.</li>
+          </ol>
+          <p>Wszystko inne może poczekać i jest wprowadzane podpowiedzią kontekstową w momencie pierwszego zetknięcia. Pierwsza walka to jedyny scenariusz skryptowany w całej grze: pojedynczy Szwędacz 120 m od gracza, w bezpiecznym kierunku, z obniżonymi obrażeniami i bez możliwości zabicia.</p>
+          <p>Najważniejsze są dwie ostatnie podpowiedzi tej sekwencji — bo ustawiają ekonomię gry w głowie gracza od pierwszej minuty:</p>
+          <div class="warn">
+            <p>„Widzisz ten okrąg? Strzał słychać na 700 metrów. Coś mogło Cię usłyszeć."</p>
+            <p>„Zużyłeś 7 naboi na jednego. Amunicji jest mało, a każdy strzał Cię zdradza. Czasem lepiej nie walczyć."</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="tech">
+        <div class="sec__hd">
+          <span class="sec__no">19 · Technologia</span>
+          <h2>Offline-first, bez własnych serwerów</h2>
+          <p class="sec__lede">Cała symulacja działa lokalnie. Jedynym zewnętrznym API jest darmowe Open-Meteo — z cache i łagodną degradacją, bo gra nigdy nie może wymagać połączenia.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Warstwa</th><th scope="col">Rozwiązanie</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Framework</th><td>Flutter, Dart 3</td></tr>
+                <tr><th scope="row">Mapa</th><td>MapLibre GL Native + PMTiles (Protomaps)</td></tr>
+                <tr><th scope="row">Baza lokalna</th><td>Drift / SQLite w trybie WAL</td></tr>
+                <tr><th scope="row">Definicje przedmiotów</th><td>JSON w assets, walidowane schematem przy buildzie</td></tr>
+                <tr><th scope="row">Lokalizacja tekstów</th><td><code>flutter_localizations</code> + ARB</td></tr>
+                <tr><th scope="row">GPS</th><td><code>geolocator</code> + foreground service</td></tr>
+                <tr><th scope="row">Audio</th><td><code>flutter_soloud</code> z dźwiękiem pozycyjnym 3D</td></tr>
+                <tr><th scope="row">Symulacja</th><td>silnik tickowy 1 Hz w izolacie, catch-up po wznowieniu</td></tr>
+                <tr><th scope="row">RNG</th><td>deterministyczny, seed zapisany w profilu</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Trwałość zapisu</h3>
+          <p>W trybie Hardcore awaria zapisu kasuje dziesiątki godzin, więc rozwiązanie stoi na trzech niezależnych warstwach: transakcyjności, kopii rotacyjnej i migracjach wyłącznie addytywnych.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Warstwa stanu</th><th scope="col">Zawartość</th><th scope="col">Zapis</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Gorąca</th><td>pozycja, krew, woda, kalorie, tętno</td><td>co 60 s i przy przejściu w tło</td></tr>
+                <tr><th scope="row">Ciepła</th><td>ekwipunek, umiejętności, schron, ogniska</td><td>przy każdej zmianie, transakcyjnie</td></tr>
+                <tr><th scope="row">Zimna</th><td>Kronika, rekordy, ustawienia</td><td>przy zdarzeniu</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Maksymalna strata przy awarii to 60 sekund warstwy gorącej — gracz cofa się o minutę fizjologii, nie o godziny progresji. Trzy migawki rotacyjne z sumami kontrolnymi pozwalają odtworzyć uszkodzoną bazę, a wszystkie ticki są idempotentne, więc powtórzenie po odzyskaniu daje ten sam wynik.</p>
+
+          <div class="warn">
+            <span class="warn__t">Migracje</span>
+            <p>Wyłącznie addytywne: dodajemy kolumny i tabele, nigdy nie usuwamy i nie zmieniamy nazw. Identyfikator przedmiotu nigdy nie zmienia znaczenia; usunięty przedmiot zostaje w słowniku jako <code>deprecated</code>, żeby stary ekwipunek dał się wczytać. Test migracji jest tak samo obowiązkowy jak test logiki.</p>
+          </div>
+
+          <h3>Tryb deweloperski</h3>
+          <p>Nie da się iterować nad grą GPS-ową, przechodząc kilka kilometrów przy każdym buildzie. Tryb dostępny wyłącznie w buildach debug, wycinany z release'u flagą kompilacji.</p>
+          <ul>
+            <li>Symulator GPS: odtwarzanie tras GPX, sterowanie strzałkami, skok do współrzędnych</li>
+            <li>Przyspieszenie czasu ×1 / ×60 / ×3600 — dobę gry da się przejść w 24 sekundy</li>
+            <li>Panele fizjologii i świata: wymuszanie tętna, spawn przeciwników, poziom ogniska, horda</li>
+            <li>Nakładka diagnostyczna z rozbiciem MOA, szansą trafienia i promieniem hałasu</li>
+            <li>Deterministyczne powtórki: seed plus strumień zdarzeń</li>
+          </ul>
+          <p>Symulator wstrzykuje dane przez tę samą warstwę co prawdziwy GPS, razem z symulacją błędu pozycji i utraty sygnału. Testowanie na idealnych danych zamaskowałoby wszystko, co wystąpi w terenie.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="status">
+        <div class="sec__hd">
+          <span class="sec__no">20 · Status</span>
+          <h2>Gdzie jest projekt</h2>
+          <p class="sec__lede">Dokument projektowy jest kompletny. Kod jest na starcie: szkielet Flutter z ekranem intro. Poniżej kolejność prac.</p>
+        </div>
+        <div class="prose">
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Etapy wdrożenia</caption>
+              <thead><tr><th scope="col" class="n">Etap</th><th scope="col">Zakres</th><th scope="col">Kryterium wyjścia</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">0</th><td>Fundament: baza Drift z migracjami, tick w izolacie, podpisany release</td><td>przeżywa kill procesu i wraca z catch-upem</td></tr>
+                <tr><th scope="row" class="n">1</th><td>Tryb deweloperski i symulator GPS</td><td>doba gry w 24 sekundy, zero kodu debug w release</td></tr>
+                <tr><th scope="row" class="n">2</th><td>Postać i fizjologia</td><td>liczby zgodne z tabelami modelu</td></tr>
+                <tr><th scope="row" class="n">3</th><td>Mapa, GPS, bezpieczeństwo gracza</td><td>godzinny spacer bez fałszywego ruchu na postoju</td></tr>
+                <tr><th scope="row" class="n">4</th><td>Przedmioty, loot, przeszukanie</td><td>grywalna gęstość punktów także bez POI</td></tr>
+                <tr><th scope="row" class="n">5</th><td>Walka, przeciwnicy, hałas</td><td>odtworzona tabela kalibracyjna celności</td></tr>
+                <tr><th scope="row" class="n">6</th><td>Ognisko z pełnym cyklem</td><td>ścieżka 1 → 10 → zbicie → likwidacja bez rozjazdu stanu</td></tr>
+                <tr><th scope="row" class="n">7</th><td>Audio pozycyjne i haptyka</td><td>kierunek rozpoznawalny przy telefonie w kieszeni</td></tr>
+                <tr><th scope="row" class="n">8</th><td>Schron, obóz, pętla dobowa</td><td>pełna doba bez utraty stanu</td></tr>
+                <tr><th scope="row" class="n">9</th><td>Onboarding, dostępność, zgodność</td><td>gra działa po odmowie zgody na lokalizację w tle</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Zakres pierwszej grywalnej wersji to jeden typ przeciwnika, trzy bronie, około dwudziestu przedmiotów w rotacji, jedno ognisko z pełną mechaniką wzrostu i neutralizacji, schron bez modułów, dwa języki. Test akceptacyjny: trzydziestodniowa passa rozegrana w terenie przez osobę spoza zespołu, bez utraty zapisu i bez sytuacji, w której gra popycha gracza w niebezpieczne miejsce.</p>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <div class="foot__grid">
+          <div>
+            <h4>Projekt</h4>
+            <dl>
+              <dt>Pakiet</dt><dd>com.raidodevelopment.arlsza</dd>
+              <dt>Nazwa</dt><dd>ARLS-ZA Game</dd>
+              <dt>Platforma</dt><dd>Android · Flutter</dd>
+              <dt>Wydawca</dt><dd>Raido Development</dd>
+            </dl>
+          </div>
+          <div>
+            <h4>Repozytorium</h4>
+            <dl>
+              <dt>Kod i dokumentacja</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA">Frosttod/ARLS-ZA</a></dd>
+              <dt>Dokument projektowy</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ARLS-ZA_design_doc_v2.md">ARLS-ZA_design_doc_v2.md</a></dd>
+              <dt>Plan wdrożenia</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ROADMAP.md">ROADMAP.md</a></dd>
+              <dt>Ta strona</dt><dd><a href="https://github.com/Frosttod/ARLS-ZA-Game">Frosttod/ARLS-ZA-Game</a></dd>
+            </dl>
+          </div>
+          <div>
+            <h4>Zasady, których nie otwieramy</h4>
+            <dl>
+              <dt>Zakupy wewnętrzne</dt><dd>brak</dd>
+              <dt>Dane zdrowotne</dt><dd>niezbierane</dd>
+              <dt>Serwery gry</dt><dd>brak</dd>
+              <dt>Muzyka bojowa</dt><dd>brak</dd>
+            </dl>
+          </div>
+        </div>
+        <nav class="foot__langs" aria-label="Język">
+          <a href="../" data-lang-link hreflang="en">English</a>
+          <a href="./" aria-current="true" data-lang-link hreflang="pl">Polski</a>
+        </nav>
+        <p class="foot__note">
+          Pełne wzory, tabele balansu i rejestr otwartych decyzji znajdują się w
+          <a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ARLS-ZA_design_doc_v2.md">dokumencie projektowym</a>.
+          Ta strona jest jego skrótem — wartości liczbowe są z niego wprost przepisane.
+        </p>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
