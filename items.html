@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Item catalogue — ARLS-ZA</title>
+<meta name="description" content="Every item in ARLS-ZA with its mass, volume and figures — straight from the game data files.">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero__inner">
+    <div class="hero__meta eyebrow">
+      <span><a href="index.html">← ARLS-ZA</a></span>
+      <span>114 items</span>
+      <nav class="langs" aria-label="Language">
+        <a href="items.html" aria-current="true" hreflang="en">EN</a>
+        <a href="pl/items.html" hreflang="pl">PL</a>
+      </nav>
+    </div>
+    <h1><span class="hero__title">
+Item catalogue
+    </span></h1>
+    <p class="thesis">
+<strong>Every figure here is the one the game loads.</strong> This page is generated from <code>assets/data/*.json</code>, the files that ship inside the app, so it cannot quietly drift out of step with play.
+    </p>
+  </div>
+</header>
+<div class="shell"><div class="layout"><main id="content">
+<section class="sec">
+  <div class="stats">
+    <div class="stat"><b>8</b><span>Firearms</span></div>
+    <div class="stat"><b>8</b><span>Ammunition</span></div>
+    <div class="stat"><b>8</b><span>Melee</span></div>
+    <div class="stat"><b>14</b><span>Clothing and armour</span></div>
+    <div class="stat"><b>6</b><span>Backpacks</span></div>
+    <div class="stat"><b>13</b><span>Food and drink</span></div>
+    <div class="stat"><b>10</b><span>Medical</span></div>
+    <div class="stat"><b>18</b><span>Literature</span></div>
+    <div class="stat"><b>15</b><span>Tools</span></div>
+    <div class="stat"><b>14</b><span>Materials</span></div>
+  </div>
+</section>
+<section class="sec" id="firearm">
+  <div class="sec__hd">
+    <span class="sec__no">Firearms</span>
+    <h2>What a shot costs</h2>
+    <p class="sec__lede">Muzzle energy drives the wound through a six-tenths power law, so a small calibre is never written off. What is heard is the other half of the price.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Calibre</th><th scope="col" class="n">Energy</th><th scope="col" class="n">MOA</th><th scope="col" class="n">Magazine</th><th scope="col" class="n">Range</th><th scope="col" class="n">Heard</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">weapon_pistol_9mm</th><td class="n">9x19</td><td class="n">500 J</td><td class="n">5.0</td><td class="n">15</td><td class="n">40 m</td><td class="n">600 m</td><td class="n">700 g</td><td class="n">0.80 l</td><td>police, military, residential</td></tr>
+        <tr><th scope="row">weapon_revolver_38</th><td class="n">38special</td><td class="n">420 J</td><td class="n">6.0</td><td class="n">6</td><td class="n">35 m</td><td class="n">600 m</td><td class="n">900 g</td><td class="n">0.90 l</td><td>police, residential</td></tr>
+        <tr><th scope="row">weapon_rifle_22lr</th><td class="n">22lr</td><td class="n">160 J</td><td class="n">3.0</td><td class="n">10</td><td class="n">90 m</td><td class="n">250 m</td><td class="n">2.5 kg</td><td class="n">3.4 l</td><td>hunting, rural, residential</td></tr>
+        <tr><th scope="row">weapon_rifle_545</th><td class="n">5.45x39</td><td class="n">1350 J</td><td class="n">2.5</td><td class="n">30</td><td class="n">300 m</td><td class="n">700 m</td><td class="n">3.3 kg</td><td class="n">4.2 l</td><td>military</td></tr>
+        <tr><th scope="row">weapon_rifle_762x39</th><td class="n">7.62x39</td><td class="n">2000 J</td><td class="n">3.0</td><td class="n">30</td><td class="n">300 m</td><td class="n">720 m</td><td class="n">3.6 kg</td><td class="n">4.4 l</td><td>military, hunting</td></tr>
+        <tr><th scope="row">weapon_rifle_mosin</th><td class="n">7.62x54r</td><td class="n">3600 J</td><td class="n">2.0</td><td class="n">5</td><td class="n">500 m</td><td class="n">900 m</td><td class="n">4.0 kg</td><td class="n">4.8 l</td><td>hunting, rural, military</td></tr>
+        <tr><th scope="row">weapon_shotgun_pump</th><td class="n">12ga</td><td class="n">2400 J</td><td class="n">12.0</td><td class="n">5</td><td class="n">40 m</td><td class="n">800 m</td><td class="n">3.2 kg</td><td class="n">4.0 l</td><td>hunting, police, rural</td></tr>
+        <tr><th scope="row">weapon_smg_9mm</th><td class="n">9x19</td><td class="n">560 J</td><td class="n">6.0</td><td class="n">30</td><td class="n">100 m</td><td class="n">650 m</td><td class="n">2.9 kg</td><td class="n">3.0 l</td><td>police, military</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="ammo">
+  <div class="sec__hd">
+    <span class="sec__no">Ammunition</span>
+    <h2>The bottleneck</h2>
+    <p class="sec__lede">A group of four Walkers costs a novice about thirty rounds — a whole magazine — which is what makes a knife a real alternative.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Calibre</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">ammo_12ga_buck</th><td class="n">12ga</td><td class="n">45 g</td><td class="n">0.020 l</td><td>hunting, police, rural</td></tr>
+        <tr><th scope="row">ammo_12ga_slug</th><td class="n">12ga</td><td class="n">48 g</td><td class="n">0.020 l</td><td>hunting, rural</td></tr>
+        <tr><th scope="row">ammo_22lr</th><td class="n">22lr</td><td class="n">3 g</td><td class="n">0.002 l</td><td>hunting, rural, residential</td></tr>
+        <tr><th scope="row">ammo_38special</th><td class="n">38special</td><td class="n">12 g</td><td class="n">0.005 l</td><td>police, residential</td></tr>
+        <tr><th scope="row">ammo_545x39</th><td class="n">5.45x39</td><td class="n">11 g</td><td class="n">0.006 l</td><td>military</td></tr>
+        <tr><th scope="row">ammo_762x39</th><td class="n">7.62x39</td><td class="n">16 g</td><td class="n">0.008 l</td><td>military, hunting</td></tr>
+        <tr><th scope="row">ammo_762x54r</th><td class="n">7.62x54r</td><td class="n">22 g</td><td class="n">0.010 l</td><td>hunting, military, rural</td></tr>
+        <tr><th scope="row">ammo_9x19</th><td class="n">9x19</td><td class="n">12 g</td><td class="n">0.005 l</td><td>police, military</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="melee">
+  <div class="sec__hd">
+    <span class="sec__no">Melee</span>
+    <h2>Quiet, and very close</h2>
+    <p class="sec__lede">Twenty-five metres of noise against a rifle’s seven hundred — paid for by having to be within arm’s reach of the thing.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Blood/hit</th><th scope="col" class="n">Swing</th><th scope="col" class="n">Reach</th><th scope="col" class="n">Heard</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">melee_axe</th><td class="n">430 ml</td><td class="n">1.9 s</td><td class="n">0.8 m</td><td class="n">30 m</td><td class="n">1.4 kg</td><td class="n">2.2 l</td><td>rural, garden, industrial</td></tr>
+        <tr><th scope="row">melee_bat</th><td class="n">260 ml</td><td class="n">1.5 s</td><td class="n">0.9 m</td><td class="n">28 m</td><td class="n">900 g</td><td class="n">2.6 l</td><td>residential, shop, school</td></tr>
+        <tr><th scope="row">melee_crowbar</th><td class="n">330 ml</td><td class="n">1.7 s</td><td class="n">0.7 m</td><td class="n">30 m</td><td class="n">1.6 kg</td><td class="n">1.8 l</td><td>industrial, garage, shop</td></tr>
+        <tr><th scope="row">melee_hammer</th><td class="n">240 ml</td><td class="n">1.2 s</td><td class="n">0.4 m</td><td class="n">26 m</td><td class="n">700 g</td><td class="n">0.90 l</td><td>residential, garage, industrial</td></tr>
+        <tr><th scope="row">melee_knife</th><td class="n">180 ml</td><td class="n">0.9 s</td><td class="n">0.4 m</td><td class="n">25 m</td><td class="n">150 g</td><td class="n">0.30 l</td><td>residential, shop, military, rural</td></tr>
+        <tr><th scope="row">melee_machete</th><td class="n">310 ml</td><td class="n">1.3 s</td><td class="n">0.7 m</td><td class="n">28 m</td><td class="n">600 g</td><td class="n">1.2 l</td><td>rural, shop, garden</td></tr>
+        <tr><th scope="row">melee_screwdriver</th><td class="n">120 ml</td><td class="n">0.9 s</td><td class="n">0.3 m</td><td class="n">22 m</td><td class="n">120 g</td><td class="n">0.20 l</td><td>residential, garage, industrial</td></tr>
+        <tr><th scope="row">melee_shovel</th><td class="n">300 ml</td><td class="n">2.1 s</td><td class="n">1.1 m</td><td class="n">30 m</td><td class="n">1.9 kg</td><td class="n">3.5 l</td><td>rural, garden, industrial</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="armor">
+  <div class="sec__hd">
+    <span class="sec__no">Clothing and armour</span>
+    <h2>Two independent axes</h2>
+    <p class="sec__lede">Insulation feeds the sweat model; protection and coverage reduce damage only for the location that was actually hit.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Slot</th><th scope="col" class="n">Insulation</th><th scope="col" class="n">Protection</th><th scope="col" class="n">Coverage</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">armor_bite_sleeves</th><td class="n">arms</td><td class="n">0.25 clo</td><td class="n">1</td><td class="n">18 %</td><td class="n">600 g</td><td class="n">2.0 l</td><td>industrial, garden, veterinary</td></tr>
+        <tr><th scope="row">armor_helmet_ballistic</th><td class="n">head</td><td class="n">0.15 clo</td><td class="n">2</td><td class="n">12 %</td><td class="n">1.4 kg</td><td class="n">4.5 l</td><td>military, police</td></tr>
+        <tr><th scope="row">armor_vest_plate</th><td class="n">torso_armor</td><td class="n">0.30 clo</td><td class="n">4</td><td class="n">40 %</td><td class="n">8.5 kg</td><td class="n">9.0 l</td><td>military</td></tr>
+        <tr><th scope="row">armor_vest_soft</th><td class="n">torso_armor</td><td class="n">0.30 clo</td><td class="n">2</td><td class="n">55 %</td><td class="n">2.6 kg</td><td class="n">6.0 l</td><td>police, military</td></tr>
+        <tr><th scope="row">cloth_boots</th><td class="n">feet</td><td class="n">0.35 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">1.1 kg</td><td class="n">3.5 l</td><td>residential, shop, military</td></tr>
+        <tr><th scope="row">cloth_fleece</th><td class="n">torso_mid</td><td class="n">1.00 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">450 g</td><td class="n">2.5 l</td><td>residential, shop, sport</td></tr>
+        <tr><th scope="row">cloth_gloves</th><td class="n">hands</td><td class="n">0.20 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">100 g</td><td class="n">0.50 l</td><td>residential, shop, industrial</td></tr>
+        <tr><th scope="row">cloth_hat</th><td class="n">head</td><td class="n">0.30 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">80 g</td><td class="n">0.60 l</td><td>residential, shop</td></tr>
+        <tr><th scope="row">cloth_rain_shell</th><td class="n">torso_outer</td><td class="n">0.40 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">400 g</td><td class="n">1.6 l</td><td>residential, shop, sport</td></tr>
+        <tr><th scope="row">cloth_thermal_underwear</th><td class="n">torso_base</td><td class="n">0.80 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">350 g</td><td class="n">1.4 l</td><td>residential, shop, sport</td></tr>
+        <tr><th scope="row">cloth_trousers</th><td class="n">legs</td><td class="n">0.50 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">500 g</td><td class="n">2.0 l</td><td>residential, shop</td></tr>
+        <tr><th scope="row">cloth_tshirt</th><td class="n">torso_base</td><td class="n">0.10 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">150 g</td><td class="n">0.80 l</td><td>residential, shop</td></tr>
+        <tr><th scope="row">cloth_winter_jacket</th><td class="n">torso_outer</td><td class="n">2.20 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">1.2 kg</td><td class="n">6.0 l</td><td>residential, shop</td></tr>
+        <tr><th scope="row">cloth_winter_trousers</th><td class="n">legs</td><td class="n">1.30 clo</td><td class="n">0</td><td class="n">0 %</td><td class="n">800 g</td><td class="n">3.2 l</td><td>residential, shop, sport</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="backpack">
+  <div class="sec__hd">
+    <span class="sec__no">Backpacks</span>
+    <h2>Both limits at once</h2>
+    <p class="sec__lede">A pack raises the carry load and the volume together, and weighs something itself. Swapping down leaves you over the limit rather than losing what did not fit.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Capacity</th><th scope="col" class="n">Carry</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">pack_daypack</th><td class="n">45 l</td><td class="n">+8 kg</td><td class="n">900 g</td><td class="n">2.5 l</td><td>residential, shop, sport</td></tr>
+        <tr><th scope="row">pack_military</th><td class="n">90 l</td><td class="n">+16 kg</td><td class="n">2.6 kg</td><td class="n">4.5 l</td><td>military</td></tr>
+        <tr><th scope="row">pack_school</th><td class="n">22 l</td><td class="n">+3 kg</td><td class="n">600 g</td><td class="n">2.0 l</td><td>residential, school, shop</td></tr>
+        <tr><th scope="row">pack_shopping_bag</th><td class="n">30 l</td><td class="n">+4 kg</td><td class="n">300 g</td><td class="n">0.50 l</td><td>residential, shop</td></tr>
+        <tr><th scope="row">pack_tactical</th><td class="n">55 l</td><td class="n">+10 kg</td><td class="n">1.4 kg</td><td class="n">3.0 l</td><td>military, police, sport</td></tr>
+        <tr><th scope="row">pack_trekking</th><td class="n">65 l</td><td class="n">+12 kg</td><td class="n">1.8 kg</td><td class="n">3.5 l</td><td>sport, shop, residential</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="food">
+  <div class="sec__hd">
+    <span class="sec__no">Food and drink</span>
+    <h2>Swallowed, then absorbed</h2>
+    <p class="sec__lede">Eating fills a stomach rather than a bar: about 8 kcal and 25 ml a minute reach the body, so food is carried and taken before it is needed.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Calories</th><th scope="col" class="n">Water</th><th scope="col" class="n">Time</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">drink_energy</th><td class="n">110 kcal</td><td class="n">250 ml</td><td class="n">25 s</td><td class="n">280 g</td><td class="n">0.30 l</td><td>shop, vending, residential</td></tr>
+        <tr><th scope="row">drink_water_bottle_1500</th><td class="n">0 kcal</td><td class="n">1500 ml</td><td class="n">70 s</td><td class="n">1.6 kg</td><td class="n">1.6 l</td><td>shop, residential, warehouse</td></tr>
+        <tr><th scope="row">drink_water_bottle_500</th><td class="n">0 kcal</td><td class="n">500 ml</td><td class="n">25 s</td><td class="n">520 g</td><td class="n">0.55 l</td><td>shop, residential, vending, warehouse</td></tr>
+        <tr><th scope="row">drink_water_dirty</th><td class="n">0 kcal</td><td class="n">1000 ml</td><td class="n">50 s</td><td class="n">1.1 kg</td><td class="n">1.1 l</td><td>any</td></tr>
+        <tr><th scope="row">food_apple</th><td class="n">95 kcal</td><td class="n">150 ml</td><td class="n">60 s</td><td class="n">180 g</td><td class="n">0.25 l</td><td>rural, garden, residential</td></tr>
+        <tr><th scope="row">food_canned_meat</th><td class="n">520 kcal</td><td class="n">120 ml</td><td class="n">90 s</td><td class="n">400 g</td><td class="n">0.40 l</td><td>residential, shop, warehouse</td></tr>
+        <tr><th scope="row">food_canned_vegetables</th><td class="n">210 kcal</td><td class="n">220 ml</td><td class="n">90 s</td><td class="n">400 g</td><td class="n">0.40 l</td><td>residential, shop, warehouse</td></tr>
+        <tr><th scope="row">food_chocolate</th><td class="n">540 kcal</td><td class="n">0 ml</td><td class="n">60 s</td><td class="n">100 g</td><td class="n">0.12 l</td><td>shop, residential, vending</td></tr>
+        <tr><th scope="row">food_crackers</th><td class="n">780 kcal</td><td class="n">0 ml</td><td class="n">120 s</td><td class="n">200 g</td><td class="n">0.90 l</td><td>shop, residential, warehouse</td></tr>
+        <tr><th scope="row">food_dried_meat</th><td class="n">410 kcal</td><td class="n">0 ml</td><td class="n">90 s</td><td class="n">100 g</td><td class="n">0.20 l</td><td>shop, rural, hunting</td></tr>
+        <tr><th scope="row">food_energy_bar</th><td class="n">250 kcal</td><td class="n">0 ml</td><td class="n">40 s</td><td class="n">60 g</td><td class="n">0.080 l</td><td>shop, residential, sport, vending</td></tr>
+        <tr><th scope="row">food_instant_soup</th><td class="n">300 kcal</td><td class="n">0 ml</td><td class="n">120 s</td><td class="n">70 g</td><td class="n">0.35 l</td><td>shop, residential, warehouse</td></tr>
+        <tr><th scope="row">food_sandwich</th><td class="n">350 kcal</td><td class="n">40 ml</td><td class="n">75 s</td><td class="n">150 g</td><td class="n">0.40 l</td><td>shop, residential</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="medical">
+  <div class="sec__hd">
+    <span class="sec__no">Medical</span>
+    <h2>What stops the bleeding</h2>
+    <p class="sec__lede">A dressing answers what it is rated for and nothing worse: only a tourniquet answers an arterial bleed, which is what keeps it from being dead weight.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Stops</th><th scope="col" class="n">Uses</th><th scope="col" class="n">Time</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">med_antibiotics</th><td class="n">—</td><td class="n">—</td><td class="n">20 s</td><td class="n">30 g</td><td class="n">0.060 l</td><td>pharmacy, hospital, veterinary</td></tr>
+        <tr><th scope="row">med_antiseptic</th><td class="n">—</td><td class="n">—</td><td class="n">30 s</td><td class="n">100 g</td><td class="n">0.20 l</td><td>pharmacy, residential, hospital</td></tr>
+        <tr><th scope="row">med_bandage</th><td class="n">superficial</td><td class="n">—</td><td class="n">45 s</td><td class="n">30 g</td><td class="n">0.10 l</td><td>pharmacy, residential, hospital, vehicle</td></tr>
+        <tr><th scope="row">med_first_aid_kit</th><td class="n">moderate</td><td class="n">4</td><td class="n">120 s</td><td class="n">600 g</td><td class="n">1.6 l</td><td>pharmacy, hospital, vehicle, residential</td></tr>
+        <tr><th scope="row">med_painkillers</th><td class="n">—</td><td class="n">—</td><td class="n">20 s</td><td class="n">20 g</td><td class="n">0.050 l</td><td>pharmacy, residential, shop</td></tr>
+        <tr><th scope="row">med_pressure_dressing</th><td class="n">moderate</td><td class="n">—</td><td class="n">90 s</td><td class="n">80 g</td><td class="n">0.25 l</td><td>pharmacy, hospital, military, police</td></tr>
+        <tr><th scope="row">med_saline</th><td class="n">—</td><td class="n">—</td><td class="n">600 s</td><td class="n">550 g</td><td class="n">0.60 l</td><td>hospital, ambulance</td></tr>
+        <tr><th scope="row">med_splint</th><td class="n">—</td><td class="n">—</td><td class="n">180 s</td><td class="n">350 g</td><td class="n">1.2 l</td><td>hospital, ambulance, sport</td></tr>
+        <tr><th scope="row">med_suture_kit</th><td class="n">strong</td><td class="n">—</td><td class="n">960 s</td><td class="n">150 g</td><td class="n">0.30 l</td><td>hospital, pharmacy, veterinary</td></tr>
+        <tr><th scope="row">med_tourniquet</th><td class="n">arterial</td><td class="n">—</td><td class="n">45 s</td><td class="n">120 g</td><td class="n">0.20 l</td><td>military, police, hospital, ambulance</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="literature">
+  <div class="sec__hd">
+    <span class="sec__no">Literature</span>
+    <h2>Mass rolled per copy</h2>
+    <p class="sec__lede">Every copy rolls its own page count, and mass, reading time and experience all follow from it. Two copies of one manual can differ by a kilogram.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Form</th><th scope="col" class="n">Pages</th><th scope="col" class="n">XP/page</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">lit_encyclopedia_engineering</th><td class="n">encyclopedia</td><td class="n">400–900</td><td class="n">31</td><td class="n">1.6 kg</td><td class="n">1.8 l</td><td>school, library, industrial</td></tr>
+        <tr><th scope="row">lit_encyclopedia_medicine</th><td class="n">encyclopedia</td><td class="n">400–900</td><td class="n">31</td><td class="n">1.6 kg</td><td class="n">1.8 l</td><td>hospital, school, library</td></tr>
+        <tr><th scope="row">lit_encyclopedia_nature</th><td class="n">encyclopedia</td><td class="n">400–900</td><td class="n">31</td><td class="n">1.6 kg</td><td class="n">1.8 l</td><td>school, library, rural</td></tr>
+        <tr><th scope="row">lit_encyclopedia_weapons</th><td class="n">encyclopedia</td><td class="n">400–900</td><td class="n">31</td><td class="n">1.6 kg</td><td class="n">1.8 l</td><td>military, library, hunting</td></tr>
+        <tr><th scope="row">lit_guide_first_aid</th><td class="n">guide</td><td class="n">80–200</td><td class="n">32</td><td class="n">210 g</td><td class="n">0.25 l</td><td>pharmacy, hospital, residential, school</td></tr>
+        <tr><th scope="row">lit_guide_gunsmithing</th><td class="n">guide</td><td class="n">80–200</td><td class="n">32</td><td class="n">210 g</td><td class="n">0.25 l</td><td>hunting, police, military</td></tr>
+        <tr><th scope="row">lit_guide_repairs</th><td class="n">guide</td><td class="n">80–200</td><td class="n">32</td><td class="n">210 g</td><td class="n">0.25 l</td><td>garage, industrial, residential</td></tr>
+        <tr><th scope="row">lit_guide_survival</th><td class="n">guide</td><td class="n">80–200</td><td class="n">32</td><td class="n">210 g</td><td class="n">0.25 l</td><td>sport, residential, rural, shop</td></tr>
+        <tr><th scope="row">lit_leaflet_first_aid</th><td class="n">leaflet</td><td class="n">1–4</td><td class="n">80</td><td class="n">3 g</td><td class="n">0.004 l</td><td>pharmacy, hospital, residential</td></tr>
+        <tr><th scope="row">lit_leaflet_range_safety</th><td class="n">leaflet</td><td class="n">1–4</td><td class="n">80</td><td class="n">3 g</td><td class="n">0.004 l</td><td>police, military, hunting</td></tr>
+        <tr><th scope="row">lit_magazine_diy</th><td class="n">magazine</td><td class="n">20–60</td><td class="n">30</td><td class="n">120 g</td><td class="n">0.13 l</td><td>residential, garage, shop</td></tr>
+        <tr><th scope="row">lit_magazine_guns</th><td class="n">magazine</td><td class="n">20–60</td><td class="n">30</td><td class="n">120 g</td><td class="n">0.13 l</td><td>hunting, police, shop</td></tr>
+        <tr><th scope="row">lit_magazine_hunting</th><td class="n">magazine</td><td class="n">20–60</td><td class="n">30</td><td class="n">120 g</td><td class="n">0.13 l</td><td>hunting, residential, rural</td></tr>
+        <tr><th scope="row">lit_note</th><td class="n">note</td><td class="n">1–3</td><td class="n">0</td><td class="n">2 g</td><td class="n">0.003 l</td><td>residential, shop, any</td></tr>
+        <tr><th scope="row">lit_textbook_ballistics</th><td class="n">textbook</td><td class="n">150–400</td><td class="n">33</td><td class="n">490 g</td><td class="n">0.52 l</td><td>military, hunting, school</td></tr>
+        <tr><th scope="row">lit_textbook_engineering</th><td class="n">textbook</td><td class="n">150–400</td><td class="n">33</td><td class="n">490 g</td><td class="n">0.52 l</td><td>school, industrial, garage</td></tr>
+        <tr><th scope="row">lit_textbook_fieldcraft</th><td class="n">textbook</td><td class="n">150–400</td><td class="n">33</td><td class="n">490 g</td><td class="n">0.52 l</td><td>military, school, sport</td></tr>
+        <tr><th scope="row">lit_textbook_medicine</th><td class="n">textbook</td><td class="n">150–400</td><td class="n">33</td><td class="n">490 g</td><td class="n">0.52 l</td><td>hospital, school, pharmacy</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="tool">
+  <div class="sec__hd">
+    <span class="sec__no">Tools</span>
+    <h2>What a tool is for</h2>
+    <p class="sec__lede">A crowbar is not a recipe ingredient — it is the difference between a shop you can enter and one you cannot.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Light</th><th scope="col" class="n">Battery</th><th scope="col" class="n">Crafting</th><th scope="col" class="n">Search</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">tool_binoculars</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">60 m</td><td class="n">700 g</td><td class="n">1.2 l</td><td>hunting, military, sport</td></tr>
+        <tr><th scope="row">tool_can_opener</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">80 g</td><td class="n">0.10 l</td><td>residential, shop</td></tr>
+        <tr><th scope="row">tool_crank_radio</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">500 g</td><td class="n">1.0 l</td><td>residential, shop, military</td></tr>
+        <tr><th scope="row">tool_flashlight</th><td class="n">25 m</td><td class="n">6 h</td><td class="n">—</td><td class="n">—</td><td class="n">200 g</td><td class="n">0.35 l</td><td>residential, garage, shop, vehicle</td></tr>
+        <tr><th scope="row">tool_gun_cleaning_kit</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">350 g</td><td class="n">0.60 l</td><td>hunting, police, military</td></tr>
+        <tr><th scope="row">tool_headlamp</th><td class="n">18 m</td><td class="n">8 h</td><td class="n">—</td><td class="n">—</td><td class="n">120 g</td><td class="n">0.25 l</td><td>sport, garage, industrial</td></tr>
+        <tr><th scope="row">tool_lighter</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">20 g</td><td class="n">0.030 l</td><td>residential, shop, vehicle</td></tr>
+        <tr><th scope="row">tool_lockpicks</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">100 g</td><td class="n">0.15 l</td><td>garage, police, residential</td></tr>
+        <tr><th scope="row">tool_matches</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">20 g</td><td class="n">0.040 l</td><td>residential, shop, rural</td></tr>
+        <tr><th scope="row">tool_multitool</th><td class="n">—</td><td class="n">—</td><td class="n">-15 %</td><td class="n">—</td><td class="n">250 g</td><td class="n">0.30 l</td><td>garage, industrial, residential, sport</td></tr>
+        <tr><th scope="row">tool_saw</th><td class="n">—</td><td class="n">—</td><td class="n">-20 %</td><td class="n">—</td><td class="n">1.0 kg</td><td class="n">2.0 l</td><td>garage, industrial, garden</td></tr>
+        <tr><th scope="row">tool_sewing_kit</th><td class="n">—</td><td class="n">—</td><td class="n">-10 %</td><td class="n">—</td><td class="n">100 g</td><td class="n">0.20 l</td><td>residential, shop</td></tr>
+        <tr><th scope="row">tool_suppressor</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">400 g</td><td class="n">0.50 l</td><td>police, military</td></tr>
+        <tr><th scope="row">tool_water_filter</th><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">300 g</td><td class="n">0.60 l</td><td>sport, shop, military</td></tr>
+        <tr><th scope="row">tool_wrench_set</th><td class="n">—</td><td class="n">—</td><td class="n">-25 %</td><td class="n">—</td><td class="n">1.8 kg</td><td class="n">2.4 l</td><td>garage, industrial, vehicle</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="sec" id="crafting">
+  <div class="sec__hd">
+    <span class="sec__no">Materials</span>
+    <h2>Where the two limits bite</h2>
+    <p class="sec__lede">Metal is a mass problem, plastic and fabric fill the volume, and wood pinches on both axes at once.</p>
+  </div>
+  <div class="scroller">
+    <table class="tbl">
+      <thead><tr><th scope="col">Item</th><th scope="col" class="n">Build material</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Volume</th><th scope="col">Found in</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">mat_alcohol</th><td class="n">—</td><td class="n">550 g</td><td class="n">0.60 l</td><td>shop, residential, pharmacy</td></tr>
+        <tr><th scope="row">mat_battery</th><td class="n">—</td><td class="n">50 g</td><td class="n">0.030 l</td><td>shop, residential, garage, vending</td></tr>
+        <tr><th scope="row">mat_component</th><td class="n">yes</td><td class="n">800 g</td><td class="n">0.40 l</td><td>industrial, garage, shop, vehicle</td></tr>
+        <tr><th scope="row">mat_duct_tape</th><td class="n">—</td><td class="n">250 g</td><td class="n">0.50 l</td><td>garage, industrial, residential</td></tr>
+        <tr><th scope="row">mat_fabric</th><td class="n">yes</td><td class="n">300 g</td><td class="n">1.0 l</td><td>residential, shop, hotel</td></tr>
+        <tr><th scope="row">mat_fuel</th><td class="n">—</td><td class="n">3.8 kg</td><td class="n">5.0 l</td><td>vehicle, garage, industrial, rural</td></tr>
+        <tr><th scope="row">mat_glue</th><td class="n">—</td><td class="n">150 g</td><td class="n">0.20 l</td><td>garage, shop, school</td></tr>
+        <tr><th scope="row">mat_leather</th><td class="n">—</td><td class="n">600 g</td><td class="n">1.2 l</td><td>residential, shop, rural</td></tr>
+        <tr><th scope="row">mat_metal</th><td class="n">yes</td><td class="n">1.5 kg</td><td class="n">0.60 l</td><td>industrial, garage, vehicle, shop</td></tr>
+        <tr><th scope="row">mat_nails</th><td class="n">—</td><td class="n">500 g</td><td class="n">0.30 l</td><td>garage, industrial, shop</td></tr>
+        <tr><th scope="row">mat_plastic</th><td class="n">yes</td><td class="n">400 g</td><td class="n">2.0 l</td><td>residential, shop, industrial, warehouse</td></tr>
+        <tr><th scope="row">mat_rope</th><td class="n">—</td><td class="n">900 g</td><td class="n">2.0 l</td><td>garage, sport, industrial, rural</td></tr>
+        <tr><th scope="row">mat_wire</th><td class="n">—</td><td class="n">400 g</td><td class="n">0.40 l</td><td>industrial, garage, vehicle</td></tr>
+        <tr><th scope="row">mat_wood</th><td class="n">yes</td><td class="n">2.0 kg</td><td class="n">4.0 l</td><td>rural, forest, garden, industrial</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<footer class="foot">
+  <p class="foot__note">
+Generated from the game data by <code>tool/build_item_pages.dart</code>. Names come from <code>names.json</code>, everything else from the category files. The rules these figures feed are in the <a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ARLS-ZA_design_doc_v2.md">design document</a>.
+  </p>
+</footer>
+</main></div></div>
+</body>
+</html>
