@@ -133,6 +133,7 @@
           <p>Every modifier has to be expressed in a different currency — metabolic cost, heart rate, accuracy, injury risk or the time an action takes. The constraint is hard, there is no way around it, and every system on this page is derived from it.</p>
           <h3>What we deliberately do not model</h3>
           <p>Fractures, infections, illness, body temperature as a separate parameter, food poisoning and mental health. The scope is limited on purpose — the model is meant to be computable, not complete.</p>
+          <p>Body mass is the one exception, and it is not a new parameter beside the others: it is the same figure the character sheet already had, which stopped being a constant. Everything derived from it is still derived from it. Without that, hunger had nothing to measure itself against beyond a single day.</p>
           <div class="stats">
             <div class="stat"><b>1:1</b><span>time scale — the day is never sped up</span></div>
             <div class="stat"><b>0</b><span>game servers — the whole simulation runs locally</span></div>
@@ -182,7 +183,7 @@ Carry load = 0.30 × mass (comfort) · 0.45 × mass (hard limit)</div>
         <div class="sec__hd">
           <span class="sec__no">02 · Physiology</span>
           <h2>The body engine</h2>
-          <p class="sec__lede">A 1 Hz tick computes energy expenditure from GPS speed, water loss from effort and temperature, heart rate from intensity, and blood loss from hits. One model for all of it.</p>
+          <p class="sec__lede">A 1 Hz tick computes energy expenditure from GPS speed, water loss from effort and temperature, heart rate from intensity, and blood loss from hits. Hunger is measured against the body itself, so it runs in weeks while thirst runs in days. One model for all of it.</p>
         </div>
         <div class="prose">
           <h3>Energy expenditure</h3>
@@ -227,6 +228,64 @@ MET_effective = MET × (1 + 0.8 × (load / body mass))</div>
             <p>Offline consumption never drops any resource below 10% and never causes death. Coming back from a two-week holiday should hurt, not delete your character. Rolling the system clock back yields a zero-length tick, never a negative one.</p>
           </div>
 
+          <h3>Hunger and thirst run on different clocks</h3>
+          <p>Both start as one day's requirement. What separates them is not a designed curve — it falls out of the constants. The reserve is a day of each, but the severity thresholds for water are fractions of <em>body mass</em>, and a body carries months of fat and about three days of water.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>The same body, two very different deadlines</caption>
+              <thead><tr><th scope="col"></th><th scope="col">Critical state</th><th scope="col">Death</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Water</th><td>~2.9 days at rest</td><td>2–3 days while walking</td></tr>
+                <tr><th scope="row">Food</th><td>~6 weeks</td><td>~10 weeks</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>A ratio of roughly twenty-five to one. Nobody designed it; it was already in the numbers.</p>
+
+          <h4>Water is the harsh one</h4>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Deficit measured against body mass, not against the bar</caption>
+              <thead><tr><th scope="col" class="n">Deficit</th><th scope="col">Effect</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">≥ 2%</th><td>accuracy ×0.85</td></tr>
+                <tr><th scope="row" class="n">≥ 5%</th><td>severe weakness, every action ×1.30</td></tr>
+                <tr><th scope="row" class="n">≥ 10%</th><td>critical, every action ×1.60</td></tr>
+                <tr><th scope="row" class="n">48 h dry, under exertion</th><td>fatal</td></tr>
+                <tr><th scope="row" class="n">12 h held at 10%</th><td>fatal</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The reserve is allowed to go <em>below zero</em>, deliberately. For an 80 kg character the daily requirement is 2 800 ml while the critical threshold is a deficit of 8 000 ml — clamping at zero would put two of the three thresholds permanently out of reach.</p>
+          <p>Dehydration has no memory. Drink and you are well again, and that contrast with food is the entire point of the pair. A mouthful restarts the countdown to dying of thirst and does nothing whatever to the deficit, so the two rules never interfere.</p>
+
+          <h4>Hunger is measured in weeks, and against the body</h4>
+          <p>The calorie reserve is a day's food. Below half of it the hands shake; below a fifth every action takes longer; empty for a day and the character goes down. None of that is death — a person with nothing to eat sits at an empty reserve from the second morning of a famine until the end of it.</p>
+          <p>What actually runs out is the body. A deficit is paid from it and a surplus goes back into it, so the calorie balance never vanishes at either end.</p>
+          <div class="f">body mass [kg] += (surplus × 0.75 − shortfall) / 7000</div>
+          <p>Seven thousand kilocalories per kilogram rather than the 7 700 of the fat-only figure: a body under a deficit burns roughly three parts fat to one part lean tissue, and lean tissue is mostly water. Storing is lossy, which is why a week of overeating does not undo a week of starving.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>80 kg, complete fast, at rest</caption>
+              <thead><tr><th scope="col" class="n">Day</th><th scope="col" class="n">Mass</th><th scope="col" class="n">Lost</th><th scope="col">State</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">7</th><td class="n">77.6 kg</td><td class="n">3.0%</td><td>nothing yet</td></tr>
+                <tr><th scope="row" class="n">14</th><td class="n">75.2 kg</td><td class="n">6.0%</td><td>every action ×1.15</td></tr>
+                <tr><th scope="row" class="n">42</th><td class="n">66.1 kg</td><td class="n">17.4%</td><td>×1.40, +2 MOA</td></tr>
+                <tr><th scope="row" class="n">75</th><td class="n">55.9 kg</td><td class="n">30.1%</td><td>the end</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Faster while walking. The clinical literature gives six to ten weeks for a complete fast.</p>
+          <p>Because mass is a real quantity rather than a bar, everything derived from it moves too: the carry limits, the Mifflin–St Jeor requirement, the 35 ml/kg of daily water, Nadler's blood volume. A lighter body burns less, so adaptive thermogenesis appears without anybody writing a curve for it. Blood is rescaled in proportion with its own ceiling, so losing weight never by itself moves a character into a shock class — what changes is that every future wound is a larger share of a smaller body.</p>
+
+          <div class="warn">
+            <span class="warn__t">Nothing wastes away unwatched</span>
+            <p>With the app closed, mass is never taken off the body. The offline floor exists so that a phone left in a drawer cannot kill anybody, and a fortnight of unwatched wasting would walk straight through it. A surplus still counts — what was eaten was eaten.</p>
+          </div>
+
           <h3>Heart rate as hidden stamina</h3>
           <p>There is no stamina bar, but heart rate fills that role functionally — and it drives accuracy.</p>
           <div class="scroller">
@@ -257,6 +316,28 @@ MET_effective = MET × (1 + 0.8 × (load / body mass))</div>
             </table>
           </div>
           <p>In summer you must choose between sleep and progress. Sleep debt raises dispersion and lengthens every action, so “I'll read instead of sleeping” carries a price paid the next day.</p>
+
+          <h4>Two clocks, not one bigger one</h4>
+          <p>The debt above measures <em>last night</em>. It is capped at a day, clears in a day, and one short night reads the same whether it is the first in a month or the fourteenth in a row. That is the right answer to the question it asks — and useless for the question it does not.</p>
+          <p>A second figure counts against the wall clock: a day needs eight hours whatever you did with it.</p>
+          <div class="f">strain += 1 − S/8    (S = hours slept that day)</div>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>What weeks of short nights do</caption>
+              <thead><tr><th scope="col">Pattern</th><th scope="col" class="n">Strain</th><th scope="col">Effect</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">One night two hours short</th><td class="n">0.25</td><td>nothing</td></tr>
+                <tr><th scope="row">Four four-hour nights</th><td class="n">2.0</td><td>−20% learning, heart settles ×1.35 slower</td></tr>
+                <tr><th scope="row">A fortnight of six-hour nights</th><td class="n">3.5</td><td>−40% learning, +1 MOA, healing −30%</td></tr>
+                <tr><th scope="row">Two months of them</th><td class="n">10</td><td>+2 MOA, healing −50%, microsleeps</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>The penalties are deliberately ones the sleep bar does not show — healing, the heart settling, the hands. That is how chronic restriction actually works: subjective sleepiness plateaus while performance goes on falling. Sleep well for one night, watch the bar fill, and find that the numbers have not come back with it. The status screen says so in as many words, because a penalty nobody can see the reason for reads as a bug however real it is.</p>
+
+          <p>Only a night <em>longer</em> than the requirement pays any of it back. Recovery from chronic restriction needs extra sleep, not merely adequate sleep — which puts this axis squarely on the seasonality above, with no modifier of any kind. Poznań in June accrues strain however carefully you play. Four December nights clear a summer of it. The Lounge module becomes the one thing that can buy recovery out of season, which is what it was always meant to be.</p>
 
           <h3>One occupation at a time</h3>
           <p>The character cannot sleep, read and build simultaneously. This is the main mechanism of the game's time economy — without it every shelter system would run in parallel and none would have a cost.</p>
@@ -787,7 +868,20 @@ Time 25 min  ·  Quality: <b>+2 MOA</b> against factory ammunition</div>
             <p>A technical failure must never kill a character. Death cannot occur while the app is dormant or while the GPS signal is missing, and state rolls back to the last committed point. Permadeath caused by a crash is a guaranteed one-star review.</p>
           </div>
 
-          <p>In Softcore the character wakes exactly where the player physically is — never by teleporting to the shelter, because in a GPS game teleportation is conceptually broken. The fiction is delirium at 25% blood volume: medically sound and narratively free. The stashes of gear stay at the point of collapse, so the penalty scales with distance without any artificial rule.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>What actually ends a character</caption>
+              <thead><tr><th scope="col">Cause</th><th scope="col">Threshold</th><th scope="col" class="n">Time it takes</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Blood loss</th><td>class IV shock — 40% of volume</td><td class="n">minutes</td></tr>
+                <tr><th scope="row">Thirst</th><td>48 h dry under exertion, or 12 h at 10% of body mass</td><td class="n">2–3 days</td></tr>
+                <tr><th scope="row">Starvation</th><td>30% of the starting weight gone</td><td class="n">~10 weeks</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>An empty larder is not on that list. A day at zero calories puts the character on the ground, which is what the design document calls it — a progressive loss of consciousness. Dying of hunger is about a body that has run out of itself, and that takes six to ten weeks rather than forty-eight hours.</p>
+
+          <p>In Softcore the character wakes exactly where the player physically is — never by teleporting to the shelter, because in a GPS game teleportation is conceptually broken. They come round in class III shock: badly hurt, everything harder, and alive. The stashes of gear stay at the point of collapse, so the penalty scales with distance without any artificial rule.</p>
           <p>For the first ten minutes after waking, enemies ignore the player — the grace window only activates if someone is actually within 300 m. There is no point protecting a player who came round on a bus.</p>
         </div>
       </section>
@@ -952,24 +1046,24 @@ y = 0</div>
         <div class="sec__hd">
           <span class="sec__no">20 · Status</span>
           <h2>Where the project stands</h2>
-          <p class="sec__lede">The design document is complete. The code is at the starting line: a Flutter skeleton with an intro screen. The order of work is below.</p>
+          <p class="sec__lede">The design document is complete and most of it is built. 2 121 tests, database schema v29, stages 0–2 closed and 3–5 and 8 waiting on field walks rather than on code.</p>
         </div>
         <div class="prose">
           <div class="scroller">
             <table class="tbl">
               <caption>Implementation stages</caption>
-              <thead><tr><th scope="col" class="n">Stage</th><th scope="col">Scope</th><th scope="col">Exit criterion</th></tr></thead>
+              <thead><tr><th scope="col" class="n">Stage</th><th scope="col">Scope</th><th scope="col">Exit criterion</th><th scope="col">State</th></tr></thead>
               <tbody>
-                <tr><th scope="row" class="n">0</th><td>Foundation: Drift database with migrations, tick in an isolate, signed release</td><td>survives a process kill and returns with catch-up</td></tr>
-                <tr><th scope="row" class="n">1</th><td>Developer mode and GPS simulator</td><td>a game day in 24 seconds, zero debug code in release</td></tr>
-                <tr><th scope="row" class="n">2</th><td>Character and physiology</td><td>numbers match the model tables</td></tr>
-                <tr><th scope="row" class="n">3</th><td>Map, GPS, player safety</td><td>an hour's walk with no phantom movement at rest</td></tr>
-                <tr><th scope="row" class="n">4</th><td>Items, loot, searching</td><td>playable point density even without POI</td></tr>
-                <tr><th scope="row" class="n">5</th><td>Combat, enemies, noise</td><td>the accuracy calibration table reproduced</td></tr>
-                <tr><th scope="row" class="n">6</th><td>Hotspot with the full cycle</td><td>path 1 → 10 → knockdown → elimination with no state drift</td></tr>
-                <tr><th scope="row" class="n">7</th><td>Positional audio and haptics</td><td>direction recognisable with the phone in a pocket</td></tr>
-                <tr><th scope="row" class="n">8</th><td>Shelter, camp, daily loop</td><td>a full day with no loss of state</td></tr>
-                <tr><th scope="row" class="n">9</th><td>Onboarding, accessibility, compliance</td><td>the game works after background location is refused</td></tr>
+                <tr><th scope="row" class="n">0</th><td>Foundation: Drift database with migrations, tick in an isolate, signed release</td><td>survives a process kill and returns with catch-up</td><td>closed</td></tr>
+                <tr><th scope="row" class="n">1</th><td>Developer mode and GPS simulator</td><td>a game day in 24 seconds, zero debug code in release</td><td>closed</td></tr>
+                <tr><th scope="row" class="n">2</th><td>Character and physiology</td><td>numbers match the model tables</td><td>closed</td></tr>
+                <tr><th scope="row" class="n">3</th><td>Map, GPS, player safety</td><td>an hour's walk with no phantom movement at rest</td><td>built, walking</td></tr>
+                <tr><th scope="row" class="n">4</th><td>Items, loot, searching</td><td>playable point density even without POI</td><td>built, walking</td></tr>
+                <tr><th scope="row" class="n">5</th><td>Combat, enemies, noise</td><td>the accuracy calibration table reproduced</td><td>built, walking</td></tr>
+                <tr><th scope="row" class="n">6</th><td>Hotspot with the full cycle</td><td>path 1 → 10 → knockdown → elimination with no state drift</td><td>in progress</td></tr>
+                <tr><th scope="row" class="n">7</th><td>Positional audio and haptics</td><td>direction recognisable with the phone in a pocket</td><td>not started</td></tr>
+                <tr><th scope="row" class="n">8</th><td>Shelter, camp, daily loop</td><td>a full day with no loss of state</td><td>built, walking</td></tr>
+                <tr><th scope="row" class="n">9</th><td>Onboarding, accessibility, compliance</td><td>the game works after background location is refused</td><td>not started</td></tr>
               </tbody>
             </table>
           </div>

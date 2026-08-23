@@ -133,6 +133,7 @@
           <p>Wszystkie modyfikatory muszą być wyrażone w innej walucie: koszcie metabolicznym, tętnie, celności, ryzyku urazu albo czasie wykonania czynności. To ograniczenie jest twarde — nie da się go obejść, a każdy system na tej stronie jest z niego wyprowadzony.</p>
           <h3>Czego świadomie nie modelujemy</h3>
           <p>Złamań, infekcji, chorób, temperatury ciała jako osobnego parametru, zatruć pokarmowych i zdrowia psychicznego. Zakres jest ograniczony celowo — model ma być policzalny, nie kompletny.</p>
+          <p>Masa ciała jest jedynym wyjątkiem i nie jest nowym parametrem obok pozostałych: to ta sama liczba, którą karta postaci już miała, i która przestała być stała. Wszystko, co z niej wynikało, wynika z niej dalej. Bez tego głód nie miał czym się mierzyć poza jedną dobą.</p>
           <div class="stats">
             <div class="stat"><b>1:1</b><span>skala czasu — brak przyspieszenia doby</span></div>
             <div class="stat"><b>0</b><span>serwerów gry — cała symulacja lokalnie</span></div>
@@ -182,7 +183,7 @@ Udźwig    = 0,30 × masa (komfort) · 0,45 × masa (limit)</div>
         <div class="sec__hd">
           <span class="sec__no">02 · Fizjologia</span>
           <h2>Silnik ciała</h2>
-          <p class="sec__lede">Tick 1 Hz przelicza wydatek energetyczny z prędkości GPS, straty wody z wysiłku i temperatury, tętno z intensywności, a ubytek krwi z trafień. Wszystko jednym modelem.</p>
+          <p class="sec__lede">Tick 1 Hz przelicza wydatek energetyczny z prędkości GPS, straty wody z wysiłku i temperatury, tętno z intensywności, a ubytek krwi z trafień. Głód mierzy się względem samego ciała, więc idzie w tygodniach, podczas gdy pragnienie idzie w dobach. Wszystko jednym modelem.</p>
         </div>
         <div class="prose">
           <h3>Wydatek energetyczny</h3>
@@ -227,6 +228,64 @@ MET_efektywne = MET × (1 + 0,8 × (obciążenie / masa ciała))</div>
             <p>Zużycie w stanie offline nigdy nie sprowadza żadnego zasobu poniżej 10% i nigdy nie powoduje śmierci. Powrót po dwutygodniowym urlopie ma boleć, ale nie kasować postaci. Cofnięcie zegara systemowego daje tick zerowy, nigdy ujemny.</p>
           </div>
 
+          <h3>Głód i pragnienie idą na różnych zegarach</h3>
+          <p>Oba zaczynają jako dobowe zapotrzebowanie. Tym, co je rozdziela, nie jest zaprojektowana krzywa — to wypada ze stałych. Zapas to doba jednego i drugiego, ale progi ciężkości dla wody są ułamkami <em>masy ciała</em>, a ciało niesie miesiące tłuszczu i około trzech dób wody.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>To samo ciało, dwa bardzo różne terminy</caption>
+              <thead><tr><th scope="col"></th><th scope="col">Stan krytyczny</th><th scope="col">Śmierć</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Woda</th><td>~2,9 doby w bezruchu</td><td>2–3 doby w marszu</td></tr>
+                <tr><th scope="row">Jedzenie</th><td>~6 tygodni</td><td>~10 tygodni</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Stosunek mniej więcej dwadzieścia pięć do jednego. Nikt tego nie projektował — było już w liczbach.</p>
+
+          <h4>Woda jest tą ostrą</h4>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Deficyt liczony względem masy ciała, nie względem paska</caption>
+              <thead><tr><th scope="col" class="n">Deficyt</th><th scope="col">Skutek</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">≥ 2%</th><td>celność ×0,85</td></tr>
+                <tr><th scope="row" class="n">≥ 5%</th><td>silne osłabienie, każda czynność ×1,30</td></tr>
+                <tr><th scope="row" class="n">≥ 10%</th><td>stan krytyczny, każda czynność ×1,60</td></tr>
+                <tr><th scope="row" class="n">48 h bez wody przy wysiłku</th><td>śmiertelne</td></tr>
+                <tr><th scope="row" class="n">12 h utrzymane na 10%</th><td>śmiertelne</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Zapas może zejść <em>poniżej zera</em> i jest to celowe. Dla postaci 80 kg zapotrzebowanie dobowe to 2 800 ml, a próg krytyczny to deficyt 8 000 ml — obcięcie na zerze uczyniłoby dwa z trzech progów trwale nieosiągalnymi.</p>
+          <p>Odwodnienie nie ma pamięci. Napijesz się i jesteś zdrów — i ten kontrast z jedzeniem jest całym sensem tej pary. Łyk restartuje odliczanie do zgonu z pragnienia i nie robi absolutnie nic deficytowi, więc obie reguły nigdy się nie zazębiają.</p>
+
+          <h4>Głód mierzy się w tygodniach, i względem ciała</h4>
+          <p>Zapas kaloryczny to dobowa porcja jedzenia. Poniżej połowy ręce zaczynają drżeć, poniżej piątej części każda czynność trwa dłużej, a doba na zerze kładzie postać. Żadne z tego nie jest śmiercią — ktoś, kto nie ma co jeść, stoi na pustym zapasie od drugiego poranka klęski głodu aż do jej końca.</p>
+          <p>To, co naprawdę się kończy, to ciało. Niedobór jest z niego płacony, nadwyżka do niego wraca — bilans kaloryczny nie ginie na żadnym z końców.</p>
+          <div class="f">masa ciała [kg] += (nadwyżka × 0,75 − niedobór) / 7000</div>
+          <p>Siedem tysięcy kilokalorii na kilogram, a nie 7 700 z tabeli czystego tłuszczu: organizm pod deficytem spala mniej więcej trzy części tłuszczu na jedną część tkanki chudej, a ta jest w większości wodą. Magazynowanie jest stratne — dlatego tydzień objadania się nie cofa tygodnia głodu.</p>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>80 kg, głodówka totalna, bezruch</caption>
+              <thead><tr><th scope="col" class="n">Dzień</th><th scope="col" class="n">Masa</th><th scope="col" class="n">Ubytek</th><th scope="col">Stan</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">7</th><td class="n">77,6 kg</td><td class="n">3,0%</td><td>jeszcze nic</td></tr>
+                <tr><th scope="row" class="n">14</th><td class="n">75,2 kg</td><td class="n">6,0%</td><td>każda czynność ×1,15</td></tr>
+                <tr><th scope="row" class="n">42</th><td class="n">66,1 kg</td><td class="n">17,4%</td><td>×1,40, +2 MOA</td></tr>
+                <tr><th scope="row" class="n">75</th><td class="n">55,9 kg</td><td class="n">30,1%</td><td>koniec</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>W marszu szybciej. Literatura kliniczna daje sześć do dziesięciu tygodni głodówki totalnej.</p>
+          <p>Ponieważ masa jest wielkością realną, a nie paskiem, wszystko z niej wyprowadzone rusza się razem z nią: limity udźwigu, zapotrzebowanie Mifflina–St Jeora, dobowe 35 ml/kg wody, objętość krwi wg Nadlera. Lżejsze ciało pali mniej, więc adaptacja metaboliczna pojawia się bez pisania dla niej krzywej. Krew skaluje się proporcjonalnie razem z własnym sufitem, więc samo chudnięcie nigdy nie wrzuci postaci w klasę wstrząsu — zmienia się tylko to, że każda przyszła rana jest większą częścią mniejszego ciała.</p>
+
+          <div class="warn">
+            <span class="warn__t">Nic nie chudnie bez świadka</span>
+            <p>Przy zamkniętej aplikacji nic nie schodzi z ciała. Podłoga offline istnieje po to, żeby telefon zostawiony w szufladzie nikogo nie zabił, a dwa tygodnie niepilnowanego chudnięcia przeszłyby przez nią bokiem. Nadwyżka liczy się dalej — co zjedzone, to zjedzone.</p>
+          </div>
+
           <h3>Tętno jako ukryta stamina</h3>
           <p>Gracz nie ma paska wytrzymałości, ale tętno pełni tę rolę funkcjonalnie — i steruje celnością.</p>
           <div class="scroller">
@@ -257,6 +316,28 @@ MET_efektywne = MET × (1 + 0,8 × (obciążenie / masa ciała))</div>
             </table>
           </div>
           <p>Latem gracz musi wybierać między snem a rozwojem. Dług senny podnosi rozrzut i wydłuża wszystkie czynności, więc „nie śpię, tylko czytam" ma cenę płaconą nazajutrz.</p>
+
+          <h4>Dwa zegary, nie jeden większy</h4>
+          <p>Dług powyżej mierzy <em>ostatnią noc</em>. Ma sufit doby, kasuje się w dobę, a jedna krótka noc czyta się tak samo, czy jest pierwsza w miesiącu, czy czternasta pod rząd. To właściwa odpowiedź na pytanie, które zadaje — i bezużyteczna wobec pytania, którego nie zadaje.</p>
+          <p>Druga liczba idzie wobec zegara ściennego: doba potrzebuje ośmiu godzin niezależnie od tego, co się w niej robiło.</p>
+          <div class="f">obciążenie += 1 − S/8    (S = godziny snu w dobie)</div>
+
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Co robią tygodnie krótkich nocy</caption>
+              <thead><tr><th scope="col">Wzorzec</th><th scope="col" class="n">Obciążenie</th><th scope="col">Skutek</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Jedna noc krótsza o dwie godziny</th><td class="n">0,25</td><td>nic</td></tr>
+                <tr><th scope="row">Cztery noce po cztery godziny</th><td class="n">2,0</td><td>−20% nauki, tętno wraca ×1,35 wolniej</td></tr>
+                <tr><th scope="row">Dwa tygodnie po sześć godzin</th><td class="n">3,5</td><td>−40% nauki, +1 MOA, gojenie −30%</td></tr>
+                <tr><th scope="row">Dwa miesiące takich nocy</th><td class="n">10</td><td>+2 MOA, gojenie −50%, mikrosny</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>Kary są celowo te, których pasek snu nie pokazuje — gojenie, uspokajanie tętna, ręce. Tak właśnie działa przewlekłe niedosypianie: subiektywna senność się wypłaszcza, a wydolność dalej spada. Prześpij dobrze jedną noc, popatrz, jak pasek się wypełnia, i zobacz, że liczby z nim nie wróciły. Ekran stanu mówi o tym wprost, bo kara bez widocznego powodu czyta się jak błąd, choćby najprawdziwsza.</p>
+
+          <p>Spłaca ją wyłącznie noc <em>dłuższa</em> niż potrzeba. Regeneracja po przewlekłej deprywacji wymaga snu nadmiarowego, a nie tylko wystarczającego — co sadza tę oś dokładnie na sezonowości powyżej, bez żadnego modyfikatora. Poznań w czerwcu narasta obciążeniem niezależnie od tego, jak ostrożnie grasz. Cztery grudniowe noce kasują całe lato. Moduł Salon staje się jedyną rzeczą kupującą regenerację poza sezonem — czyli tym, czym miał być od początku.</p>
 
           <h3>Jedno zajęcie naraz</h3>
           <p>Postać nie może jednocześnie spać, czytać i budować. To główny mechanizm ekonomii czasu — bez niego wszystkie systemy schronowe biegłyby równolegle i żaden nie miałby kosztu.</p>
@@ -787,7 +868,20 @@ Czas 25 min  ·  Jakość: <b>+2 MOA</b> wobec amunicji fabrycznej</div>
             <p>Awaria techniczna nigdy nie może zabić postaci. Śmierć nie następuje w stanie uśpionym ani przy braku sygnału GPS, a stan wraca do ostatniego zatwierdzonego punktu. Permadeath z powodu crasha to gwarantowana jedna gwiazdka w sklepie.</p>
           </div>
 
-          <p>W Softcore postać budzi się dokładnie tam, gdzie fizycznie znajduje się gracz — nigdy przez teleportację do schronu, bo w grze GPS-owej teleportacja jest pojęciowo zepsuta. Fikcją jest majaczenie przy 25% objętości krwi, medycznie poprawne i darmowe fabularnie. Skrytki z ekwipunkiem zostają w miejscu upadku, więc kara rośnie wraz z dystansem bez żadnych sztucznych reguł.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Co faktycznie kończy postać</caption>
+              <thead><tr><th scope="col">Przyczyna</th><th scope="col">Próg</th><th scope="col" class="n">Ile to trwa</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Wykrwawienie</th><td>klasa IV wstrząsu — 40% objętości</td><td class="n">minuty</td></tr>
+                <tr><th scope="row">Pragnienie</th><td>48 h bez wody przy wysiłku albo 12 h przy 10% masy ciała</td><td class="n">2–3 doby</td></tr>
+                <tr><th scope="row">Wychudzenie</th><td>30% ubytku masy startowej</td><td class="n">~10 tygodni</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Pustej spiżarni nie ma na tej liście. Doba na zerowych kaloriach kładzie postać na ziemi, i tak właśnie nazywa to dokument projektowy — postępująca utrata przytomności. Śmierć z głodu dotyczy ciała, które się skończyło, a to trwa sześć do dziesięciu tygodni, nie czterdzieści osiem godzin.</p>
+
+          <p>W Softcore postać budzi się dokładnie tam, gdzie fizycznie znajduje się gracz — nigdy przez teleportację do schronu, bo w grze GPS-owej teleportacja jest pojęciowo zepsuta. Ocyka się w klasie III wstrząsu: mocno poobijana, wszystko trudniejsze, ale żywa. Skrytki z ekwipunkiem zostają w miejscu upadku, więc kara rośnie wraz z dystansem bez żadnych sztucznych reguł.</p>
           <p>Przez pierwsze dziesięć minut po przebudzeniu przeciwnicy ignorują gracza — okno łaski aktywuje się tylko wtedy, gdy w promieniu 300 m faktycznie ktoś jest. Nie ma sensu chronić gracza, który ocknął się w autobusie.</p>
         </div>
       </section>
@@ -952,24 +1046,24 @@ y = 0</div>
         <div class="sec__hd">
           <span class="sec__no">20 · Status</span>
           <h2>Gdzie jest projekt</h2>
-          <p class="sec__lede">Dokument projektowy jest kompletny. Kod jest na starcie: szkielet Flutter z ekranem intro. Poniżej kolejność prac.</p>
+          <p class="sec__lede">Dokument projektowy jest kompletny i w większości zbudowany. 2 121 testów, schemat bazy v29, etapy 0–2 zamknięte, a 3–5 i 8 czekają na spacery w terenie, nie na kod.</p>
         </div>
         <div class="prose">
           <div class="scroller">
             <table class="tbl">
               <caption>Etapy wdrożenia</caption>
-              <thead><tr><th scope="col" class="n">Etap</th><th scope="col">Zakres</th><th scope="col">Kryterium wyjścia</th></tr></thead>
+              <thead><tr><th scope="col" class="n">Etap</th><th scope="col">Zakres</th><th scope="col">Kryterium wyjścia</th><th scope="col">Stan</th></tr></thead>
               <tbody>
-                <tr><th scope="row" class="n">0</th><td>Fundament: baza Drift z migracjami, tick w izolacie, podpisany release</td><td>przeżywa kill procesu i wraca z catch-upem</td></tr>
-                <tr><th scope="row" class="n">1</th><td>Tryb deweloperski i symulator GPS</td><td>doba gry w 24 sekundy, zero kodu debug w release</td></tr>
-                <tr><th scope="row" class="n">2</th><td>Postać i fizjologia</td><td>liczby zgodne z tabelami modelu</td></tr>
-                <tr><th scope="row" class="n">3</th><td>Mapa, GPS, bezpieczeństwo gracza</td><td>godzinny spacer bez fałszywego ruchu na postoju</td></tr>
-                <tr><th scope="row" class="n">4</th><td>Przedmioty, loot, przeszukanie</td><td>grywalna gęstość punktów także bez POI</td></tr>
-                <tr><th scope="row" class="n">5</th><td>Walka, przeciwnicy, hałas</td><td>odtworzona tabela kalibracyjna celności</td></tr>
-                <tr><th scope="row" class="n">6</th><td>Ognisko z pełnym cyklem</td><td>ścieżka 1 → 10 → zbicie → likwidacja bez rozjazdu stanu</td></tr>
-                <tr><th scope="row" class="n">7</th><td>Audio pozycyjne i haptyka</td><td>kierunek rozpoznawalny przy telefonie w kieszeni</td></tr>
-                <tr><th scope="row" class="n">8</th><td>Schron, obóz, pętla dobowa</td><td>pełna doba bez utraty stanu</td></tr>
-                <tr><th scope="row" class="n">9</th><td>Onboarding, dostępność, zgodność</td><td>gra działa po odmowie zgody na lokalizację w tle</td></tr>
+                <tr><th scope="row" class="n">0</th><td>Fundament: baza Drift z migracjami, tick w izolacie, podpisany release</td><td>przeżywa kill procesu i wraca z catch-upem</td><td>zamknięty</td></tr>
+                <tr><th scope="row" class="n">1</th><td>Tryb deweloperski i symulator GPS</td><td>doba gry w 24 sekundy, zero kodu debug w release</td><td>zamknięty</td></tr>
+                <tr><th scope="row" class="n">2</th><td>Postać i fizjologia</td><td>liczby zgodne z tabelami modelu</td><td>zamknięty</td></tr>
+                <tr><th scope="row" class="n">3</th><td>Mapa, GPS, bezpieczeństwo gracza</td><td>godzinny spacer bez fałszywego ruchu na postoju</td><td>zbudowany, w spacerach</td></tr>
+                <tr><th scope="row" class="n">4</th><td>Przedmioty, loot, przeszukanie</td><td>grywalna gęstość punktów także bez POI</td><td>zbudowany, w spacerach</td></tr>
+                <tr><th scope="row" class="n">5</th><td>Walka, przeciwnicy, hałas</td><td>odtworzona tabela kalibracyjna celności</td><td>zbudowany, w spacerach</td></tr>
+                <tr><th scope="row" class="n">6</th><td>Ognisko z pełnym cyklem</td><td>ścieżka 1 → 10 → zbicie → likwidacja bez rozjazdu stanu</td><td>w toku</td></tr>
+                <tr><th scope="row" class="n">7</th><td>Audio pozycyjne i haptyka</td><td>kierunek rozpoznawalny przy telefonie w kieszeni</td><td>nierozpoczęty</td></tr>
+                <tr><th scope="row" class="n">8</th><td>Schron, obóz, pętla dobowa</td><td>pełna doba bez utraty stanu</td><td>zbudowany, w spacerach</td></tr>
+                <tr><th scope="row" class="n">9</th><td>Onboarding, dostępność, zgodność</td><td>gra działa po odmowie zgody na lokalizację w tle</td><td>nierozpoczęty</td></tr>
               </tbody>
             </table>
           </div>

@@ -219,6 +219,10 @@ a:hover{border-bottom-color:var(--data)}
   margin:2.2rem 0 .6rem;
 }
 .prose h3:first-child{margin-top:0}
+.prose h4{
+  font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);margin:1.6rem 0 .5rem;
+}
 .prose ul,.prose ol{margin:0 0 1.1em;padding-left:1.35rem}
 .prose li{margin-bottom:.32em}
 .prose li::marker{color:var(--rule);font-family:var(--mono);font-size:.85em}
