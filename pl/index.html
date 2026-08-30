@@ -79,7 +79,7 @@
         <li><a href="#combat"><span>06</span><span>Walka</span></a></li>
         <li><a href="#noise"><span>07</span><span>Hałas</span></a></li>
         <li><a href="#enemies"><span>08</span><span>Przeciwnicy</span></a></li>
-        <li><a href="#hotspots"><span>09</span><span>Ogniska</span></a></li>
+        <li><a href="#hotspots"><span>09</span><span>Strefy Rozkładu</span></a></li>
         <li><a href="#loot"><span>10</span><span>Loot i ekonomia</span></a></li>
         <li><a href="#skills"><span>11</span><span>Umiejętności</span></a></li>
         <li><a href="#shelter"><span>12</span><span>Schron i obóz</span></a></li>
@@ -108,7 +108,7 @@
           <option value="#combat">06 — Walka</option>
           <option value="#noise">07 — Hałas</option>
           <option value="#enemies">08 — Przeciwnicy</option>
-          <option value="#hotspots">09 — Ogniska</option>
+          <option value="#hotspots">09 — Strefy Rozkładu</option>
           <option value="#loot">10 — Loot i ekonomia</option>
           <option value="#skills">11 — Umiejętności</option>
           <option value="#shelter">12 — Schron i obóz</option>
@@ -347,7 +347,7 @@ MET_efektywne = MET × (1 + 0,8 × (obciążenie / masa ciała))</div>
               <tbody>
                 <tr><th scope="row">Zajęcie</th><td>sen, lektura, budowa, wytwarzanie, recykling</td><td>rozpoczęcie nowego anuluje poprzednie, postęp zapisany</td></tr>
                 <tr><th scope="row">Czynność</th><td>jedzenie, picie, opatrunek, przeszukanie, strzał</td><td>zawiesza zajęcie, po zakończeniu zajęcie wraca</td></tr>
-                <tr><th scope="row">Proces tłowy</th><td>metabolizm, krwawienie, wzrost ognisk</td><td>tyka zawsze, niezależnie od wszystkiego</td></tr>
+                <tr><th scope="row">Proces tłowy</th><td>metabolizm, krwawienie, wzrost stref</td><td>tyka zawsze, niezależnie od wszystkiego</td></tr>
               </tbody>
             </table>
           </div>
@@ -464,6 +464,27 @@ MET_efektywne = MET × (1 + 0,8 × (obciążenie / masa ciała))</div>
             </table>
           </div>
           <p>Surowce różnią się charakterem: metal to problem masy, plastik i materiał zapychają objętość, a drewno uwiera na obu osiach naraz.</p>
+
+          <h3>Narzędzia i cena zamkniętych drzwi</h3>
+          <p>Łom nie jest składnikiem receptury. Jest różnicą między sklepem, do którego da się wejść, a takim, do którego się nie da — a każda bariera ma drogę głośną i większość ma cichą. Nic nie jest nie do przejścia z braku przedmiotu poza kłódką, którą dokument projektowy wskazuje jako jedyną barierę wymagającą narzędzia: kto nie ma nic, i tak wejdzie do budynku oknem, głośno i za cenę szyby.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Drogi przez barierę</caption>
+              <thead><tr><th scope="col">Bariera</th><th scope="col">Czym</th><th scope="col" class="n">Czas</th><th scope="col" class="n">Hałas</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" rowspan="3">Drzwi</th><td>wytrychy</td><td class="n">60 s</td><td class="n">20 m</td></tr>
+                <tr><td>łom albo siekiera</td><td class="n">12 s</td><td class="n">150 m</td></tr>
+                <tr><td>ramię</td><td class="n">90 s</td><td class="n">200 m</td></tr>
+                <tr><th scope="row" rowspan="3">Kłódka</th><td>przecinak do bolców</td><td class="n">10 s</td><td class="n">60 m</td></tr>
+                <tr><td>wytrychy</td><td class="n">45 s</td><td class="n">20 m</td></tr>
+                <tr><td>łom, piła albo multitool</td><td class="n">25 s</td><td class="n">60 m</td></tr>
+                <tr><th scope="row">Okno</th><td>cokolwiek, także ręce</td><td class="n">10 s</td><td class="n">160 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Kolejność jest tu treścią: minuta i dwadzieścia metrów przeciw półtorej minuty i dwustu. Nie zawsze tak było. Dwadzieścia sekund ramieniem przy dwunastu łomem znaczyło, że narzędzia są ozdobą — osiem sekund różnicy nikogo nie skłoni do noszenia kilograma sześciuset — a gołe ręce były <em>szybsze</em> od wytrychów, więc cicha droga nie miała żadnej przewagi poza hałasem.</p>
+          <p>Panel nazywa to narzędzie, którym gra naprawdę otworzy, a nie kategorię: drzwi ustępują łomowi <em>albo</em> siekierze, a panel pokazujący jedno, kiedy gra zużywa drugie, byłby gorszy od panelu milczącego — gracz zapamiętałby cenę, której nie zapłacił. Każde otwarcie zużywa narzędzie o jego <code>condition_decay_per_use</code>: dwa procent przy wytrychach, więc komplet starcza na pięćdziesiąt zamków i ani jeden więcej. Schodzi egzemplarz najbardziej zużyty, czyli tak, jak robi każdy, kto ma w kieszeni dwa scyzoryki.</p>
+          <p>Nie wszystko jest zamknięte. Mniej więcej co trzecie drzwi stoją otworem, prawie połowa okien jest już wybita, a kłódka ustąpiła komuś innemu raz na dziesięć — świat, w którym każde drzwi są zamknięte, to świat, w którym nikt przedtem nie mieszkał.</p>
 
           <h3>Odzież i pancerz</h3>
           <p>Dwie niezależne osie: termiczna (<code>insulation_clo</code>, wchodzi do wzoru na pot) i balistyczna (<code>protection_level</code> plus <code>coverage_pct</code>, redukcja tylko dla trafionej lokalizacji). Hełm ma pokrycie 12%, kamizelka 55% — trafienie w kończynę ignoruje oba.</p>
@@ -598,10 +619,26 @@ teren otwarty ×1,2   ·   deszcz lub silny wiatr ×0,75</div>
               <tbody>
                 <tr><th scope="row">Broń palna</th><td>eliminacja z dystansu, wysoka szansa trafienia na spokojnie</td><td>ściąga wszystko w promieniu 700 m, zużywa rzadką amunicję</td></tr>
                 <tr><th scope="row">Broń biała</th><td>cisza 25 m, zero kosztu amunicji</td><td>wymaga zwarcia, czyli oskrzydlenia i ryzyka krwawienia</td></tr>
-                <tr><th scope="row">Unikanie</th><td>zerowy koszt</td><td>ognisko rośnie dalej</td></tr>
+                <tr><th scope="row">Unikanie</th><td>zerowy koszt</td><td>strefa rośnie dalej</td></tr>
               </tbody>
             </table>
           </div>
+          <h3>Hałas, który robi sam gracz</h3>
+          <p>Nie ma przycisku „kucnij" i nigdy nie będzie. Gra mierzy ruch prawdziwego człowieka, więc jedynym sposobem na ciszę jest wolniejszy krok — i działa to w obie strony, bo pościg zmusza do biegu, a bieg słychać z czterdziestu metrów.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Zasięg słyszalności gracza wg prędkości</caption>
+              <thead><tr><th scope="col">Tempo</th><th scope="col" class="n">Prędkość</th><th scope="col" class="n">Słychać z</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Postój</th><td class="n">poniżej 0,5 km/h</td><td class="n">nic</td></tr>
+                <tr><th scope="row">Ostrożny krok</th><td class="n">poniżej 3,2 km/h</td><td class="n">8 m</td></tr>
+                <tr><th scope="row">Marsz</th><td class="n">poniżej 6,4 km/h</td><td class="n">15 m</td></tr>
+                <tr><th scope="row">Bieg</th><td class="n">6,4 km/h i więcej</td><td class="n">40 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Liczba stoi na stałe na HUD-zie, pod paskami życiowymi, słowem i odległością: <em>cicho</em>, <em>8 m</em>, <em>15 m</em>, <em>40 m</em>. Kara, której nie widać, nie jest mechaniką.</p>
+
           <p>Strzał wywołuje też przytłumienie miksu na 2–3 sekundy — symulację czasowego przytępienia słuchu. W tym czasie gracz nie słyszy zbliżających się przeciwników. To realistyczna i dotkliwa kara za strzelanie bez ochronników.</p>
         </div>
       </section>
@@ -630,15 +667,40 @@ teren otwarty ×1,2   ·   deszcz lub silny wiatr ×0,75</div>
             <table class="tbl">
               <thead><tr><th scope="col">Stan</th><th scope="col">Warunek wejścia</th><th scope="col">Zachowanie</th></tr></thead>
               <tbody>
-                <tr><th scope="row">Spoczynek</th><td>domyślny</td><td>ruch losowy w obrębie ogniska</td></tr>
+                <tr><th scope="row">Spoczynek</th><td>domyślny</td><td>ruch losowy w obrębie strefy</td></tr>
                 <tr><th scope="row">Czujność</th><td>gracz w zasięgu wykrycia</td><td>marsz w stronę gracza, bez zużycia budżetu</td></tr>
                 <tr><th scope="row">Pościg</th><td>bliski kontakt lub oddany strzał</td><td>sprint, zużycie budżetu</td></tr>
                 <tr><th scope="row">Wyczerpanie</th><td>budżet sprintu = 0</td><td>40% prędkości biegu, dalej w stronę gracza</td></tr>
-                <tr><th scope="row">Powrót</th><td>utrata kontaktu lub smycz 400 m</td><td>marsz do centrum ogniska, pełna regeneracja</td></tr>
+                <tr><th scope="row">Powrót</th><td>utrata kontaktu lub smycz 400 m</td><td>marsz do centrum strefy, pełna regeneracja</td></tr>
               </tbody>
             </table>
           </div>
           <p>W pościgu i wyczerpaniu przeciwnik nigdy się nie zatrzymuje. Walka nie jest statyczna — strzelając do jednego, tracisz dystans do wszystkich pozostałych. Smycz 400 m i utrata kontaktu po 45 s bez zbliżenia zapobiegają ciągnięciu za sobą „pociągu" przez pół miasta.</p>
+
+          <h3>Co widzą, co słyszą i co jest za ich plecami</h3>
+          <p>Wykrycie było promieniem, a promień nie ma tyłu: Szwędacz zauważał gracza zza pleców tak samo jak na wprost, więc jedyną odpowiedzią na przeciwnika była broń albo dystans. Podchodzenie nie istniało jako możliwość. Teraz są trzy reguły i każda jest widoczna na mapie, zanim ukarze:</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Reguła</th><th scope="col">Co znaczy</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Stożek 120°</th><td>widzą tylko to, co mieści się w stożku wokół kierunku, w którym idą — poza nim nic, choćby metr dalej. Stożek jest rysowany na mapie w prawdziwym promieniu.</td></tr>
+                <tr><th scope="row">Słuch wg tempa</th><td>rozstrzyga zasięg hałasu gracza. Postój jest bezgłośny, bieg słychać z czterdziestu metrów.</td></tr>
+                <tr><th scope="row">Usłyszane to nie zobaczone</th><td>dźwięk robi z nich <em>czujnych</em>, a czujny idzie <em>w stronę hałasu</em>, nie do gracza.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Jeden wyjątek, i celowy: ścigający widzi wszystko. Przeciwnik, którego da się zgubić obchodząc go w pół sekundy, nie jest zagrożeniem, tylko przeszkodą.</p>
+
+          <h3>Cicha odpowiedź</h3>
+          <p>Niewzbudzony, stojący w swoim martwym łuku 120°, na trzy metry, z ostrzem w ręce: jeden ruch i koniec — cała objętość krwi naraz i dwanaście metrów hałasu, czyli tyle, ile słychać padające ciało. Nie Brutal. Sześć do ośmiu litrów krwi i kark, którego nie przecina się nożem w jednym ruchu; mechanika, w której najgroźniejsza rzecz w grze pada od jednego dotknięcia od tyłu, zamienia elitę w cel treningowy.</p>
+
+          <div class="warn">
+            <span class="warn__t">Po zmierzchu</span>
+            <p>Przy pełnej nocy chodzi ich po ulicy o połowę więcej. Dość, żeby ta sama ulica była innym problemem o dwudziestej drugiej niż o czternastej, i za mało, żeby noc była nie do przejścia — strefy rosną i bez pomocy ciemności.</p>
+          </div>
+
+          <h3>Jak blisko to jest</h3>
+          <p>Paski życiowe zmieniają kolor na trzech dystansach, licząc każdego przeciwnika, niezależnie od tego, czy już zauważył: <b>175 m</b> — zwolnij i popatrz na stożki. <b>150 m</b> — zdecyduj: obejść czy wracać. <b>100 m</b> — obejścia już nie ma. Wcześniej pasek liczył wyłącznie tych, którzy już ruszyli, więc Szwędacz stojący osiemdziesiąt metrów dalej i jeszcze nieświadomy nie istniał na ekranie; gracz dowiadywał się o nim wtedy, kiedy zostawał już tylko bieg. Na stu pięćdziesięciu metrach gra przestaje też oszczędzać: GPS i ekran wchodzą w tempo walki, bo z kierunku patrzenia odczytuje się, czy da się przejść.</p>
 
           <p>Trzy typy to trzy stadia tej samej choroby, co wyjaśnia ich parametry bez zmiany choćby jednej liczby: Skakun zaraził się najwcześniej i jest wyniszczony metabolicznie, Szwędacze przyszli drugą falą i chodzą grupami, bo zarazili się razem, Brutal to stadium najpóźniejsze — obrzęk i zatrzymanie płynów.</p>
         </div>
@@ -646,22 +708,22 @@ teren otwarty ×1,2   ·   deszcz lub silny wiatr ×0,75</div>
 
       <section class="sec" id="hotspots">
         <div class="sec__hd">
-          <span class="sec__no">09 · Ogniska</span>
+          <span class="sec__no">09 · Strefy Rozkładu</span>
           <h2>Zegar, który odmierza trudność</h2>
-          <p class="sec__lede">Ognisko skażenia to trwały punkt na mapie generujący przeciwników. Rośnie w czasie — także wtedy, gdy nie grasz. To bezpośrednia realizacja celu „przetrwać jak najdłużej": im dłużej trwa passa, tym większa presja.</p>
+          <p class="sec__lede">Strefa Rozkładu to trwały punkt na mapie generujący przeciwników. Rośnie w czasie — także wtedy, gdy nie grasz. To bezpośrednia realizacja celu „przetrwać jak najdłużej": im dłużej trwa passa, tym większa presja.</p>
         </div>
 
         <div class="clock" id="clock">
-          <div class="clock__hd"><span>Wzrost ogniska · promień wg poziomu</span><span>20 m → 200 m</span></div>
+          <div class="clock__hd"><span>Wzrost strefy · promień wg poziomu</span><span>20 m → 200 m</span></div>
           <div class="clock__body">
-            <svg viewBox="0 0 520 430" role="img" aria-label="Diagram wzrostu ogniska: dziesięć koncentrycznych okręgów w skali, od 20 metrów promienia na poziomie pierwszym do 200 metrów na dziesiątym.">
+            <svg viewBox="0 0 520 430" role="img" aria-label="Diagram wzrostu strefy: dziesięć koncentrycznych okręgów w skali, od 20 metrów promienia na poziomie pierwszym do 200 metrów na dziesiątym.">
               <g id="rings" data-unit="m"></g>
               <circle cx="260" cy="210" r="3" fill="#A82D17"/>
               <text x="260" y="230" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#4A524F">centrum stałe</text>
             </svg>
           </div>
           <div class="clock__legend">
-            <div><b>3</b><span>maks. ognisk jednocześnie</span></div>
+            <div><b>3</b><span>maks. stref jednocześnie</span></div>
             <div><b>500 m</b><span>min. dystans od schronu</span></div>
             <div><b>450 m</b><span>min. odstęp między centrami</span></div>
             <div><b>12</b><span>wrogów naraz na poziomie 10</span></div>
@@ -669,16 +731,14 @@ teren otwarty ×1,2   ·   deszcz lub silny wiatr ×0,75</div>
         </div>
 
         <div class="prose">
-          <div class="f">interwał_awansu = max(2h, 8h − 0,25h × dzień_przetrwania) × random(0,6; 1,4)
-
-Dzień 1   → awans średnio co ~8 h
-Dzień 12  → co ~5 h
-Dzień 24+ → co 2 h (podłoga)</div>
-          <p>Czas nalicza się w 100% gdy gra jest aktywna i w 25% gdy nie jest. Świat psuje się także wtedy, gdy nie grasz — ale wolniej, więc tygodniowa przerwa nie oznacza automatycznie zastania trzech ognisk poziomu 10.</p>
+          <div class="f">interwał_wzrostu = random(24 h; 48 h) × (5,8 h ÷ godziny_kredytu_na_dobę) × random(0,6; 1,4)
+                   przycięte do 12 h … 96 h</div>
+          <p>Poziom to doba do dwóch dób <em>realnego</em> czasu. Poprzednia formuła liczyła w godzinach świata — osiem pierwszego dnia, ćwierć godziny mniej każdego następnego, podłoga na dwóch — i po przeliczeniu przez tempo gry dawała strefę rosnącą szybciej, niż da się ją zbić. Miasto ma się psuć przez tygodnie, nie przez popołudnie.</p>
+          <p>Interwał skaluje się tym, ile gracz naprawdę gra, mierzonym względem nawyku odniesienia: godzina dziennie. Kto gra całymi dniami, nie dostaje łatwiejszego świata, a kto znika na dwa tygodnie, nie wraca do innej gry — przycięcie trzyma interwał między pół doby a czterema dobami, cokolwiek mówi nawyk. Czas nalicza się w 100% gdy gra jest aktywna i w 25% gdy nie jest.</p>
 
           <div class="scroller">
             <table class="tbl">
-              <caption>Poziomy ogniska</caption>
+              <caption>Poziomy strefy</caption>
               <thead><tr><th scope="col" class="n">Poziom</th><th scope="col" class="n">Promień</th><th scope="col" class="n">Wrogów</th><th scope="col" class="n">Respawn</th><th scope="col">Skład</th></tr></thead>
               <tbody>
                 <tr><th scope="row" class="n">1</th><td class="n">20 m</td><td class="n">1</td><td class="n">15 min</td><td>Szwędacz</td></tr>
@@ -689,17 +749,37 @@ Dzień 24+ → co 2 h (podłoga)</div>
             </table>
           </div>
 
-          <h3>Neutralizacja</h3>
-          <div class="f">Integralność_max(poziom) = 60 + 20 × poziom     // 80 pkt na poziomie 1, 260 na 10
+          <h3>Zbijanie strefy</h3>
+          <div class="f">bariera_max(poziom) = 60 + 20 × poziom     // 80 pkt na poziomie 1, 260 na 10
 
-Szwędacz 10 pkt  ·  Skakun 15 pkt  ·  Brutal 35 pkt
-Eliminacja poza promieniem ogniska: 50% wartości</div>
-          <p>Po zbiciu integralności do zera ognisko traci poziom i wchodzi w dziesięciominutowe <em>wzburzenie</em>: potrójne tempo respawnu, o połowę wyższy limit wrogów, skład przesunięty o szczebel w górę i o połowę większy zasięg wykrycia. Zbicie ogniska z poziomu 10 do zera wymaga przejścia przez dziesięć kolejnych wzburzeń — to operacja na kilka godzin, z zapleczem amunicyjnym i medycznym.</p>
-          <p>Po likwidacji w centrum pojawia się jednorazowy skład o jakości około trzykrotnie lepszej niż zwykły lootbox, a slot zostaje pusty przez 24–48 godzin realnego czasu. Nagrodą jest oddech.</p>
+Ciało padłe w kole      10 pkt
+Ciało padłe poza kołem   5 pkt
+Regeneracja              5% maksimum na godzinę</div>
+          <p>Dziesięć punktów za sztukę, jednakowo, cokolwiek to było. Punktacja po gatunku — Szwędacz dziesięć, Skakun piętnaście, Brutal trzydzieści pięć — nagradzała wybieranie najgroźniejszego celu, czyli dokładnie odwrotność tego, po co jest strefa: decyzją ma być <em>gdzie</em> się walczy, a nie <em>z czym</em>. Wywabianie poza koło jest bezpieczniejsze i dokładnie dwa razy wolniejsze, i na tym polega cały handel.</p>
+          <p>Bariera odbudowuje się o pięć procent na godzinę — ale <b>nie wtedy, kiedy gracz stoi w środku</b>. Pasek odbudowujący się pod nogami tego, kto go opróżnia, mówi, że próba jest bez sensu, a odejście w połowie ma być decyzją kosztowną, nie jedyną.</p>
+
+          <h3>Wysyp</h3>
+          <p>Każde trafienie w strefie ma 10% szans na wysyp: połowa limitu poziomu ponad limit, na dziesięć minut — trzech więcej na piątce, sześciu na dziesiątce. Nie tyle, żeby to była śmierć, i dość, żeby przestać liczyć na to, że wiadomo, ilu ich jest. Najwyżej raz na godzinę, a blokada leży na dysku, bo kara, którą zdejmuje się restartem aplikacji, jest karą za granie uczciwie. Wzburzenie nie odnawia się dalej niż 400 m od centrum: ma być trudno, a nie ma być spirali bez wyjścia.</p>
+
+          <h3>Co po niej zostaje</h3>
+          <p>Zbicie bariery do zera na pierwszym poziomie kończy strefę. W jej miejscu, w centrum, zostaje jednorazowa skrytka — i to jest powód, żeby tam w ogóle iść, a nie pocieszenie za wydaną amunicję:</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Skrytka strefy</caption>
+              <thead><tr><th scope="col">Zawartość</th><th scope="col" class="n">Ile</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Komponenty</th><td class="n">4–8</td></tr>
+                <tr><th scope="row">Złom</th><td class="n">10–18</td></tr>
+                <tr><th scope="row">Apteczki</th><td class="n">1–2</td></tr>
+                <tr><th scope="row">Naboje 5,45×39</th><td class="n">30–60</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Cztery rzeczy, które zmieniają wyprawę, zamiast dwudziestu, które zmieniają liczbę w plecaku. Slot odpoczywa potem 24–48 godzin realnego czasu, zanim gdzie indziej pojawi się następna strefa — pusty slot jest osobnym stanem, i jest nagrodą.</p>
 
           <div class="warn">
             <span class="warn__t">Horda — poziom 10</span>
-            <p>Co 6–12 godzin ognisko wysyła 6–10 przeciwników w stronę schronu. Nie wejdą w strefę bezpieczną, ale okrążą ją i zostaną 30–60 minut. Gracz jest wtedy odcięty. Ostrzeżenie przychodzi dziesięć minut wcześniej: „Słyszysz je od strony wschodniej".</p>
+            <p>Co 6–12 godzin strefa wysyła 6–10 przeciwników w stronę schronu. Nie wejdą w strefę bezpieczną, ale okrążą ją i zostaną 30–60 minut. Gracz jest wtedy odcięty. Ostrzeżenie przychodzi dziesięć minut wcześniej: „Słyszysz je od strony wschodniej".</p>
           </div>
         </div>
       </section>
@@ -743,6 +823,9 @@ Eliminacja poza promieniem ogniska: 50% wartości</div>
             </table>
           </div>
           <p>Samo przeszukanie obiektu jest czynnością czasową: 30 sekund pobieżnie, 90 dokładnie, 180 gruntownie z podwojoną szansą na przedmiot rzadki. Generuje hałas i można je przerwać. Gracz decyduje, czy brać szybko i uciekać, czy ryzykować dla lepszego lootu.</p>
+
+          <h3>Pod własnymi drzwiami nic nie rośnie</h3>
+          <p>Łup nie pojawia się bliżej niż osiemdziesiąt metrów od schronu — pięćdziesiąt metrów strefy bezpiecznej plus trzydzieści metrów czystego terenu dookoła. Skrzynia stojąca dokładnie na granicy jest skrzynią, do której wychodzi się na dwa kroki, a cała ekonomia stoi na tym, że po rzeczy trzeba iść. Prawdziwe POI, które stało tam, zanim gracz się wprowadził — sklep naprzeciwko mieszkania, które wybrał — nie znika: przeszukuje się je raz, jak wszystko inne, i na tym koniec.</p>
         </div>
       </section>
 
@@ -774,7 +857,7 @@ XP_łączne do 100% = 353 500        // ≈ 509 godzin czytania</div>
         <div class="sec__hd">
           <span class="sec__no">12 · Schron i obóz</span>
           <h2>Droga z pracy do domu jest rozgrywką</h2>
-          <p class="sec__lede">Schron główny stoi tam, gdzie mieszkasz. Obóz stawiasz tam, gdzie spędzasz dzień. Między nimi rozciąga się teren, na którym stoją ogniska.</p>
+          <p class="sec__lede">Schron główny stoi tam, gdzie mieszkasz. Obóz stawiasz tam, gdzie spędzasz dzień. Między nimi rozciąga się teren, na którym stoją Strefy Rozkładu.</p>
         </div>
         <div class="prose">
           <div class="scroller">
@@ -857,7 +940,7 @@ Czas 25 min  ·  Jakość: <b>+2 MOA</b> wobec amunicji fabrycznej</div>
                 <tr><th scope="row">Umiejętności</th><td>przepadają</td><td>zachowane w całości</td></tr>
                 <tr><th scope="row">Schron</th><td>przepada</td><td>zachowany</td></tr>
                 <tr><th scope="row">Magazyn schronu</th><td>przepada</td><td>nietknięty</td></tr>
-                <tr><th scope="row">Ogniska</th><td>reset do poziomu 1</td><td>rosną dalej</td></tr>
+                <tr><th scope="row">Strefy Rozkładu</th><td>reset do poziomu 1</td><td>rosną dalej</td></tr>
                 <tr><th scope="row">Passa przetrwania</th><td>ostateczna, trafia do Kroniki</td><td>zerowana</td></tr>
               </tbody>
             </table>
@@ -904,7 +987,7 @@ D = clamp((12 − godziny_światła) / 6, 0, 1)   // wskaźnik ciemności</div>
             <table class="tbl">
               <thead><tr><th scope="col">System</th><th scope="col">Modyfikator</th></tr></thead>
               <tbody>
-                <tr><th scope="row">Wzrost ognisk</th><td><code>interwał × (1 + 1,2 × C)</code> — przy mrozie ogniska rosną ponad dwukrotnie wolniej</td></tr>
+                <tr><th scope="row">Wzrost stref</th><td><code>interwał × (1 + 1,2 × C)</code> — przy mrozie strefy rosną ponad dwukrotnie wolniej</td></tr>
                 <tr><th scope="row">Prędkość przeciwników</th><td><code>× (1 − 0,30 × C)</code></td></tr>
                 <tr><th scope="row">Budżet sprintu</th><td><code>× (1 − 0,25 × C)</code></td></tr>
                 <tr><th scope="row">Zapotrzebowanie kaloryczne</th><td><code>× (1 + 0,15 × C)</code> — podwyższona termogeneza</td></tr>
@@ -977,6 +1060,21 @@ y = 0</div>
             <li><strong>Przed Skakunem nie uciekniesz.</strong> 25 sekund sprintu przy 30 km/h zawsze wystarcza na pokonanie dystansu detekcji — gracz uzna, że gra oszukuje.</li>
             <li><strong>Twoje ciało jest kontrolerem.</strong> Gra liczy realne kalorie z realnego ruchu — gracz siedzący na kanapie nie zrozumie, dlaczego nic się nie dzieje.</li>
           </ol>
+          <h3>Z czym się zaczyna</h3>
+          <p>Tworzenie postaci ma drugi etap. Cztery wybory po dwie możliwości, obie na ekranie naraz i z opisem pod spodem — wybór między dwiema rzeczami leżącymi obok siebie jest decyzją, jedna na ekranie z przewijaniem do drugiej jest quizem.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Zestaw startowy</caption>
+              <thead><tr><th scope="col" class="n">Krok</th><th scope="col">Jedno z</th><th scope="col">O czym rozstrzyga</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">1</th><td>łom · wytrych</td><td>czy zamknięte drzwi otwiera się szybko, czy cicho</td></tr>
+                <tr><th scope="row" class="n">2</th><td>5 opatrunków · apteczka</td><td>wiele drobnych ran albo jedna poważna</td></tr>
+                <tr><th scope="row" class="n">3</th><td>maczeta · siekiera</td><td>co jest w ręce, kiedy zabraknie dystansu</td></tr>
+                <tr><th scope="row" class="n">4</th><td>2 puszki mięsa · 3 warzyw</td><td>kalorie teraz albo jeden dzień dłużej bez szukania</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Jeden wytrych, nie komplet. Odkąd otwieranie zużywa narzędzie, cztery to pięćdziesiąt zamków wydanych, zanim gra się zaczęła. Nic nie dochodzi ponad to, i ekran podsumowania mówi to wprost: to jest wszystko, co masz.</p>
           <p>Wszystko inne może poczekać i jest wprowadzane podpowiedzią kontekstową w momencie pierwszego zetknięcia. Pierwsza walka to jedyny scenariusz skryptowany w całej grze: pojedynczy Szwędacz 120 m od gracza, w bezpiecznym kierunku, z obniżonymi obrażeniami i bez możliwości zabicia.</p>
           <p>Najważniejsze są dwie ostatnie podpowiedzi tej sekwencji — bo ustawiają ekonomię gry w głowie gracza od pierwszej minuty:</p>
           <div class="warn">
@@ -1017,7 +1115,7 @@ y = 0</div>
               <thead><tr><th scope="col">Warstwa stanu</th><th scope="col">Zawartość</th><th scope="col">Zapis</th></tr></thead>
               <tbody>
                 <tr><th scope="row">Gorąca</th><td>pozycja, krew, woda, kalorie, tętno</td><td>co 60 s i przy przejściu w tło</td></tr>
-                <tr><th scope="row">Ciepła</th><td>ekwipunek, umiejętności, schron, ogniska</td><td>przy każdej zmianie, transakcyjnie</td></tr>
+                <tr><th scope="row">Ciepła</th><td>ekwipunek, umiejętności, schron, Strefy Rozkładu</td><td>przy każdej zmianie, transakcyjnie</td></tr>
                 <tr><th scope="row">Zimna</th><td>Kronika, rekordy, ustawienia</td><td>przy zdarzeniu</td></tr>
               </tbody>
             </table>
@@ -1034,7 +1132,7 @@ y = 0</div>
           <ul>
             <li>Symulator GPS: odtwarzanie tras GPX, sterowanie strzałkami, skok do współrzędnych</li>
             <li>Przyspieszenie czasu ×1 / ×60 / ×3600 — dobę gry da się przejść w 24 sekundy</li>
-            <li>Panele fizjologii i świata: wymuszanie tętna, spawn przeciwników, poziom ogniska, horda</li>
+            <li>Panele fizjologii i świata: wymuszanie tętna, spawn przeciwników, poziom strefy, horda</li>
             <li>Nakładka diagnostyczna z rozbiciem MOA, szansą trafienia i promieniem hałasu</li>
             <li>Deterministyczne powtórki: seed plus strumień zdarzeń</li>
           </ul>
@@ -1046,7 +1144,7 @@ y = 0</div>
         <div class="sec__hd">
           <span class="sec__no">20 · Status</span>
           <h2>Gdzie jest projekt</h2>
-          <p class="sec__lede">Dokument projektowy jest kompletny i w większości zbudowany. 2 121 testów, schemat bazy v29, etapy 0–2 zamknięte, a 3–5 i 8 czekają na spacery w terenie, nie na kod.</p>
+          <p class="sec__lede">Dokument projektowy jest kompletny i w większości zbudowany. 2 584 testy, schemat bazy v36, etapy 0–2 zamknięte, a 3–6 i 8 czekają na spacery w terenie, nie na kod.</p>
         </div>
         <div class="prose">
           <div class="scroller">
@@ -1060,14 +1158,14 @@ y = 0</div>
                 <tr><th scope="row" class="n">3</th><td>Mapa, GPS, bezpieczeństwo gracza</td><td>godzinny spacer bez fałszywego ruchu na postoju</td><td>zbudowany, w spacerach</td></tr>
                 <tr><th scope="row" class="n">4</th><td>Przedmioty, loot, przeszukanie</td><td>grywalna gęstość punktów także bez POI</td><td>zbudowany, w spacerach</td></tr>
                 <tr><th scope="row" class="n">5</th><td>Walka, przeciwnicy, hałas</td><td>odtworzona tabela kalibracyjna celności</td><td>zbudowany, w spacerach</td></tr>
-                <tr><th scope="row" class="n">6</th><td>Ognisko z pełnym cyklem</td><td>ścieżka 1 → 10 → zbicie → likwidacja bez rozjazdu stanu</td><td>w toku</td></tr>
+                <tr><th scope="row" class="n">6</th><td>Strefa Rozkładu z pełnym cyklem</td><td>ścieżka 1 → 10 → zbicie → likwidacja bez rozjazdu stanu</td><td>zbudowane, chodzimy</td></tr>
                 <tr><th scope="row" class="n">7</th><td>Audio pozycyjne i haptyka</td><td>kierunek rozpoznawalny przy telefonie w kieszeni</td><td>nierozpoczęty</td></tr>
                 <tr><th scope="row" class="n">8</th><td>Schron, obóz, pętla dobowa</td><td>pełna doba bez utraty stanu</td><td>zbudowany, w spacerach</td></tr>
                 <tr><th scope="row" class="n">9</th><td>Onboarding, dostępność, zgodność</td><td>gra działa po odmowie zgody na lokalizację w tle</td><td>nierozpoczęty</td></tr>
               </tbody>
             </table>
           </div>
-          <p>Zakres pierwszej grywalnej wersji to jeden typ przeciwnika, trzy bronie, około dwudziestu przedmiotów w rotacji, jedno ognisko z pełną mechaniką wzrostu i neutralizacji, schron bez modułów, dwa języki. Test akceptacyjny: trzydziestodniowa passa rozegrana w terenie przez osobę spoza zespołu, bez utraty zapisu i bez sytuacji, w której gra popycha gracza w niebezpieczne miejsce.</p>
+          <p>Zakres pierwszej grywalnej wersji to jeden typ przeciwnika, trzy bronie, około dwudziestu przedmiotów w rotacji, jedna Strefa Rozkładu z pełną mechaniką wzrostu i neutralizacji, schron bez modułów, dwa języki. Test akceptacyjny: trzydziestodniowa passa rozegrana w terenie przez osobę spoza zespołu, bez utraty zapisu i bez sytuacji, w której gra popycha gracza w niebezpieczne miejsce.</p>
         </div>
       </section>
 

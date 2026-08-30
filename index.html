@@ -79,7 +79,7 @@
         <li><a href="#combat"><span>06</span><span>Combat</span></a></li>
         <li><a href="#noise"><span>07</span><span>Noise</span></a></li>
         <li><a href="#enemies"><span>08</span><span>Enemies</span></a></li>
-        <li><a href="#hotspots"><span>09</span><span>Hotspots</span></a></li>
+        <li><a href="#hotspots"><span>09</span><span>Decay Zones</span></a></li>
         <li><a href="#loot"><span>10</span><span>Loot and economy</span></a></li>
         <li><a href="#skills"><span>11</span><span>Skills</span></a></li>
         <li><a href="#shelter"><span>12</span><span>Shelter and camp</span></a></li>
@@ -108,7 +108,7 @@
           <option value="#combat">06 — Combat</option>
           <option value="#noise">07 — Noise</option>
           <option value="#enemies">08 — Enemies</option>
-          <option value="#hotspots">09 — Hotspots</option>
+          <option value="#hotspots">09 — Decay Zones</option>
           <option value="#loot">10 — Loot and economy</option>
           <option value="#skills">11 — Skills</option>
           <option value="#shelter">12 — Shelter and camp</option>
@@ -347,7 +347,7 @@ MET_effective = MET × (1 + 0.8 × (load / body mass))</div>
               <tbody>
                 <tr><th scope="row">Occupation</th><td>sleep, reading, construction, crafting, recycling</td><td>starting a new one cancels the previous; progress is saved</td></tr>
                 <tr><th scope="row">Action</th><td>eating, drinking, dressing wounds, searching, shooting</td><td>suspends the occupation, which resumes afterwards</td></tr>
-                <tr><th scope="row">Background process</th><td>metabolism, bleeding, hotspot growth</td><td>always ticking, independent of everything</td></tr>
+                <tr><th scope="row">Background process</th><td>metabolism, bleeding, zone growth</td><td>always ticking, independent of everything</td></tr>
               </tbody>
             </table>
           </div>
@@ -464,6 +464,27 @@ MET_effective = MET × (1 + 0.8 × (load / body mass))</div>
             </table>
           </div>
           <p>Raw materials differ in character: metal is a mass problem, plastic and fabric fill volume, and wood pinches on both axes at once.</p>
+
+          <h3>Tools, and what a locked door costs</h3>
+          <p>A crowbar is not a crafting ingredient. It is the difference between a shop you can get into and one you cannot, and every barrier has a loud way through and most have a quiet one. Nothing is impassable for want of an item except the padlock, which is the one barrier the design document says requires a tool: a player who owns nothing still gets into a building through a window, loudly, with the glass as the price.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Ways through a barrier</caption>
+              <thead><tr><th scope="col">Barrier</th><th scope="col">With</th><th scope="col" class="n">Time</th><th scope="col" class="n">Noise</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" rowspan="3">Door</th><td>lockpicks</td><td class="n">60 s</td><td class="n">20 m</td></tr>
+                <tr><td>crowbar or axe</td><td class="n">12 s</td><td class="n">150 m</td></tr>
+                <tr><td>shoulders</td><td class="n">90 s</td><td class="n">200 m</td></tr>
+                <tr><th scope="row" rowspan="3">Padlock</th><td>bolt cutters</td><td class="n">10 s</td><td class="n">60 m</td></tr>
+                <tr><td>lockpicks</td><td class="n">45 s</td><td class="n">20 m</td></tr>
+                <tr><td>crowbar, saw or multitool</td><td class="n">25 s</td><td class="n">60 m</td></tr>
+                <tr><th scope="row">Window</th><td>anything, including hands</td><td class="n">10 s</td><td class="n">160 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The ordering is the point: a minute and twenty metres against ninety seconds and two hundred. It was not always. Twenty seconds with a shoulder against twelve with a crowbar meant tools were decoration — eight seconds of difference will not persuade anyone to carry one and a half kilograms — and bare hands were <em>faster</em> than lockpicks, so the quiet way had no advantage at all beyond the noise.</p>
+          <p>The panel names the tool it will actually use, not the category: a door yields to a crowbar <em>or</em> an axe, and a panel showing one while the game wears out the other would be worse than a silent panel — you would remember a price you never paid. Opening something wears the tool down by its own <code>condition_decay_per_use</code>: two per cent for lockpicks, so a set is worth fifty locks and no more. The worst copy in the pack goes first, which is what anybody with two pocket knives does.</p>
+          <p>Not every place is shut. Roughly a third of doors are already open, nearly half the windows are already broken, and only one padlock in ten gave way to somebody else — a world where every door is closed is a world nobody else lived in.</p>
 
           <h3>Clothing and armour</h3>
           <p>Two independent axes: thermal (<code>insulation_clo</code>, feeding the sweat formula) and ballistic (<code>protection_level</code> plus <code>coverage_pct</code>, reducing damage only for the location that was hit). A helmet covers 12%, a vest 55% — a limb hit ignores both.</p>
@@ -598,10 +619,26 @@ open ground ×1.2   ·   rain or strong wind ×0.75</div>
               <tbody>
                 <tr><th scope="row">Firearm</th><td>kills at range, high hit chance when calm</td><td>pulls in everything within 700 m, burns scarce ammunition</td></tr>
                 <tr><th scope="row">Blade</th><td>silence at 25 m, no ammunition cost</td><td>requires closing in, which means flanking and bleeding risk</td></tr>
-                <tr><th scope="row">Avoidance</th><td>zero cost</td><td>the hotspot keeps growing</td></tr>
+                <tr><th scope="row">Avoidance</th><td>zero cost</td><td>the zone keeps growing</td></tr>
               </tbody>
             </table>
           </div>
+          <h3>The noise you make yourself</h3>
+          <p>There is no crouch button and there never will be. The game measures the movement of a real person, so the only way to be quieter is to walk more slowly — and that cuts both ways, because a chase forces you to run and running is heard from forty metres.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Your own audible radius, by speed</caption>
+              <thead><tr><th scope="col">Pace</th><th scope="col" class="n">Speed</th><th scope="col" class="n">Heard from</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Standing still</th><td class="n">under 0.5 km/h</td><td class="n">nothing</td></tr>
+                <tr><th scope="row">Careful step</th><td class="n">under 3.2 km/h</td><td class="n">8 m</td></tr>
+                <tr><th scope="row">Walking</th><td class="n">under 6.4 km/h</td><td class="n">15 m</td></tr>
+                <tr><th scope="row">Running</th><td class="n">6.4 km/h and up</td><td class="n">40 m</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The figure is on the HUD at all times, under the vital bars, as a word and a distance: <em>quiet</em>, <em>8 m</em>, <em>15 m</em>, <em>40 m</em>. A penalty nobody can see is not a mechanic.</p>
+
           <p>A shot also ducks the mix for 2–3 seconds — a simulation of temporary hearing dullness. During that window you cannot hear approaching enemies. It is a realistic and painful penalty for shooting without ear protection.</p>
         </div>
       </section>
@@ -630,15 +667,40 @@ open ground ×1.2   ·   rain or strong wind ×0.75</div>
             <table class="tbl">
               <thead><tr><th scope="col">State</th><th scope="col">Entry condition</th><th scope="col">Behaviour</th></tr></thead>
               <tbody>
-                <tr><th scope="row">Idle</th><td>default</td><td>random movement within the hotspot</td></tr>
+                <tr><th scope="row">Idle</th><td>default</td><td>random movement within the zone</td></tr>
                 <tr><th scope="row">Alert</th><td>player within detection range</td><td>walks towards the player, no sprint budget spent</td></tr>
                 <tr><th scope="row">Chase</th><td>close contact or a shot fired</td><td>sprints, spending budget</td></tr>
                 <tr><th scope="row">Exhausted</th><td>sprint budget at zero</td><td>40% of run speed, still closing on the player</td></tr>
-                <tr><th scope="row">Return</th><td>contact lost or 400 m leash exceeded</td><td>walks back to the hotspot centre, full recovery</td></tr>
+                <tr><th scope="row">Return</th><td>contact lost or 400 m leash exceeded</td><td>walks back to the zone centre, full recovery</td></tr>
               </tbody>
             </table>
           </div>
           <p>In Chase and Exhausted the enemy never stops. Combat is never static — shooting one means losing distance to all the others. The 400 m leash and the 45-second contact-loss rule stop you from dragging a train of enemies across half the city.</p>
+
+          <h3>What they see, what they hear, and the back of the neck</h3>
+          <p>Detection used to be a radius, and a radius has no back: a Shambler noticed you from behind exactly as it noticed you head-on, so the only answers to an enemy were a weapon or distance. Approaching one was not a thing that existed. Three rules now, and every one of them is visible on the map before it punishes you:</p>
+          <div class="scroller">
+            <table class="tbl">
+              <thead><tr><th scope="col">Rule</th><th scope="col">What it means</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">A 120° cone</th><td>they see only what falls inside the cone around the direction they are walking — outside it, nothing, even a metre away. The cone is drawn on the map at its true radius.</td></tr>
+                <tr><th scope="row">Hearing by pace</th><td>your own audible radius decides it. Standing still is silent; running is heard from forty metres.</td></tr>
+                <tr><th scope="row">Heard is not seen</th><td>a sound makes them <em>alert</em>, and an alert enemy walks to <em>where the sound was</em>, not to you.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>One exception, and it is deliberate: an enemy already chasing sees everything. A pursuer you could shake off by stepping round it in half a second would be an obstacle, not a threat.</p>
+
+          <h3>The quiet answer</h3>
+          <p>Unaware, standing inside its 120° blind arc, within three metres, with a blade in your hand: one movement and it is over — the full blood volume at once, and twelve metres of noise, which is the body falling. Not a Brute. Six to eight litres of blood and a neck that does not part for a knife; a mechanic where the most dangerous thing in the game drops to one touch from behind turns the elite into a training dummy.</p>
+
+          <div class="warn">
+            <span class="warn__t">After dusk</span>
+            <p>At full night half again as many of them are on the street. Enough that the same road is a different problem at ten in the evening than it was at two in the afternoon, and not enough to make the night impassable — the zones grow without any help from the dark.</p>
+          </div>
+
+          <h3>How close is it</h3>
+          <p>The vital bars change colour at three distances, counting every enemy whether it has noticed you or not: <b>175 m</b> — slow down and look at the cones. <b>150 m</b> — decide: go round, or go back. <b>100 m</b> — there is no going round any more. The bar used to count only the ones already moving, so a Shambler standing eighty metres away and still unaware did not exist on screen; you learned about it at the moment nothing but running was left. At 150 m the game also stops economising: GPS and the screen go to combat pace, because the direction an enemy is looking is what you read to decide whether you can get past.</p>
 
           <p>The three types are three stages of the same disease, which explains their parameters without changing a single number: the Leaper was infected earliest and is metabolically wasted, Shamblers came with the second wave and move in groups because they were infected together, and the Brute is the latest stage — oedema and fluid retention.</p>
         </div>
@@ -646,22 +708,22 @@ open ground ×1.2   ·   rain or strong wind ×0.75</div>
 
       <section class="sec" id="hotspots">
         <div class="sec__hd">
-          <span class="sec__no">09 · Hotspots</span>
+          <span class="sec__no">09 · Decay Zones</span>
           <h2>The clock that measures out difficulty</h2>
-          <p class="sec__lede">A contamination hotspot is a permanent point on the map that spawns enemies. It grows over time — including while you are not playing. This is the direct expression of the goal “survive as long as possible”: the longer the streak, the greater the pressure.</p>
+          <p class="sec__lede">A Decay Zone is a permanent point on the map that spawns enemies. It grows over time — including while you are not playing. This is the direct expression of the goal “survive as long as possible”: the longer the streak, the greater the pressure.</p>
         </div>
 
         <div class="clock" id="clock">
-          <div class="clock__hd"><span>Hotspot growth · radius by level</span><span>20 m → 200 m</span></div>
+          <div class="clock__hd"><span>Zone growth · radius by level</span><span>20 m → 200 m</span></div>
           <div class="clock__body">
-            <svg viewBox="0 0 520 430" role="img" aria-label="Hotspot growth diagram: ten concentric circles to scale, from 20 metres radius at level one to 200 metres at level ten.">
+            <svg viewBox="0 0 520 430" role="img" aria-label="Zone growth diagram: ten concentric circles to scale, from 20 metres radius at level one to 200 metres at level ten.">
               <g id="rings" data-unit="m"></g>
               <circle cx="260" cy="210" r="3" fill="#A82D17"/>
               <text x="260" y="230" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-size="10" fill="#4A524F">fixed centre</text>
             </svg>
           </div>
           <div class="clock__legend">
-            <div><b>3</b><span>max. hotspots at once</span></div>
+            <div><b>3</b><span>max. zones at once</span></div>
             <div><b>500 m</b><span>min. distance from the shelter</span></div>
             <div><b>450 m</b><span>min. spacing between centres</span></div>
             <div><b>12</b><span>enemies at once at level 10</span></div>
@@ -669,16 +731,14 @@ open ground ×1.2   ·   rain or strong wind ×0.75</div>
         </div>
 
         <div class="prose">
-          <div class="f">promotion_interval = max(2h, 8h − 0.25h × survival_day) × random(0.6, 1.4)
-
-Day 1   → promotion roughly every 8 h
-Day 12  → every ~5 h
-Day 24+ → every 2 h (floor)</div>
-          <p>Time counts at 100% while the game is active and at 25% while it is not. The world decays even when you are not playing — but more slowly, so a week away does not automatically mean finding three level-10 hotspots on your return.</p>
+          <div class="f">growth_interval = random(24 h, 48 h) × (5.8 h ÷ credited_hours_per_day) × random(0.6, 1.4)
+                  clamped to 12 h … 96 h</div>
+          <p>A level takes a day or two of <em>real</em> time. The old formula counted in game-world hours — eight on the first day, a quarter of an hour less on each of the next, floored at two — and once run through the pace of play it produced a zone growing faster than anyone could beat it down. A city is meant to rot over weeks, not over an afternoon.</p>
+          <p>The interval is scaled by how much you actually play, measured against a reference habit of an hour a day. Someone who plays all day does not get an easier world, and someone who is away for a fortnight does not come back to a different game: the clamp holds the interval between half a day and four days whatever the habit says. Time counts at 100% while the game is active and at 25% while it is not.</p>
 
           <div class="scroller">
             <table class="tbl">
-              <caption>Hotspot levels</caption>
+              <caption>Zone levels</caption>
               <thead><tr><th scope="col" class="n">Level</th><th scope="col" class="n">Radius</th><th scope="col" class="n">Enemies</th><th scope="col" class="n">Respawn</th><th scope="col">Composition</th></tr></thead>
               <tbody>
                 <tr><th scope="row" class="n">1</th><td class="n">20 m</td><td class="n">1</td><td class="n">15 min</td><td>Shambler</td></tr>
@@ -689,17 +749,37 @@ Day 24+ → every 2 h (floor)</div>
             </table>
           </div>
 
-          <h3>Neutralisation</h3>
-          <div class="f">Integrity_max(level) = 60 + 20 × level     // 80 pts at level 1, 260 at level 10
+          <h3>Breaking one down</h3>
+          <div class="f">barrier_max(level) = 60 + 20 × level     // 80 pts at level 1, 260 at level 10
 
-Shambler 10 pts  ·  Leaper 15 pts  ·  Brute 35 pts
-Kills outside the hotspot radius: 50% value</div>
-          <p>Once integrity hits zero the hotspot loses a level and enters a ten-minute <em>agitation</em>: triple respawn rate, a 50% higher enemy cap, composition shifted one rung up and detection range half again as large. Taking a level-10 hotspot down to zero means passing through ten consecutive agitations — a multi-hour operation requiring ammunition and medical backing.</p>
-          <p>After elimination a one-off cache appears at the centre, roughly three times better than an ordinary loot box, and the slot stays empty for 24–48 hours of real time. The reward is breathing room.</p>
+A body dropped inside the circle   10 pts
+A body dropped outside it           5 pts
+Regeneration                        5% of the maximum per hour</div>
+          <p>Ten points a kill, flat, whatever it was. Scoring by species — Shambler ten, Leaper fifteen, Brute thirty-five — rewarded picking the most dangerous target, which is the opposite of what a zone is for: the choice is meant to be <em>where</em> you fight, not <em>what</em>. Drawing them out beyond the circle is safer and exactly twice as slow, and that is the whole trade.</p>
+          <p>The barrier heals at five per cent an hour — but <b>not while you are standing inside it</b>. A bar refilling under the feet of the person emptying it is a bar that says the attempt is pointless, and walking away half way through is meant to be the expensive decision, not the only one.</p>
+
+          <h3>The hatch</h3>
+          <p>Every hit inside a zone carries a 10% chance of a hatch: half the level's enemy cap again, on top of it, for ten minutes — three more at level five, six at level ten. Not so many that it is death, and enough to stop you counting on knowing how many there are. Once an hour at most, and the cooldown is stored on disk, because a penalty you can lift by restarting the app is a penalty for playing honestly. Agitation does not renew more than 400 m from the centre: it is meant to be hard, not a spiral with no way out.</p>
+
+          <h3>What is left of one</h3>
+          <p>Take the barrier to zero at level one and the zone is gone. In its place, at the centre, a one-off cache — and it is the reason to go at all, not a consolation for the ammunition:</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>Zone cache</caption>
+              <thead><tr><th scope="col">Contents</th><th scope="col" class="n">Amount</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Components</th><td class="n">4–8</td></tr>
+                <tr><th scope="row">Scrap metal</th><td class="n">10–18</td></tr>
+                <tr><th scope="row">First-aid kits</th><td class="n">1–2</td></tr>
+                <tr><th scope="row">5.45×39 rounds</th><td class="n">30–60</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Four things that change an expedition, rather than twenty that change a number in the pack. The slot then rests for 24–48 hours of real time before another zone appears somewhere else — an empty slot is a state of its own, and it is the reward.</p>
 
           <div class="warn">
             <span class="warn__t">Horde — level 10</span>
-            <p>Every 6–12 hours the hotspot sends 6–10 enemies towards the shelter. They will not enter the safe zone but they will encircle it and stay 30–60 minutes. You are cut off. The warning arrives ten minutes ahead: “You can hear them to the east.”</p>
+            <p>Every 6–12 hours the zone sends 6–10 enemies towards the shelter. They will not enter the safe zone but they will encircle it and stay 30–60 minutes. You are cut off. The warning arrives ten minutes ahead: “You can hear them to the east.”</p>
           </div>
         </div>
       </section>
@@ -743,6 +823,9 @@ Kills outside the hotspot radius: 50% value</div>
             </table>
           </div>
           <p>Searching a building is itself a timed action: 30 seconds cursory, 90 thorough, 180 exhaustive with double the chance of a rare item. It generates noise and can be interrupted. You decide whether to grab and run or gamble for better loot.</p>
+
+          <h3>Nothing grows on your own doorstep</h3>
+          <p>Loot never spawns within eighty metres of the shelter — the fifty-metre safe zone plus thirty metres of clear ground around it. A crate sitting exactly on the boundary is a crate you fetch in two steps, and the whole economy rests on having to go somewhere for things. A genuine POI that happened to be there before you moved in — a shop across the road from the flat you chose — is not deleted; it is searched once, like anything else, and then it is finished.</p>
         </div>
       </section>
 
@@ -774,7 +857,7 @@ Total XP to 100% = 353,500        // ≈ 509 hours of reading</div>
         <div class="sec__hd">
           <span class="sec__no">12 · Shelter and camp</span>
           <h2>The walk home from work is the gameplay</h2>
-          <p class="sec__lede">The main shelter stands where you live. The camp goes where you spend your day. Between them lies the ground the hotspots occupy.</p>
+          <p class="sec__lede">The main shelter stands where you live. The camp goes where you spend your day. Between them lies the ground the Decay Zones occupy.</p>
         </div>
         <div class="prose">
           <div class="scroller">
@@ -857,7 +940,7 @@ Time 25 min  ·  Quality: <b>+2 MOA</b> against factory ammunition</div>
                 <tr><th scope="row">Skills</th><td>lost</td><td>fully retained</td></tr>
                 <tr><th scope="row">Shelter</th><td>lost</td><td>retained</td></tr>
                 <tr><th scope="row">Shelter storage</th><td>lost</td><td>untouched</td></tr>
-                <tr><th scope="row">Hotspots</th><td>reset to level 1</td><td>keep growing</td></tr>
+                <tr><th scope="row">Decay Zones</th><td>reset to level 1</td><td>keep growing</td></tr>
                 <tr><th scope="row">Survival streak</th><td>final, goes to the Chronicle</td><td>reset to zero</td></tr>
               </tbody>
             </table>
@@ -904,7 +987,7 @@ D = clamp((12 − daylight_hours) / 6, 0, 1)   // darkness index</div>
             <table class="tbl">
               <thead><tr><th scope="col">System</th><th scope="col">Modifier</th></tr></thead>
               <tbody>
-                <tr><th scope="row">Hotspot growth</th><td><code>interval × (1 + 1.2 × C)</code> — in hard frost hotspots grow more than twice as slowly</td></tr>
+                <tr><th scope="row">Zone growth</th><td><code>interval × (1 + 1.2 × C)</code> — in hard frost zones grow more than twice as slowly</td></tr>
                 <tr><th scope="row">Enemy speed</th><td><code>× (1 − 0.30 × C)</code></td></tr>
                 <tr><th scope="row">Sprint budget</th><td><code>× (1 − 0.25 × C)</code></td></tr>
                 <tr><th scope="row">Calorie requirement</th><td><code>× (1 + 0.15 × C)</code> — raised thermogenesis</td></tr>
@@ -977,6 +1060,21 @@ y = 0</div>
             <li><strong>You cannot outrun a Leaper.</strong> Twenty-five seconds of sprint at 30 km/h always covers the detection distance — the player will conclude the game is cheating.</li>
             <li><strong>Your body is the controller.</strong> The game counts real calories from real movement — a player on a sofa will not understand why nothing is happening.</li>
           </ol>
+          <h3>What you start with</h3>
+          <p>Character creation has a second step. Four choices, two options each, both on screen at once with what each one is written underneath — a choice between two things side by side is a decision; one on a screen you have to scroll past to reach the other is a quiz.</p>
+          <div class="scroller">
+            <table class="tbl">
+              <caption>The starting kit</caption>
+              <thead><tr><th scope="col" class="n">Step</th><th scope="col">One of</th><th scope="col">What it decides</th></tr></thead>
+              <tbody>
+                <tr><th scope="row" class="n">1</th><td>crowbar · lockpicks</td><td>whether closed doors are opened quickly or quietly</td></tr>
+                <tr><th scope="row" class="n">2</th><td>5 dressings · first-aid kit</td><td>many small wounds, or one bad one</td></tr>
+                <tr><th scope="row" class="n">3</th><td>machete · axe</td><td>what is in your hand when distance runs out</td></tr>
+                <tr><th scope="row" class="n">4</th><td>2 tins of meat · 3 of vegetables</td><td>calories now, or one more day of not looking</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>One lockpick, not a set. Since opening costs the tool, four of them would be fifty locks spent before the game started. Nothing is handed out on top of it, and the summary screen says so plainly: this is everything you have.</p>
           <p>Everything else can wait and arrives as a contextual hint at the moment of first contact. The first fight is the only scripted scenario in the whole game: a single Shambler 120 m away, in a safe direction, with reduced damage and no ability to kill the player.</p>
           <p>The last two hints of that sequence matter most, because they set the game's economy in the player's head from the first minute:</p>
           <div class="warn">
@@ -1017,7 +1115,7 @@ y = 0</div>
               <thead><tr><th scope="col">State layer</th><th scope="col">Contents</th><th scope="col">Written</th></tr></thead>
               <tbody>
                 <tr><th scope="row">Hot</th><td>position, blood, water, calories, heart rate</td><td>every 60 s and on backgrounding</td></tr>
-                <tr><th scope="row">Warm</th><td>inventory, skills, shelter, hotspots</td><td>on every change, transactionally</td></tr>
+                <tr><th scope="row">Warm</th><td>inventory, skills, shelter, Decay Zones</td><td>on every change, transactionally</td></tr>
                 <tr><th scope="row">Cold</th><td>Chronicle, records, settings</td><td>on event</td></tr>
               </tbody>
             </table>
@@ -1034,7 +1132,7 @@ y = 0</div>
           <ul>
             <li>GPS simulator: GPX playback, arrow-key control, jump to coordinates</li>
             <li>Time acceleration ×1 / ×60 / ×3600 — a game day passes in 24 seconds</li>
-            <li>Physiology and world panels: force heart rate, spawn enemies, set hotspot level, trigger a horde</li>
+            <li>Physiology and world panels: force heart rate, spawn enemies, set zone level, trigger a horde</li>
             <li>Diagnostic overlay with the MOA breakdown, hit chance and noise radius</li>
             <li>Deterministic replays: seed plus event stream</li>
           </ul>
@@ -1046,7 +1144,7 @@ y = 0</div>
         <div class="sec__hd">
           <span class="sec__no">20 · Status</span>
           <h2>Where the project stands</h2>
-          <p class="sec__lede">The design document is complete and most of it is built. 2 121 tests, database schema v29, stages 0–2 closed and 3–5 and 8 waiting on field walks rather than on code.</p>
+          <p class="sec__lede">The design document is complete and most of it is built. 2 584 tests, database schema v36, stages 0–2 closed and 3–6 and 8 waiting on field walks rather than on code.</p>
         </div>
         <div class="prose">
           <div class="scroller">
@@ -1060,14 +1158,14 @@ y = 0</div>
                 <tr><th scope="row" class="n">3</th><td>Map, GPS, player safety</td><td>an hour's walk with no phantom movement at rest</td><td>built, walking</td></tr>
                 <tr><th scope="row" class="n">4</th><td>Items, loot, searching</td><td>playable point density even without POI</td><td>built, walking</td></tr>
                 <tr><th scope="row" class="n">5</th><td>Combat, enemies, noise</td><td>the accuracy calibration table reproduced</td><td>built, walking</td></tr>
-                <tr><th scope="row" class="n">6</th><td>Hotspot with the full cycle</td><td>path 1 → 10 → knockdown → elimination with no state drift</td><td>in progress</td></tr>
+                <tr><th scope="row" class="n">6</th><td>Decay Zone with the full cycle</td><td>path 1 → 10 → knockdown → elimination with no state drift</td><td>built, walking</td></tr>
                 <tr><th scope="row" class="n">7</th><td>Positional audio and haptics</td><td>direction recognisable with the phone in a pocket</td><td>not started</td></tr>
                 <tr><th scope="row" class="n">8</th><td>Shelter, camp, daily loop</td><td>a full day with no loss of state</td><td>built, walking</td></tr>
                 <tr><th scope="row" class="n">9</th><td>Onboarding, accessibility, compliance</td><td>the game works after background location is refused</td><td>not started</td></tr>
               </tbody>
             </table>
           </div>
-          <p>The first playable version covers one enemy type, three weapons, about twenty items in rotation, one hotspot with the full growth and neutralisation mechanic, a shelter without modules, and two languages. Acceptance test: a thirty-day survival streak played in the field by someone outside the team, with no save loss and no situation where the game pushes a player somewhere dangerous.</p>
+          <p>The first playable version covers one enemy type, three weapons, about twenty items in rotation, one Decay Zone with the full growth and neutralisation mechanic, a shelter without modules, and two languages. Acceptance test: a thirty-day survival streak played in the field by someone outside the team, with no save loss and no situation where the game pushes a player somewhere dangerous.</p>
         </div>
       </section>
 
