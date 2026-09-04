@@ -4,534 +4,762 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Where to find it — ARLS-ZA</title>
-<meta name="description" content="Every searchable place in ARLS-ZA and what it holds — straight from the game's own loot tables.">
+<meta name="description" content="Every searchable place in ARLS-ZA and what it holds — straight from the loot tables the game rolls against.">
 <meta name="color-scheme" content="light">
+<meta property="og:title" content="Where to find it — ARLS-ZA">
+<meta property="og:description" content="Every searchable place in ARLS-ZA and what it holds — straight from the loot tables the game rolls against.">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="loot.html">
+<link rel="alternate" hreflang="pl" href="pl/loot.html">
+<link rel="alternate" hreflang="x-default" href="loot.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E4E5DF'/%3E%3Ccircle cx='16' cy='16' r='4' fill='none' stroke='%23A82D17' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23A82D17' stroke-width='1.2' opacity='.6'/%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%23A82D17' stroke-width='1' opacity='.35'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip" href="#content">Skip to content</a>
+
 <header class="hero">
+  <svg class="hero__contour" viewBox="0 0 900 500" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <g fill="none" stroke="currentColor" stroke-width="1">
+      <g id="c"><path d="M120 250c40-95 175-160 300-150 130 10 235 78 268 165 30 80-25 160-140 186-140 32-300 10-378-62-52-48-72-99-50-139z"/></g>
+      <use href="#c" transform="translate(450 250) scale(.86) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.72) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.58) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.44) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.30) translate(-450 -250)"/>
+      <use href="#c" transform="translate(450 250) scale(.17) translate(-450 -250)"/>
+    </g>
+  </svg>
+
   <div class="hero__inner">
     <div class="hero__meta eyebrow">
       <span><a href="index.html">← ARLS-ZA</a></span>
       <span>22 places</span>
       <nav class="langs" aria-label="Language">
-        <a href="loot.html" aria-current="true" hreflang="en">EN</a>
-        <a href="pl/loot.html" hreflang="pl">PL</a>
+        <a href="loot.html" aria-current="true" data-lang-link hreflang="en">EN</a>
+        <a href="pl/loot.html" data-lang-link hreflang="pl">PL</a>
       </nav>
     </div>
-    <h1><span class="hero__title">
-Where to find it
-    </span></h1>
+
+    <h1>
+      <span class="hero__title">Where to find it</span>
+      <span class="hero__sub">Loot tables · every place, every item</span>
+    </h1>
     <p class="thesis">
-<strong>Every entry here is the one a search in the game actually rolls against.</strong> The page is generated from <code>assets/data/loot_tables.json</code> through the same classes the engine uses — a table that fails validation never reaches the page.
+      <strong>Every entry here is the one a search in the game actually rolls against.</strong> The page is generated from <code>assets/data/loot_tables.json</code> through the same classes the engine uses — a table that fails validation never reaches the page.
     </p>
     <p class="thesis">
-<a href="items.html">The full item catalogue →</a>
+      <a href="items.html">The full item catalogue →</a>
     </p>
   </div>
 </header>
-<div class="shell"><div class="layout"><main id="content">
-<section class="sec">
-  <div class="stats">
-    <div class="stat"><b>11</b><span>real places (OSM)</span></div>
-    <div class="stat"><b>11</b><span>procedural points</span></div>
-    <div class="stat"><b>126</b><span>distinct items in circulation</span></div>
+
+<div class="shell">
+  <div class="layout">
+
+    <nav class="rail" aria-label="Places">
+      <p class="rail__t">Places</p>
+      <ol id="rail-list">
+        <li><a href="#real"><span>00</span><span>Real places</span></a></li>
+        <li><a href="#poi_grocery"><span>01</span><span>Grocery store</span></a></li>
+        <li><a href="#poi_weapons"><span>02</span><span>Gun shop</span></a></li>
+        <li><a href="#poi_hardware"><span>03</span><span>Hardware store</span></a></li>
+        <li><a href="#poi_hospital"><span>04</span><span>Hospital</span></a></li>
+        <li><a href="#poi_industrial"><span>05</span><span>Industrial site</span></a></li>
+        <li><a href="#poi_library"><span>06</span><span>Library / bookshop</span></a></li>
+        <li><a href="#poi_military"><span>07</span><span>Military site</span></a></li>
+        <li><a href="#poi_pharmacy"><span>08</span><span>Pharmacy</span></a></li>
+        <li><a href="#poi_school"><span>09</span><span>School</span></a></li>
+        <li><a href="#poi_sports"><span>10</span><span>Sports and outdoor shop</span></a></li>
+        <li><a href="#poi_warehouse"><span>11</span><span>Warehouse</span></a></li>
+        <li><a href="#procedural"><span>12</span><span>Procedural layer</span></a></li>
+        <li><a href="#proc_abandoned_car"><span>13</span><span>Abandoned car</span></a></li>
+        <li><a href="#proc_abandoned_house"><span>14</span><span>Abandoned house</span></a></li>
+        <li><a href="#proc_ambulance"><span>15</span><span>Ambulance</span></a></li>
+        <li><a href="#proc_barn"><span>16</span><span>Barn</span></a></li>
+        <li><a href="#proc_waste"><span>17</span><span>Bin / skip</span></a></li>
+        <li><a href="#proc_garage"><span>18</span><span>Garage</span></a></li>
+        <li><a href="#proc_hunting_stand"><span>19</span><span>Hunting stand</span></a></li>
+        <li><a href="#proc_police_car"><span>20</span><span>Police car</span></a></li>
+        <li><a href="#proc_roadside"><span>21</span><span>Roadside</span></a></li>
+        <li><a href="#proc_shelter"><span>22</span><span>Shelter / lean-to</span></a></li>
+        <li><a href="#proc_water_point"><span>23</span><span>Water point</span></a></li>
+      </ol>
+    </nav>
+
+    <main id="content">
+
+      <div class="jump">
+        <label class="eyebrow" for="jump-sel">Jump to</label>
+        <select id="jump-sel" aria-label="Jump to">
+          <option value="#real">00 — Real places</option>
+          <option value="#poi_grocery">01 — Grocery store</option>
+          <option value="#poi_weapons">02 — Gun shop</option>
+          <option value="#poi_hardware">03 — Hardware store</option>
+          <option value="#poi_hospital">04 — Hospital</option>
+          <option value="#poi_industrial">05 — Industrial site</option>
+          <option value="#poi_library">06 — Library / bookshop</option>
+          <option value="#poi_military">07 — Military site</option>
+          <option value="#poi_pharmacy">08 — Pharmacy</option>
+          <option value="#poi_school">09 — School</option>
+          <option value="#poi_sports">10 — Sports and outdoor shop</option>
+          <option value="#poi_warehouse">11 — Warehouse</option>
+          <option value="#procedural">12 — Procedural layer</option>
+          <option value="#proc_abandoned_car">13 — Abandoned car</option>
+          <option value="#proc_abandoned_house">14 — Abandoned house</option>
+          <option value="#proc_ambulance">15 — Ambulance</option>
+          <option value="#proc_barn">16 — Barn</option>
+          <option value="#proc_waste">17 — Bin / skip</option>
+          <option value="#proc_garage">18 — Garage</option>
+          <option value="#proc_hunting_stand">19 — Hunting stand</option>
+          <option value="#proc_police_car">20 — Police car</option>
+          <option value="#proc_roadside">21 — Roadside</option>
+          <option value="#proc_shelter">22 — Shelter / lean-to</option>
+          <option value="#proc_water_point">23 — Water point</option>
+        </select>
+      </div>
+
+      <section class="sec">
+        <div class="stats">
+          <div class="stat"><b>11</b><span>real places (OSM)</span></div>
+          <div class="stat"><b>11</b><span>procedural points</span></div>
+          <div class="stat"><b>126</b><span>distinct items in circulation</span></div>
+        </div>
+      </section>
+
+      <section class="sec" id="real">
+        <div class="sec__hd">
+          <span class="sec__no">Real places</span>
+          <h2>Read off the map, not invented</h2>
+          <p class="sec__lede">Tables tied to OpenStreetMap tags. A pharmacy on the map is a pharmacy in the game, and where you live decides what you find.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_grocery">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Grocery store</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-food_canned_vegetables">Canned vegetables</a></th><td>common</td><td class="n">×1–3</td><td class="n">10.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_canned_meat">Canned meat</a></th><td>common</td><td class="n">×1–3</td><td class="n">9.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–2</td><td class="n">8.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–4</td><td class="n">8.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_instant_soup">Instant soup</a></th><td>common</td><td class="n">×1–3</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_shopping_bag">Shopping bag</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_chocolate">Chocolate</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">6.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_1500">Water, 1.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">6.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_energy">Energy drink</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">5.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_battery">Battery</a></th><td>common</td><td class="n">×1–4</td><td class="n">5.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_dried_meat">Dried meat</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">4.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_matches">Matches</a></th><td>common</td><td class="n">×1–2</td><td class="n">4.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_sandwich">Sandwich</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">3.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_can_opener">Can opener</a></th><td>common</td><td class="n">×1</td><td class="n">3.5%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_weapons">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Gun shop</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-ammo_9x19">9x19 mm round</a></th><td>common</td><td class="n">×5–24</td><td class="n">10.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_22lr">.22 LR round</a></th><td>common</td><td class="n">×10–50</td><td class="n">7.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_12ga_buck">12 ga buckshot</a></th><td>common</td><td class="n">×3–10</td><td class="n">6.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_leaflet_range_safety">Leaflet: range safety</a></th><td>common</td><td class="n">×1</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_pistol_9mm">Pistol magazine 9x19 (15)</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_38special">.38 Special round</a></th><td>uncommon</td><td class="n">×4–12</td><td class="n">5.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_rifle_22lr">.22 LR rifle</a></th><td>common</td><td class="n">×1</td><td class="n">5.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_magazine_guns">Firearms magazine</a></th><td>common</td><td class="n">×1</td><td class="n">5.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_rifle_22lr">Rifle magazine .22 LR (10)</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_12ga_slug">12 ga slug</a></th><td>uncommon</td><td class="n">×2–8</td><td class="n">4.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_pistol_9mm">9 mm pistol</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_gun_cleaning_kit">Gun cleaning kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">4.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_revolver_38">.38 revolver</a></th><td>uncommon</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-armor_vest_soft">Soft body armour</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_shotgun_pump">Pump shotgun</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_smg_9mm">SMG magazine 9x19 (30)</a></th><td>rare</td><td class="n">×1</td><td class="n">2.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-armor_helmet_ballistic">Ballistic helmet</a></th><td>rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_pistol_9mm_ext">Extended magazine 9x19 (25)</a></th><td>rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_smg_9mm">9 mm submachine gun</a></th><td>rare</td><td class="n">×1</td><td class="n">1.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_weapon_light">Weapon light</a></th><td>rare</td><td class="n">×1</td><td class="n">1.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_red_dot">Red dot sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_foregrip">Foregrip</a></th><td>rare</td><td class="n">×1</td><td class="n">1.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_suppressor">Suppressor</a></th><td>very rare</td><td class="n">×1</td><td class="n">0.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_laser">Laser sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">0.8%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_hardware">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Hardware store</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_nails">Nails</a></th><td>common</td><td class="n">×1–3</td><td class="n">11.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–4</td><td class="n">10.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–3</td><td class="n">9.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–3</td><td class="n">9.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_duct_tape">Duct tape</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">8.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–4</td><td class="n">8.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_glue">Glue</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_screwdriver">Screwdriver</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_hammer">Hammer</a></th><td>common</td><td class="n">×1</td><td class="n">4.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_lighter">Lighter</a></th><td>common</td><td class="n">×1–2</td><td class="n">4.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_saw">Saw</a></th><td>uncommon</td><td class="n">×1</td><td class="n">3.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_shovel">Shovel</a></th><td>common</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_axe">Axe</a></th><td>common</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_wrench_set">Wrench set</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_machete">Machete</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_multitool">Multitool</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_bolt_cutters">Bolt cutters</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_lockpicks">Lockpicks</a></th><td>rare</td><td class="n">×1</td><td class="n">1.2%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_hospital">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Hospital</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×2–6</td><td class="n">18.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_pressure_dressing">Pressure dressing</a></th><td>uncommon</td><td class="n">×1–3</td><td class="n">14.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_antiseptic">Antiseptic</a></th><td>common</td><td class="n">×1–3</td><td class="n">12.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_painkillers">Painkillers</a></th><td>common</td><td class="n">×1–3</td><td class="n">11.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">8.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_suture_kit">Suture kit</a></th><td>rare</td><td class="n">×1</td><td class="n">7.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_antibiotics">Antibiotics</a></th><td>rare</td><td class="n">×1–2</td><td class="n">7.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_splint">Splint</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_medicine">Emergency medicine textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">5.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1</td><td class="n">4.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_saline">Saline drip</a></th><td>very rare</td><td class="n">×1–2</td><td class="n">2.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_medicine">Medical encyclopedia</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_industrial">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Industrial site</h2>
+          <p class="sec__lede">Barrier: padlock (10% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–5</td><td class="n">17.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–4</td><td class="n">12.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–4</td><td class="n">11.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–3</td><td class="n">9.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_gloves">Gloves</a></th><td>common</td><td class="n">×1</td><td class="n">8.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_rope">Rope</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">6.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_crowbar">Crowbar</a></th><td>common</td><td class="n">×1</td><td class="n">6.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_wrench_set">Wrench set</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_saw">Saw</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_headlamp">Headlamp</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_bolt_cutters">Bolt cutters</a></th><td>uncommon</td><td class="n">×1</td><td class="n">3.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-armor_bite_sleeves">Forearm guards</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.9%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_library">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Library / bookshop</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-lit_magazine_hunting">Hunting magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_magazine_guns">Firearms magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_magazine_diy">DIY magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_guide_first_aid">First aid guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_guide_survival">Survival guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_guide_repairs">Home repair guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_guide_gunsmithing">Gunsmithing guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_note">Note</a></th><td>common</td><td class="n">×1</td><td class="n">7.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_medicine">Emergency medicine textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_engineering">Engineering textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_fieldcraft">Fieldcraft textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_ballistics">Ballistics textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_medicine">Medical encyclopedia</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_weapons">Encyclopedia of weapons</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_engineering">Encyclopedia of engineering</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_nature">Encyclopedia of nature</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_military">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Military site</h2>
+          <p class="sec__lede">Barrier: padlock (10% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-ammo_545x39">5.45x39 mm round</a></th><td>uncommon</td><td class="n">×8–30</td><td class="n">11.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_762x39">7.62x39 mm round</a></th><td>uncommon</td><td class="n">×6–24</td><td class="n">8.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_9x19">9x19 mm round</a></th><td>common</td><td class="n">×5–20</td><td class="n">7.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_canned_meat">Canned meat</a></th><td>common</td><td class="n">×1–4</td><td class="n">7.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_pressure_dressing">Pressure dressing</a></th><td>uncommon</td><td class="n">×1–3</td><td class="n">6.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_rifle_545">Rifle magazine 5.45x39 (30)</a></th><td>rare</td><td class="n">×1–3</td><td class="n">6.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1–2</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_rifle_762x39">Rifle magazine 7.62x39 (30)</a></th><td>rare</td><td class="n">×1–3</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_tactical">Tactical backpack</a></th><td>rare</td><td class="n">×1</td><td class="n">4.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-armor_helmet_ballistic">Ballistic helmet</a></th><td>rare</td><td class="n">×1</td><td class="n">3.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_fieldcraft">Fieldcraft textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">3.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_smg_9mm">SMG magazine 9x19 (30)</a></th><td>rare</td><td class="n">×1–2</td><td class="n">3.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_rifle_545">5.45 mm carbine</a></th><td>rare</td><td class="n">×1</td><td class="n">3.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_binoculars">Binoculars</a></th><td>rare</td><td class="n">×1</td><td class="n">3.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_rifle_762x39">7.62 mm carbine</a></th><td>rare</td><td class="n">×1</td><td class="n">2.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-weapon_rifle_mosin">7.62x54R bolt-action rifle</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_foregrip">Foregrip</a></th><td>rare</td><td class="n">×1</td><td class="n">1.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_weapon_light">Weapon light</a></th><td>rare</td><td class="n">×1</td><td class="n">1.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-armor_vest_plate">Plate carrier</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_military">Military rucksack</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_red_dot">Red dot sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_rifle_545_drum">Drum magazine 5.45x39 (60)</a></th><td>rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_suppressor">Suppressor</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-att_laser">Laser sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_pharmacy">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Pharmacy</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×1–4</td><td class="n">18.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_painkillers">Painkillers</a></th><td>common</td><td class="n">×1–3</td><td class="n">15.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_antiseptic">Antiseptic</a></th><td>common</td><td class="n">×1–2</td><td class="n">12.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_pressure_dressing">Pressure dressing</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">9.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_leaflet_first_aid">Leaflet: first aid</a></th><td>common</td><td class="n">×1</td><td class="n">8.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_alcohol">Spirit alcohol</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">7.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–3</td><td class="n">6.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_guide_first_aid">First aid guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_antibiotics">Antibiotics</a></th><td>rare</td><td class="n">×1–2</td><td class="n">3.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_suture_kit">Suture kit</a></th><td>rare</td><td class="n">×1</td><td class="n">2.5%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_school">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>School</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_glue">Glue</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–3</td><td class="n">12.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_magazine_diy">DIY magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_engineering">Engineering textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">9.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">9.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–2</td><td class="n">9.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_bat">Baseball bat</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_medicine">Emergency medicine textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_textbook_fieldcraft">Fieldcraft textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_nature">Encyclopedia of nature</a></th><td>very rare</td><td class="n">×1</td><td class="n">3.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_engineering">Encyclopedia of engineering</a></th><td>very rare</td><td class="n">×1</td><td class="n">3.1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_sports">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Sports and outdoor shop</h2>
+          <p class="sec__lede">Barrier: door (35% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-pack_school">School backpack</a></th><td>common</td><td class="n">×1</td><td class="n">8.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_fleece">Fleece</a></th><td>common</td><td class="n">×1</td><td class="n">8.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_daypack">Daypack</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_boots">Hiking boots</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_hat">Hat</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_knife">Knife</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–3</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_thermal_underwear">Thermal underwear</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_rain_shell">Rain shell</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_winter_trousers">Winter trousers</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_headlamp">Headlamp</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_guide_survival">Survival guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_tactical">Tactical backpack</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_water_filter">Water filter</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_sewing_kit">Sewing kit</a></th><td>common</td><td class="n">×1</td><td class="n">3.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_binoculars">Binoculars</a></th><td>rare</td><td class="n">×1</td><td class="n">2.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_trekking">Trekking backpack</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.7%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="poi_warehouse">
+        <div class="sec__hd">
+          <span class="sec__no">Real place</span>
+          <h2>Warehouse</h2>
+          <p class="sec__lede">Barrier: padlock (10% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×2–6</td><td class="n">11.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_canned_meat">Canned meat</a></th><td>common</td><td class="n">×2–6</td><td class="n">10.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_canned_vegetables">Canned vegetables</a></th><td>common</td><td class="n">×2–6</td><td class="n">10.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_1500">Water, 1.5 l</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–4</td><td class="n">8.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–5</td><td class="n">8.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–4</td><td class="n">7.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_battery">Battery</a></th><td>common</td><td class="n">×2–6</td><td class="n">7.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">5.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_school">School backpack</a></th><td>common</td><td class="n">×1</td><td class="n">4.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-pack_daypack">Daypack</a></th><td>common</td><td class="n">×1</td><td class="n">2.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_crank_radio">Crank radio</a></th><td>rare</td><td class="n">×1</td><td class="n">2.2%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="procedural">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural layer</span>
+          <h2>For places OSM does not know</h2>
+          <p class="sec__lede">Below eight points of interest within 2 km, a layer built on objects that exist everywhere takes over: cars, barns, skips. It pays 55% weight on rare items and can never roll a firearm or advanced literature — in exchange there are more points and they come back sooner.</p>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_abandoned_car">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Abandoned car</h2>
+          <p class="sec__lede">Barrier: door (35% already open) · invented by the game, not read off the map</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–3</td><td class="n">20.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–3</td><td class="n">16.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1</td><td class="n">11.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">10.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_duct_tape">Duct tape</a></th><td>uncommon</td><td class="n">×1</td><td class="n">10.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">10.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">8.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_multitool">Multitool</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_abandoned_house">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Abandoned house</h2>
+          <p class="sec__lede">Barrier: window (45% already open) · invented by the game, not read off the map · visible only after reconnaissance</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–3</td><td class="n">10.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_canned_vegetables">Canned vegetables</a></th><td>common</td><td class="n">×1–2</td><td class="n">8.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_tshirt">T-shirt</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_trousers">Trousers</a></th><td>common</td><td class="n">×1</td><td class="n">6.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_knife">Knife</a></th><td>common</td><td class="n">×1</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_chocolate">Chocolate</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_hammer">Hammer</a></th><td>common</td><td class="n">×1</td><td class="n">4.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_can_opener">Can opener</a></th><td>common</td><td class="n">×1</td><td class="n">4.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_sewing_kit">Sewing kit</a></th><td>common</td><td class="n">×1</td><td class="n">4.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_winter_jacket">Winter jacket</a></th><td>common</td><td class="n">×1</td><td class="n">3.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_magazine_diy">DIY magazine</a></th><td>common</td><td class="n">×1</td><td class="n">3.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_note">Note</a></th><td>common</td><td class="n">×1</td><td class="n">2.9%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_ambulance">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Ambulance</h2>
+          <p class="sec__lede">Barrier: door (35% already open) · invented by the game, not read off the map</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×2–5</td><td class="n">23.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×2–6</td><td class="n">15.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_painkillers">Painkillers</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×2–6</td><td class="n">14.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1–2</td><td class="n">12.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_antiseptic">Antiseptic</a></th><td>common</td><td class="n">×1–2</td><td class="n">12.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_suture_kit">Suture kit</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_barn">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Barn</h2>
+          <p class="sec__lede">Barrier: window (45% already open) · invented by the game, not read off the map · visible only after reconnaissance</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×2–6</td><td class="n">22.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_rope">Rope</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">14.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_shovel">Shovel</a></th><td>common</td><td class="n">×1</td><td class="n">11.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_apple">Apple</a></th><td>common</td><td class="n">×1–4</td><td class="n">11.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_leather">Leather</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">9.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_axe">Axe</a></th><td>common</td><td class="n">×1</td><td class="n">9.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_matches">Matches</a></th><td>common</td><td class="n">×1</td><td class="n">7.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_dried_meat">Dried meat</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">6.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_waste">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Bin / skip</h2>
+          <p class="sec__lede">Barrier: none · invented by the game, not read off the map</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–5</td><td class="n">23.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–3</td><td class="n">18.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–3</td><td class="n">15.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–2</td><td class="n">10.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_battery">Battery</a></th><td>common</td><td class="n">×1–3</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_glue">Glue</a></th><td>common</td><td class="n">×1</td><td class="n">6.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1</td><td class="n">3.9%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_garage">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Garage</h2>
+          <p class="sec__lede">Barrier: padlock (10% already open)</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–4</td><td class="n">15.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">11.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_duct_tape">Duct tape</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">11.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–3</td><td class="n">11.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_wrench_set">Wrench set</a></th><td>uncommon</td><td class="n">×1</td><td class="n">10.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">8.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_crowbar">Crowbar</a></th><td>common</td><td class="n">×1</td><td class="n">8.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_gloves">Gloves</a></th><td>common</td><td class="n">×1</td><td class="n">8.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_multitool">Multitool</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_bolt_cutters">Bolt cutters</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_lockpicks">Lockpicks</a></th><td>rare</td><td class="n">×1</td><td class="n">2.9%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_hunting_stand">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Hunting stand</h2>
+          <p class="sec__lede">Barrier: none · invented by the game, not read off the map · visible only after reconnaissance</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-melee_knife">Knife</a></th><td>common</td><td class="n">×1</td><td class="n">16.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_dried_meat">Dried meat</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">16.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_rope">Rope</a></th><td>uncommon</td><td class="n">×1</td><td class="n">14.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_magazine_hunting">Hunting magazine</a></th><td>common</td><td class="n">×1</td><td class="n">14.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-cloth_gloves">Gloves</a></th><td>common</td><td class="n">×1</td><td class="n">12.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_12ga_buck">12 ga buckshot</a></th><td>common</td><td class="n">×2–6</td><td class="n">10.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-ammo_762x54r">7.62x54R round</a></th><td>uncommon</td><td class="n">×2–6</td><td class="n">8.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_binoculars">Binoculars</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_police_car">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Police car</h2>
+          <p class="sec__lede">Barrier: padlock (10% already open) · invented by the game, not read off the map</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-ammo_9x19">9x19 mm round</a></th><td>common</td><td class="n">×6–18</td><td class="n">18.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–4</td><td class="n">15.6%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–4</td><td class="n">14.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">12.5%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-melee_bat">Baseball bat</a></th><td>uncommon</td><td class="n">×1</td><td class="n">10.9%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mag_pistol_9mm">Pistol magazine 9x19 (15)</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-armor_vest_soft">Soft body armour</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_roadside">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Roadside</h2>
+          <p class="sec__lede">Barrier: none · invented by the game, not read off the map</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–2</td><td class="n">26.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–2</td><td class="n">22.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–2</td><td class="n">16.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–2</td><td class="n">14.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1</td><td class="n">12.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1</td><td class="n">10.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_shelter">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Shelter / lean-to</h2>
+          <p class="sec__lede">Barrier: none</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–4</td><td class="n">27.8%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–2</td><td class="n">16.7%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_matches">Matches</a></th><td>common</td><td class="n">×1</td><td class="n">13.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–2</td><td class="n">13.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1</td><td class="n">13.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_lighter">Lighter</a></th><td>common</td><td class="n">×1</td><td class="n">9.3%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-lit_note">Note</a></th><td>common</td><td class="n">×1</td><td class="n">7.4%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="sec" id="proc_water_point">
+        <div class="sec__hd">
+          <span class="sec__no">Procedural point</span>
+          <h2>Water point</h2>
+          <p class="sec__lede">Barrier: none</p>
+        </div>
+        <div class="scroller">
+          <table class="tbl">
+            <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="items.html#item-drink_water_dirty">Untreated water</a></th><td>common</td><td class="n">×1–3</td><td class="n">32.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–3</td><td class="n">19.0%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–3</td><td class="n">17.1%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-drink_water_bottle_1500">Water, 1.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">15.2%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.4%</td></tr>
+              <tr><th scope="row"><a href="items.html#item-tool_water_filter">Water filter</a></th><td>rare</td><td class="n">×1</td><td class="n">4.8%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <nav class="foot__langs" aria-label="Language">
+          <a href="loot.html" data-lang-link hreflang="en">English</a>
+          <a href="pl/loot.html" data-lang-link hreflang="pl">Polski</a>
+        </nav>
+        <p class="foot__note">
+          Generated from the game data by <code>tool/build_loot_pages.dart</code>, through the same classes <code>test/loot/loot_table_test.dart</code> checks. The share is the entry's raw table weight, before the search-depth and scouting modifiers of §10.3.5 — the real distribution leans more common than the bare percentage suggests. The rules are in the <a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ARLS-ZA_design_doc_v2.md">design document</a> (§10).
+        </p>
+      </footer>
+
+    </main>
   </div>
-</section>
-<section class="sec" id="real">
-  <div class="sec__hd">
-    <span class="sec__no">Real places</span>
-    <h2>Read off the map, not invented</h2>
-    <p class="sec__lede">Tables tied to OpenStreetMap tags. A pharmacy on the map is a pharmacy in the game.</p>
-  </div>
-  <div class="prose">
-    <h3 id="poi_grocery">Grocery store</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-food_canned_vegetables">Canned vegetables</a></th><td>common</td><td class="n">×1–3</td><td class="n">10.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_canned_meat">Canned meat</a></th><td>common</td><td class="n">×1–3</td><td class="n">9.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–2</td><td class="n">8.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–4</td><td class="n">8.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_instant_soup">Instant soup</a></th><td>common</td><td class="n">×1–3</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_shopping_bag">Shopping bag</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_chocolate">Chocolate</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">6.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_1500">Water, 1.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">6.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_energy">Energy drink</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">5.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_battery">Battery</a></th><td>common</td><td class="n">×1–4</td><td class="n">5.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_dried_meat">Dried meat</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">4.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_matches">Matches</a></th><td>common</td><td class="n">×1–2</td><td class="n">4.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_sandwich">Sandwich</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">3.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_can_opener">Can opener</a></th><td>common</td><td class="n">×1</td><td class="n">3.5%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_weapons">Gun shop</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-ammo_9x19">9x19 mm round</a></th><td>common</td><td class="n">×5–24</td><td class="n">10.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_22lr">.22 LR round</a></th><td>common</td><td class="n">×10–50</td><td class="n">7.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_12ga_buck">12 ga buckshot</a></th><td>common</td><td class="n">×3–10</td><td class="n">6.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_leaflet_range_safety">Leaflet: range safety</a></th><td>common</td><td class="n">×1</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_pistol_9mm">Pistol magazine 9x19 (15)</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_38special">.38 Special round</a></th><td>uncommon</td><td class="n">×4–12</td><td class="n">5.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_rifle_22lr">.22 LR rifle</a></th><td>common</td><td class="n">×1</td><td class="n">5.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_magazine_guns">Firearms magazine</a></th><td>common</td><td class="n">×1</td><td class="n">5.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_rifle_22lr">Rifle magazine .22 LR (10)</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_12ga_slug">12 ga slug</a></th><td>uncommon</td><td class="n">×2–8</td><td class="n">4.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_pistol_9mm">9 mm pistol</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_gun_cleaning_kit">Gun cleaning kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">4.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_revolver_38">.38 revolver</a></th><td>uncommon</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-armor_vest_soft">Soft body armour</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_shotgun_pump">Pump shotgun</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_smg_9mm">SMG magazine 9x19 (30)</a></th><td>rare</td><td class="n">×1</td><td class="n">2.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-armor_helmet_ballistic">Ballistic helmet</a></th><td>rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_pistol_9mm_ext">Extended magazine 9x19 (25)</a></th><td>rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_smg_9mm">9 mm submachine gun</a></th><td>rare</td><td class="n">×1</td><td class="n">1.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_weapon_light">Weapon light</a></th><td>rare</td><td class="n">×1</td><td class="n">1.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_red_dot">Red dot sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_foregrip">Foregrip</a></th><td>rare</td><td class="n">×1</td><td class="n">1.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_suppressor">Suppressor</a></th><td>very rare</td><td class="n">×1</td><td class="n">0.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_laser">Laser sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">0.8%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_hardware">Hardware store</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_nails">Nails</a></th><td>common</td><td class="n">×1–3</td><td class="n">11.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–4</td><td class="n">10.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–3</td><td class="n">9.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–3</td><td class="n">9.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_duct_tape">Duct tape</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">8.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–4</td><td class="n">8.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_glue">Glue</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_screwdriver">Screwdriver</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_hammer">Hammer</a></th><td>common</td><td class="n">×1</td><td class="n">4.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_lighter">Lighter</a></th><td>common</td><td class="n">×1–2</td><td class="n">4.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_saw">Saw</a></th><td>uncommon</td><td class="n">×1</td><td class="n">3.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_shovel">Shovel</a></th><td>common</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_axe">Axe</a></th><td>common</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_wrench_set">Wrench set</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_machete">Machete</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_multitool">Multitool</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_bolt_cutters">Bolt cutters</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_lockpicks">Lockpicks</a></th><td>rare</td><td class="n">×1</td><td class="n">1.2%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_hospital">Hospital</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×2–6</td><td class="n">18.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_pressure_dressing">Pressure dressing</a></th><td>uncommon</td><td class="n">×1–3</td><td class="n">14.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_antiseptic">Antiseptic</a></th><td>common</td><td class="n">×1–3</td><td class="n">12.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_painkillers">Painkillers</a></th><td>common</td><td class="n">×1–3</td><td class="n">11.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">8.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_suture_kit">Suture kit</a></th><td>rare</td><td class="n">×1</td><td class="n">7.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_antibiotics">Antibiotics</a></th><td>rare</td><td class="n">×1–2</td><td class="n">7.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_splint">Splint</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_medicine">Emergency medicine textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">5.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1</td><td class="n">4.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_saline">Saline drip</a></th><td>very rare</td><td class="n">×1–2</td><td class="n">2.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_medicine">Medical encyclopedia</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_industrial">Industrial site</h3>
-    <p class="sec__lede">Barrier: padlock (10% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–5</td><td class="n">17.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–4</td><td class="n">12.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–4</td><td class="n">11.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–3</td><td class="n">9.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_gloves">Gloves</a></th><td>common</td><td class="n">×1</td><td class="n">8.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_rope">Rope</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">6.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_crowbar">Crowbar</a></th><td>common</td><td class="n">×1</td><td class="n">6.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_wrench_set">Wrench set</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_saw">Saw</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_headlamp">Headlamp</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_bolt_cutters">Bolt cutters</a></th><td>uncommon</td><td class="n">×1</td><td class="n">3.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-armor_bite_sleeves">Forearm guards</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.9%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_library">Library / bookshop</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-lit_magazine_hunting">Hunting magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_magazine_guns">Firearms magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_magazine_diy">DIY magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_guide_first_aid">First aid guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_guide_survival">Survival guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_guide_repairs">Home repair guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_guide_gunsmithing">Gunsmithing guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_note">Note</a></th><td>common</td><td class="n">×1</td><td class="n">7.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_medicine">Emergency medicine textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_engineering">Engineering textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_fieldcraft">Fieldcraft textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_ballistics">Ballistics textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">4.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_medicine">Medical encyclopedia</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_weapons">Encyclopedia of weapons</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_engineering">Encyclopedia of engineering</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_nature">Encyclopedia of nature</a></th><td>very rare</td><td class="n">×1</td><td class="n">2.1%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_military">Military site</h3>
-    <p class="sec__lede">Barrier: padlock (10% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-ammo_545x39">5.45x39 mm round</a></th><td>uncommon</td><td class="n">×8–30</td><td class="n">11.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_762x39">7.62x39 mm round</a></th><td>uncommon</td><td class="n">×6–24</td><td class="n">8.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_9x19">9x19 mm round</a></th><td>common</td><td class="n">×5–20</td><td class="n">7.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_canned_meat">Canned meat</a></th><td>common</td><td class="n">×1–4</td><td class="n">7.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_pressure_dressing">Pressure dressing</a></th><td>uncommon</td><td class="n">×1–3</td><td class="n">6.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_rifle_545">Rifle magazine 5.45x39 (30)</a></th><td>rare</td><td class="n">×1–3</td><td class="n">6.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1–2</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_rifle_762x39">Rifle magazine 7.62x39 (30)</a></th><td>rare</td><td class="n">×1–3</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_tactical">Tactical backpack</a></th><td>rare</td><td class="n">×1</td><td class="n">4.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-armor_helmet_ballistic">Ballistic helmet</a></th><td>rare</td><td class="n">×1</td><td class="n">3.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_fieldcraft">Fieldcraft textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">3.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_smg_9mm">SMG magazine 9x19 (30)</a></th><td>rare</td><td class="n">×1–2</td><td class="n">3.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_rifle_545">5.45 mm carbine</a></th><td>rare</td><td class="n">×1</td><td class="n">3.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_binoculars">Binoculars</a></th><td>rare</td><td class="n">×1</td><td class="n">3.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_rifle_762x39">7.62 mm carbine</a></th><td>rare</td><td class="n">×1</td><td class="n">2.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-weapon_rifle_mosin">7.62x54R bolt-action rifle</a></th><td>uncommon</td><td class="n">×1</td><td class="n">2.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_foregrip">Foregrip</a></th><td>rare</td><td class="n">×1</td><td class="n">1.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_weapon_light">Weapon light</a></th><td>rare</td><td class="n">×1</td><td class="n">1.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-armor_vest_plate">Plate carrier</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_military">Military rucksack</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_red_dot">Red dot sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_rifle_545_drum">Drum magazine 5.45x39 (60)</a></th><td>rare</td><td class="n">×1</td><td class="n">1.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_suppressor">Suppressor</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-att_laser">Laser sight</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.0%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_pharmacy">Pharmacy</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×1–4</td><td class="n">18.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_painkillers">Painkillers</a></th><td>common</td><td class="n">×1–3</td><td class="n">15.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_antiseptic">Antiseptic</a></th><td>common</td><td class="n">×1–2</td><td class="n">12.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_pressure_dressing">Pressure dressing</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">9.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_leaflet_first_aid">Leaflet: first aid</a></th><td>common</td><td class="n">×1</td><td class="n">8.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_alcohol">Spirit alcohol</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">7.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–3</td><td class="n">6.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_guide_first_aid">First aid guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_antibiotics">Antibiotics</a></th><td>rare</td><td class="n">×1–2</td><td class="n">3.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_suture_kit">Suture kit</a></th><td>rare</td><td class="n">×1</td><td class="n">2.5%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_school">School</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_glue">Glue</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–3</td><td class="n">12.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_magazine_diy">DIY magazine</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_engineering">Engineering textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">9.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">9.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–2</td><td class="n">9.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_bat">Baseball bat</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_medicine">Emergency medicine textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_textbook_fieldcraft">Fieldcraft textbook</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_nature">Encyclopedia of nature</a></th><td>very rare</td><td class="n">×1</td><td class="n">3.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_encyclopedia_engineering">Encyclopedia of engineering</a></th><td>very rare</td><td class="n">×1</td><td class="n">3.1%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_sports">Sports and outdoor shop</h3>
-    <p class="sec__lede">Barrier: door (35% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-pack_school">School backpack</a></th><td>common</td><td class="n">×1</td><td class="n">8.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_fleece">Fleece</a></th><td>common</td><td class="n">×1</td><td class="n">8.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_daypack">Daypack</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_boots">Hiking boots</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_hat">Hat</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_knife">Knife</a></th><td>common</td><td class="n">×1</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–3</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_thermal_underwear">Thermal underwear</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_rain_shell">Rain shell</a></th><td>uncommon</td><td class="n">×1</td><td class="n">6.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_winter_trousers">Winter trousers</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_headlamp">Headlamp</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_guide_survival">Survival guide</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_tactical">Tactical backpack</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_water_filter">Water filter</a></th><td>rare</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_sewing_kit">Sewing kit</a></th><td>common</td><td class="n">×1</td><td class="n">3.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_binoculars">Binoculars</a></th><td>rare</td><td class="n">×1</td><td class="n">2.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_trekking">Trekking backpack</a></th><td>very rare</td><td class="n">×1</td><td class="n">1.7%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="poi_warehouse">Warehouse</h3>
-    <p class="sec__lede">Barrier: padlock (10% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×2–6</td><td class="n">11.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_canned_meat">Canned meat</a></th><td>common</td><td class="n">×2–6</td><td class="n">10.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_canned_vegetables">Canned vegetables</a></th><td>common</td><td class="n">×2–6</td><td class="n">10.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_1500">Water, 1.5 l</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–4</td><td class="n">8.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–5</td><td class="n">8.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–4</td><td class="n">7.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_battery">Battery</a></th><td>common</td><td class="n">×2–6</td><td class="n">7.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">5.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_school">School backpack</a></th><td>common</td><td class="n">×1</td><td class="n">4.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-pack_daypack">Daypack</a></th><td>common</td><td class="n">×1</td><td class="n">2.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_crank_radio">Crank radio</a></th><td>rare</td><td class="n">×1</td><td class="n">2.2%</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-<section class="sec" id="procedural">
-  <div class="sec__hd">
-    <span class="sec__no">Procedural layer</span>
-    <h2>For towns OSM does not know</h2>
-    <p class="sec__lede">Below eight points of interest within 2 km, this layer replaces shops with objects that exist everywhere: cars, barns, skips. It pays 55% weight on rare items and can never roll a firearm or advanced literature.</p>
-  </div>
-  <div class="prose">
-    <h3 id="proc_abandoned_car">Abandoned car</h3>
-    <p class="sec__lede">Barrier: door (35% already open) · invented by the game, not read off the map</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–3</td><td class="n">20.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–3</td><td class="n">16.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1</td><td class="n">11.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">10.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_duct_tape">Duct tape</a></th><td>uncommon</td><td class="n">×1</td><td class="n">10.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">10.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_first_aid_kit">First aid kit</a></th><td>uncommon</td><td class="n">×1</td><td class="n">8.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">8.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_multitool">Multitool</a></th><td>uncommon</td><td class="n">×1</td><td class="n">5.0%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_abandoned_house">Abandoned house</h3>
-    <p class="sec__lede">Barrier: window (45% already open) · invented by the game, not read off the map · visible only after reconnaissance</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–3</td><td class="n">10.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–4</td><td class="n">9.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_canned_vegetables">Canned vegetables</a></th><td>common</td><td class="n">×1–2</td><td class="n">8.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_tshirt">T-shirt</a></th><td>common</td><td class="n">×1–2</td><td class="n">7.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_trousers">Trousers</a></th><td>common</td><td class="n">×1</td><td class="n">6.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_knife">Knife</a></th><td>common</td><td class="n">×1</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×1–2</td><td class="n">5.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_chocolate">Chocolate</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_hammer">Hammer</a></th><td>common</td><td class="n">×1</td><td class="n">4.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_can_opener">Can opener</a></th><td>common</td><td class="n">×1</td><td class="n">4.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_sewing_kit">Sewing kit</a></th><td>common</td><td class="n">×1</td><td class="n">4.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_winter_jacket">Winter jacket</a></th><td>common</td><td class="n">×1</td><td class="n">3.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_magazine_diy">DIY magazine</a></th><td>common</td><td class="n">×1</td><td class="n">3.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_note">Note</a></th><td>common</td><td class="n">×1</td><td class="n">2.9%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_ambulance">Ambulance</h3>
-    <p class="sec__lede">Barrier: door (35% already open) · invented by the game, not read off the map</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×2–5</td><td class="n">23.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×2–6</td><td class="n">15.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_painkillers">Painkillers</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×2–6</td><td class="n">14.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_tourniquet">Tourniquet</a></th><td>rare</td><td class="n">×1–2</td><td class="n">12.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_antiseptic">Antiseptic</a></th><td>common</td><td class="n">×1–2</td><td class="n">12.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_suture_kit">Suture kit</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_barn">Barn</h3>
-    <p class="sec__lede">Barrier: window (45% already open) · invented by the game, not read off the map · visible only after reconnaissance</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×2–6</td><td class="n">22.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_rope">Rope</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">14.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_shovel">Shovel</a></th><td>common</td><td class="n">×1</td><td class="n">11.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_apple">Apple</a></th><td>common</td><td class="n">×1–4</td><td class="n">11.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_leather">Leather</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">9.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_axe">Axe</a></th><td>common</td><td class="n">×1</td><td class="n">9.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_matches">Matches</a></th><td>common</td><td class="n">×1</td><td class="n">7.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_dried_meat">Dried meat</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">6.3%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_waste">Bin / skip</h3>
-    <p class="sec__lede">Barrier: none · invented by the game, not read off the map</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–5</td><td class="n">23.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–3</td><td class="n">18.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–3</td><td class="n">15.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–2</td><td class="n">10.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_battery">Battery</a></th><td>common</td><td class="n">×1–3</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_glue">Glue</a></th><td>common</td><td class="n">×1</td><td class="n">6.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1</td><td class="n">3.9%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_garage">Garage</h3>
-    <p class="sec__lede">Barrier: padlock (10% already open)</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–4</td><td class="n">15.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fuel">Fuel canister</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">11.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_duct_tape">Duct tape</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">11.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–3</td><td class="n">11.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_wrench_set">Wrench set</a></th><td>uncommon</td><td class="n">×1</td><td class="n">10.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_component">Electronic component</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">8.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_crowbar">Crowbar</a></th><td>common</td><td class="n">×1</td><td class="n">8.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_gloves">Gloves</a></th><td>common</td><td class="n">×1</td><td class="n">8.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_multitool">Multitool</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_bolt_cutters">Bolt cutters</a></th><td>uncommon</td><td class="n">×1</td><td class="n">4.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_lockpicks">Lockpicks</a></th><td>rare</td><td class="n">×1</td><td class="n">2.9%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_hunting_stand">Hunting stand</h3>
-    <p class="sec__lede">Barrier: none · invented by the game, not read off the map · visible only after reconnaissance</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-melee_knife">Knife</a></th><td>common</td><td class="n">×1</td><td class="n">16.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_dried_meat">Dried meat</a></th><td>uncommon</td><td class="n">×1–2</td><td class="n">16.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_rope">Rope</a></th><td>uncommon</td><td class="n">×1</td><td class="n">14.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_magazine_hunting">Hunting magazine</a></th><td>common</td><td class="n">×1</td><td class="n">14.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-cloth_gloves">Gloves</a></th><td>common</td><td class="n">×1</td><td class="n">12.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_12ga_buck">12 ga buckshot</a></th><td>common</td><td class="n">×2–6</td><td class="n">10.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-ammo_762x54r">7.62x54R round</a></th><td>uncommon</td><td class="n">×2–6</td><td class="n">8.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_binoculars">Binoculars</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_police_car">Police car</h3>
-    <p class="sec__lede">Barrier: padlock (10% already open) · invented by the game, not read off the map</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-ammo_9x19">9x19 mm round</a></th><td>common</td><td class="n">×6–18</td><td class="n">18.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–4</td><td class="n">15.6%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-med_bandage">Bandage</a></th><td>common</td><td class="n">×1–3</td><td class="n">14.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–4</td><td class="n">14.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_flashlight">Flashlight</a></th><td>common</td><td class="n">×1</td><td class="n">12.5%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-melee_bat">Baseball bat</a></th><td>uncommon</td><td class="n">×1</td><td class="n">10.9%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mag_pistol_9mm">Pistol magazine 9x19 (15)</a></th><td>uncommon</td><td class="n">×1</td><td class="n">7.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-armor_vest_soft">Soft body armour</a></th><td>rare</td><td class="n">×1</td><td class="n">6.3%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_roadside">Roadside</h3>
-    <p class="sec__lede">Barrier: none · invented by the game, not read off the map</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–2</td><td class="n">26.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–2</td><td class="n">22.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–2</td><td class="n">16.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_wire">Wire</a></th><td>common</td><td class="n">×1–2</td><td class="n">14.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1</td><td class="n">12.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_crackers">Crackers</a></th><td>common</td><td class="n">×1</td><td class="n">10.0%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_shelter">Shelter / lean-to</h3>
-    <p class="sec__lede">Barrier: none</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-mat_wood">Wood</a></th><td>common</td><td class="n">×1–4</td><td class="n">27.8%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_fabric">Fabric</a></th><td>common</td><td class="n">×1–2</td><td class="n">16.7%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_matches">Matches</a></th><td>common</td><td class="n">×1</td><td class="n">13.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-food_energy_bar">Energy bar</a></th><td>common</td><td class="n">×1–2</td><td class="n">13.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1</td><td class="n">13.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_lighter">Lighter</a></th><td>common</td><td class="n">×1</td><td class="n">9.3%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-lit_note">Note</a></th><td>common</td><td class="n">×1</td><td class="n">7.4%</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <h3 id="proc_water_point">Water point</h3>
-    <p class="sec__lede">Barrier: none</p>
-    <div class="scroller">
-      <table class="tbl">
-        <thead><tr><th scope="col">Item</th><th scope="col">Rarity</th><th scope="col" class="n">Qty</th><th scope="col" class="n">Share</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="items.html#item-drink_water_dirty">Untreated water</a></th><td>common</td><td class="n">×1–3</td><td class="n">32.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_500">Water, 0.5 l</a></th><td>common</td><td class="n">×1–3</td><td class="n">19.0%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_plastic">Plastic</a></th><td>common</td><td class="n">×1–3</td><td class="n">17.1%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-drink_water_bottle_1500">Water, 1.5 l</a></th><td>common</td><td class="n">×1–2</td><td class="n">15.2%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-mat_metal">Scrap metal</a></th><td>common</td><td class="n">×1–2</td><td class="n">11.4%</td></tr>
-          <tr><th scope="row"><a href="items.html#item-tool_water_filter">Water filter</a></th><td>rare</td><td class="n">×1</td><td class="n">4.8%</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-<footer class="foot">
-  <p class="foot__note">
-Generated from the game data by <code>tool/build_loot_pages.dart</code>, through the same classes <code>test/loot/loot_table_test.dart</code> validates against. The share is the entry's raw table weight, before the search-depth and scouting modifiers of §10.3.5 — the real distribution leans more common than the bare percentage suggests. The rules are in the <a href="https://github.com/Frosttod/ARLS-ZA/blob/main/ARLS-ZA_design_doc_v2.md">design document</a> (§10).
-  </p>
-</footer>
-</main></div></div>
+</div>
+
+<script src="assets/site.js"></script>
 </body>
 </html>
